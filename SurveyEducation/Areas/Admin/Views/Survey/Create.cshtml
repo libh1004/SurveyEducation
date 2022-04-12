@@ -1,0 +1,128 @@
+﻿<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span>Create survey</h4>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Create a question</h5>
+                    <button id="basic-information">Toggle</button>
+                </div>
+                <div class="card-body basic-info">
+                    <form>
+                        <div class="col-12 col-mb-4">
+                            <div class="row mt-2">
+                                <div class="col-2"> <label class="form-label" for="basic-default-fullname">Name Survey</label></div>
+                                <div class="col-5"> <input type="text" class="form-control" id="basic-default-fullname" placeholder="Name Survey" /></div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-2"><label class="form-label" for="basic-default-company">CreatedAt</label></div>
+                                <div class="col-5"><input type="date" class="form-control" id="basic-default-company" placeholder="Create At" /></div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-2"><label class="form-label" for="basic-default-company">CreatedBy</label></div>
+                                <div class="col-5"><input type="text" class="form-control" id="basic-default-company" placeholder="Createed By" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">List question</h5>
+                    <button id="questions">Toggle</button>
+                </div>
+                <div class="card-body questions">
+                    <form>
+                        <div class="col-10 col-mb-4 mt-2">
+                            <label class="form-label" for="basic-default-company">Question text</label>
+                            <button id="question-1">Toggle</button>
+                            <input type="text" class="form-control" id="answer-1" placeholder="Answer" />
+                            @* thay phần Edit, Delete thành icon nhé.*@
+                            <button id="edit-button-a1">Edit</button>
+                            <button id="delete-button-a1">Delete</button>
+                        </div>
+                        <div class="col-12 col-mb-4 mt-4">
+                            <label class="form-label" for="basic-default-company">Question checkbox</label><br />
+                            <button id="question-2">Toggle</button>
+                            <input type="checkbox" id="vehicle1" name="vehicle3">
+                            <label for="vehicle3"> I have a boat</label><br />
+                            <input type="checkbox" id="vehicle2" name="vehicle3">
+                            <label for="vehicle3"> I have a boat</label><br />
+                            <input type="checkbox" id="vehicle3" name="vehicle3">
+                            <label for="vehicle3"> I have a boat</label><br />
+                            <input type="checkbox" id="vehicle4" name="vehicle3">
+                            <label for="vehicle3"> I have a boat</label><br />
+                        </div>
+                        <div class="col-12 col-mb-4 mt-2">
+                            <label class="form-label" for="basic-default-company">CreatedBy</label><br>
+                            <button class="question-3">Toggle</button>
+                            <input type="radio" id="age1" name="age" value="30">
+                            <label for="age1">0 - 30</label><br>
+                            <input type="radio" id="age2" name="age" value="60">
+                            <label for="age2">31 - 60</label><br>
+                            <input type="radio" id="age3" name="age" value="100">
+                            <label for="age3">61 - 100</label><br><br>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 col-mb-4">
+                                <select class="form-select col-md-6" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-6 col-mb-4">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function () {
+        $("#basic-information").click(function () {
+            $(".basic-info").toggle();
+        });
+        $("#questions").click(function () {
+            $(".questions").toggle();
+        });
+        $(".questions #question-1").click(function () {
+            $("#answer-1").toggle();
+        });
+        $("#question-2").click(function () {
+            $("#vehicle1").toggle();
+            $("#vehicle2").toggle();
+            $("#vehicle3").toggle();
+            $("#vehicle4").toggle();
+        });
+        // Ajax
+        $()
+        var ajxReq = $.ajax('http://time.jsontest.com', {
+            type: 'DELETE'
+        });
+        ajxReq.success(function (data, status, jqXhr) {
+            $("#vehicle1").append("Request is Success.");
+        });
+        ajxReq.error(function (jqXhr, textStatus, errorMessage) {
+            $("#vehicle1").append("Request is Fail.");
+        });
+    });
+
+   
+});
+
+</script>

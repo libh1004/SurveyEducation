@@ -9,7 +9,7 @@ namespace SurveyEducation.Models
     {
         Draft,
         Active, 
-        Deactive, 
+        Deactive,
         Delected,
         Finished
     }

@@ -9,13 +9,14 @@ namespace SurveyEducation.Models
     {
         Draft,
         Active, 
-        Deactive, 
+        Deactive,
         Delected,
         Finished
     }
     public class Survey
     {
         public int Id { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
         public string Name { get; set; }
         public DateTime StartedAt { get; set; }
         public DateTime CreatedAt { get; set; }

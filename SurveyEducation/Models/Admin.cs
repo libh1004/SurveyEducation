@@ -13,5 +13,6 @@ namespace SurveyEducation.Models
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Thumbnail { get; set; }
+        public virtual ICollection<Survey> Surveys { get; set; }
     }
 }

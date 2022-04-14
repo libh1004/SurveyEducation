@@ -24,7 +24,7 @@ namespace SurveyEducation.Models
         [ForeignKey("SurveyId")]
         public virtual Survey Survey { get; set; }
         public string Title { get; set; }
-        public Type Type { get; set; }
+        public Type Type { get; set; } 
         public string Position { get; set; }
         public Status Status { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,7 @@ namespace SurveyEducation.Models
     public class FacultyStaff
     {
         public string Name { get; set; }
+        [Key]
         public string EmployeeNumber { get; set; }
         public string Password { get; set; }
         public string Class { get; set; }

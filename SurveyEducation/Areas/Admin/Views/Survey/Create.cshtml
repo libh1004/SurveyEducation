@@ -293,7 +293,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary col-1 mt-4">Send</button>
+            <button type="submit" class="btn btn-primary col-1 mt-4" onclick="handleSubmitButton('sendInfo')">Send</button>
         </div>
     </div>
 </div>
@@ -303,4 +303,11 @@
         alert("Are you sure you want to delete this survey?");
     }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        $('form[name="add-source"] input[name="btnSubmit"]').click(handleSubmitForm);
+    })
+    function handleSubmitButton(event) {
+        event.preventDefault();
+
+    }
 </script>

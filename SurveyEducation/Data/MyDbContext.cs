@@ -19,5 +19,9 @@ namespace SurveyEducation.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<UserQuestion> UserQuestions { get; set; }
+
+        public System.Data.Entity.DbSet<SurveyEducation.ViewModels.AnswerViewModel> AnswerViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<SurveyEducation.ViewModels.AdminViewModel> AdminViewModels { get; set; }
     }
 }

@@ -25,6 +25,9 @@ namespace SurveyEducation.ViewModels
         public TypeQuestion QuestionType { get; set; }
         [Required(ErrorMessage = "Please enter position.")]
         public string Position { get; set; }
+        public int UserQuestionId { get; set; }
+        [ForeignKey("UserQuestionId")]
+        public virtual UserQuestion UserQuestion { get; set; }
         public string Content { get; set; }
     }
 }

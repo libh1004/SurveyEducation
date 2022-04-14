@@ -18,6 +18,9 @@ namespace SurveyEducation.Models
         public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public virtual Question Question { get; set; }
+        public int UserQuestionId { get; set; }
+        [ForeignKey("UserQuestionId")]
+        public virtual  UserQuestion UserQuestion { get; set; }
         public TypeQuestion QuestionType { get; set; }
         public string Position { get; set; }
         public string Content { get; set; }

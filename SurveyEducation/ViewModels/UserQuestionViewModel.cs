@@ -18,10 +18,10 @@ namespace SurveyEducation.ViewModels
     {
         [Key]
         public int Id { get; set; }
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
+        public string RollNo { get; set; }
+        [ForeignKey("RollNo")]
         public virtual Student Student { get; set; }
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public virtual Question Question { get; set; }
         public int AnswerId { get; set; }

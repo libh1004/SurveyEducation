@@ -45,6 +45,6 @@ namespace SurveyEducation.ViewModels
         [Required(ErrorMessage = "Please enter tag.")]
         public string Tag { get; set; }
         public int AdminId { get; set; }
-        public virtual Admin Admin { get; set; }
+        public virtual AdminModel Admin { get; set; }
     }
 }

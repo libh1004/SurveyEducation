@@ -1,5 +1,5 @@
 ﻿<div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span>Create survey</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span>Basic information</h4>
     <div class="row">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -49,21 +49,21 @@
                                  class="accordion-collapse collapse"
                                  aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div id="items">
-                                        <div class="itemRow">
-                                            <div class="row mt-2">
-                                                <div class="col-10">
-                                                    <input type="text" class="form-control" id="basic-default-company" placeholder="Question" />
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                                    <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                                </div>
-                                            </div>
+                                <div class="accordion-body-text">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <input  type="text" onfocusout="onFocusOut()" class="form-control" id="basic-default-company" placeholder="Question" name="answer-text-1" />
                                         </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-submit" onclick="handleEditAnswer('getAnswer')"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button type="submit" class="btn btn-submit" onclick="myFunction()"><i class="fa-solid fa-trash-can"></i></button>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" id="form-add-answer" class="col-md-8"/>
+                                            <input type="button" id="answer-text" class="col-md-2 m-3 mt-3" value="Add answer" />
+                                        </div>
+                                        
                                     </div>
-                                    <a href="#" id="addRow">Add</a>
                                 </div>
                             </div>
                         </div>
@@ -83,19 +83,15 @@
                                  aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-
                                     <!-- <label class="form-label" for="basic-default-company">Question checkbox</label><br> -->
-                                    <div id="items-2">
-                                        <div class="itemRow">
-                                            <div class="row">
-                                                <input class="col-md-1 mt3" type="checkbox" id="vehicle1" name="vehicle3">
-                                                <div class="col-md-11">
-                                                    <input type="text" class="form-control" id="basic-default-company" placeholder="Question" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#" id="addRow-2">Add</a>
+                                    <input type="checkbox" id="vehicle1" name="vehicle3">
+                                    <label for="vehicle3"> I have a boat</label><br>
+                                    <input type="checkbox" id="vehicle2" name="vehicle3">
+                                    <label for="vehicle3"> I have a boat</label><br>
+                                    <input type="checkbox" id="vehicle3" name="vehicle3">
+                                    <label for="vehicle3"> I have a boat</label><br>
+                                    <input type="checkbox" id="vehicle4" name="vehicle3">
+                                    <label for="vehicle3"> I have a boat</label><br>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +103,7 @@
                                         data-bs-target="#accordionTwo3"
                                         aria-expanded="false"
                                         aria-controls="accordionTwo3">
-                                    CreateedBy
+                                    Question select one
                                 </button>
                             </h2>
                             <div id="accordionTwo3"
@@ -163,7 +159,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <button type="submit" class="btn btn-primary mt-4">Send</button> -->
                 </form>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -243,68 +238,29 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary col-1 mt-4">Send</button>
+            <button type="submit" class="btn btn-primary col-1 mt-4" onclick="handleSubmitButton('sendInfo')">Send</button>
         </div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
+    function onFocusOut() {
+        var value = $("#basic-default-company").val()
+        alert(value)
+    }
+    //document.addEventListener('DOMContentLoaded', function () {
+    //    $('form[name="add-source"] input[name="btnSubmit"]').click(handleSubmitForm);
+    //})
     function myFunction() {
         alert("Are you sure you want to delete this survey?");
     }
 
-</script>
-
-<script type="text/javascript">
-
-        $(function () {
-
-            $("#addRow").click(function (e) {
-                e.preventDefault();
-                var template = $("#items").find(".itemRow").first();
-                var newRow = template.clone();
-                newRow.find("input.formfield").val("");
-                $("#items").append(newRow);
-
-            });
-
-            $("#addRow-2").click(function (e) {
-                e.preventDefault();
-                var template = $("#items-2").find(".itemRow").first();
-                var newRow = template.clone();
-                newRow.find("input.formfield").val("");
-                $("#items-2").append(newRow);
-
-            });
-
-            @*$("#btnSubmit").click(function (e) {
-                e.preventDefault();
-                var _this = $(this);
-                var url = _this.closest("form").attr("action");
-
-                var rows = [];
-                var items = $(".itemRow");
-
-                $.each(items, function (i, item) {
-                    var name = $(item).find("input[name='Name']").val();
-                    var age = $(item).find("input[name='Age']").val();
-                    var createDt = $(item).find("input[name='CreateDate']").val();
-
-                    var row = { Name: name, Age: age, CreateDate: createDt };
-                    rows.push(row);
-                });
-
-                //Let's post to server
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: JSON.stringify(rows),
-                    contentType: "application/json"
-                })
-                    .done(function (result) {
-                        //do something with the result
-                    })
-
-            });*@
-        });
+    function handleSubmitButton(event) {
+        event.preventDefault();
+    }
+    function handleEditAnswer(event) {
+        event.preventDefault();
+        let answer_text = $('input[name=answer-text-1]').val();
+        let 
+    }
 </script>

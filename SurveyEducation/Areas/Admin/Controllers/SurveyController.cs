@@ -23,7 +23,36 @@ namespace SurveyEducation.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(SurveyViewModel surveyvm)
+        {
+            var survey = new Survey()
+            {
+                Name = surveyvm.Name,
+                StartedAt = surveyvm.StartedAt,
+                CreatedAt = surveyvm.CreatedAt,
+                UpdatedAt = surveyvm.UpdatedAt,
+                DeletedAt = surveyvm.DeletedAt,
+                CreatedBy = surveyvm.CreatedBy,
+                UpdatedBy = surveyvm.UpdatedBy,
+                DeletedBy = surveyvm.DeletedBy,
+                Status = (Models.StatusValue)surveyvm.Status,
+                Image = surveyvm.Image,
+                Detail = surveyvm.Detail,
+                Tag = surveyvm.Tag
+            };
+            db.Surveys.Add(survey);
+            db.SaveChanges();
+            return View("Index");
+        }
+        [HttpGet]
+        public ActionResult Create2()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create2(SurveyViewModel surveyvm)
         {
             var survey = new Survey()
             {

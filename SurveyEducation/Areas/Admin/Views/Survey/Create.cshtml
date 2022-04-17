@@ -28,12 +28,6 @@
                             <div class="col-2"><label class="form-label" for="basic-default-company">CreateedBy</label></div>
                             <div class="col-5"><input type="text" class="form-control" id="basic-default-company" placeholder="Createed By" /></div>
                         </div>
-                        @*<div class="row m-2 abcd">
-                            <div class="col-7"><input type="text" class="form-control" id="basic-default-company"/></div>
-                            <div class="d-flex justify-content-end col-2">
-                                <button type="submit" class="btn btn-primary">Add a new question</button>
-                            </div>
-                        </div>*@
                     </div>
                 </form>
             </div>
@@ -55,25 +49,19 @@
                                  class="accordion-collapse collapse"
                                  aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
-
-                                @*<div class="accordion-body"  id="myList">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <input  type="text" class="form-control" id="basic-default-company" placeholder="Question" />
                                 <div class="accordion-body-text">
                                     <div class="row">
                                         <div id="answer-text1">
-                                            
-                     </div>
+
+                                        </div>
                                         <div class="col">
                                             <input type="text" id="form-add-answer" class="col-md-8" />
-                                                 <button id="btnAddAnswerText">Add</button>
+                                            <button id="btnAddAnswerText">Add</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="card accordion-item m-3">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button type="button"
@@ -89,70 +77,18 @@
                                  class="accordion-collapse collapse"
                                  aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
-
-                                <div class="accordion-body" id="myList">
-
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle1" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle2" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle3" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle4" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle5" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle6" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                    <div class="col" >
-                                        <input type="checkbox" id="vehicle7" name="vehicle3">
-                                        <label for="vehicle3"> I have a boat</label>
-                                        <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                    </div>
-                                   <div class="col" >
-                                       <input type="checkbox" id="vehicle8" name="vehicle3">
-                                       <label for="vehicle3"> I have a boat</label>
-                                       <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                       <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                   </div>
                                 <div class="accordion-body">
                                     <ul id="answers">
-                                        
                                     </ul>
                                 </div>
-                                <div class="col">
+                                <div class="col form-select-many">
                                     <input type="text" name="answer234" id="form-add-answer2" class="col-md-8" />
                                     <input type="button" id="btnSubmit1" onclick="handleAddAnswer2()" class="col-md-2 m-3 mt-3" value="Add answer" />
                                 </div>
                                 <div class="col">
-                                    @*<button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
+                                    <button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
                                     <button class="btn btn-success" id="btnSaveAnswerText">Save</button>
-                                    <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>*@
+                                    <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -171,38 +107,14 @@
                                  class="accordion-collapse collapse"
                                  aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
-
-                                <div class="accordion-body"  id="myList">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <input type="radio" id="age1" name="age" value="30">
-                                            <label for="age1">0 - 30</label>
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                            <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <input type="radio" id="age2" name="age" value="60">
-                                            <label for="age2">31 - 60</label>
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                            <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <input type="radio" id="age3" name="age" value="100">
-                                            <label for="age3">61 - 100</label>
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                            <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                        </div>
-                                     </div>
+                                <div class="accordion-body">
+                                    <!-- <label class="form-label" for="basic-default-company">CreateedBy</label><br> -->
+                                    <input type="radio" id="age1" name="age" value="30">
+                                    <label for="age1">0 - 30</label><br>
+                                    <input type="radio" id="age2" name="age" value="60">
+                                    <label for="age2">31 - 60</label><br>
+                                    <input type="radio" id="age3" name="age" value="100">
+                                    <label for="age3">61 - 100</label><br>
                                 </div>
                             </div>
                         </div>
@@ -214,16 +126,16 @@
                                         data-bs-target="#accordionTwo4"
                                         aria-expanded="false"
                                         aria-controls="accordionTwo4">
+                                    <!-- Question text -->
                                 </button>
                             </h2>
                             <div id="accordionTwo4"
                                  class="accordion-collapse collapse"
                                  aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
-
-                                <div class="accordion-body"  id="myList">
-                                 <div class="row">
-                                        <div class="col-8 m-2">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-6 col-mb-4">
                                             <select class="form-select col-md-6" aria-label="Default select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
@@ -231,23 +143,13 @@
                                                 <option value="3">Three</option>
                                             </select>
                                         </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                            <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-8 m-2">
+                                        <div class="col-6 col-mb-4">
                                             <select class="form-select" aria-label="Default select example">
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
-                                         </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-submit"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                            <button type="submit" class="btn btn-submit" onclick="myFunction()">  <i class="fa-solid fa-trash-can"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -329,12 +231,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @*<div class="col-9"><input type="text" class="form-control" id="basic-default-company" /></div>*@
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">Add a new question</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -344,25 +240,31 @@
     </div>
 </div>
 @*<div class="input_fields_wrap">
-    <button class="add_field_button">Add More Fields</button>
-    <div>
-        <input type="text" id="hihi1"/>
-    </div>
-</div>*@
+        <button class="add_field_button">Add More Fields</button>
+        <div>
+            <input type="text" id="hihi1"/>
+        </div>
+    </div>*@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#btnEditAnswerText").click(function (e) {
             e.preventDefault();
             var getAnswer1 = $("#edit-element").text();
             $("#form-add-answer2").val(getAnswer1);
-           
+
         })
     });
     $(document).ready(function () {
-        $("#btnSaveAnswerText").click(function (e) {
+        var form_edit = $(".form-select-many");
+        var edit_button = $("#btnSaveAnswerText");
+        $(edit_button).click(function (e) {
             var updateAnswer = $("#form-add-answer2").val();
-            $("edit-element").text(updateAnswer);
+            $(form_edit).append(updateAnswer);
+
+            $(form_edit).set(updateAnswer);
+            /*$("edit-element").text(updateAnswer);*/
         })
     });
     $(document).ready(function () {
@@ -378,26 +280,25 @@
                 }
             } else {
                 alert("Please enter answer");
-            } 
+            }
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         var max_fields = 10; //maximum input boxes allowed
         var wrapper1 = $("#answers"); //Fields wrapper
-        var add_button = $("#btnSubmit1"); //Add button ID  
+        var add_button = $("#btnSubmit1"); //Add button ID
         var x = 1; //initlal text box count
         $(add_button).click(function (e) { //on add input button click
             var hihiValue = $("#form-add-answer2").val();
             e.preventDefault();
-                if (x < max_fields) { //max input box allowed
-                    //text box increment
-                    $(wrapper1).append('<li id="edit-element"><input type="checkbox"/> ' + hihiValue +'</li > '); //add input box
-                    x++;                                               a
-                }
-            var hihiValue = $("#form-add-answer2").val("");
+            if (x < max_fields) { //max input box allowed
+                //text box increment
+                $(wrapper1).append('<li id="edit-element"><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
+                x++;
+            }
+            hihiValue = $("#form-add-answer2").val("");
         });
     });
 </script>
@@ -412,8 +313,6 @@
     //}
     function myFunction() {
         alert("Are you sure you want to delete this survey?");
-        const list = document.getElementById("myList", "myList1", "myList2", "myList3xxx");
-        list.removeChild(list.firstElementChild);
     }
 </script>
 <script>
@@ -463,9 +362,9 @@
         }
     }
 </script>
-@*<script>
+<script>
     $(document).ready(function () {
-        var max_fields = 10; //maximum input boxes allowed  
+        var max_fields = 10; //maximum input boxes allowed
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
         var x = 1; //initlal text box count
@@ -487,9 +386,8 @@
 
             e.preventDefault();
             $(this).parent('div').remove();
-            x--;    
+            x--;
         })
     });
-   
-</script>*@
 
+</script>

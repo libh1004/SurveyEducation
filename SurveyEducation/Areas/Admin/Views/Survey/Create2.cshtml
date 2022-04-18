@@ -51,9 +51,8 @@
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body-text">
                                     <div class="row">
-                                        <div id="answer-text1">
-                                            
-                                        </div>
+                                        <ul id="answer-text1">
+                                        </ul>
                                         <div class="col">
                                             <input type="text" id="form-add-answer" class="col-md-8" />
                                             <button id="btnAddAnswerText">Add</button>
@@ -79,17 +78,16 @@
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <ul id="answers">
-                                        
                                     </ul>
                                 </div>
-                                <div class="col">
+                                <div class="col form-select-many">
                                     <input type="text" name="answer234" id="form-add-answer2" class="col-md-8" />
                                     <input type="button" id="btnSubmit1" onclick="handleAddAnswer2()" class="col-md-2 m-3 mt-3" value="Add answer" />
                                 </div>
                                 <div class="col">
-                                    @*<button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
+                                    <button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
                                     <button class="btn btn-success" id="btnSaveAnswerText">Save</button>
-                                    <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>*@
+                                    <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -241,60 +239,76 @@
     </div>
 </div>
 @*<div class="input_fields_wrap">
-    <button class="add_field_button">Add More Fields</button>
-    <div>
-        <input type="text" id="hihi1"/>
-    </div>
-</div>*@
+        <button class="add_field_button">Add More Fields</button>
+        <div>
+            <input type="text" id="hihi1"/>
+        </div>
+    </div>*@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
 <script>
     $(document).ready(function () {
         $("#btnEditAnswerText").click(function (e) {
             e.preventDefault();
             var getAnswer1 = $("#edit-element").text();
             $("#form-add-answer2").val(getAnswer1);
-           
+
         })
     });
     $(document).ready(function () {
-        $("#btnSaveAnswerText").click(function (e) {
+        var form_edit = $(".form-select-many");
+        var edit_button = $("#btnSaveAnswerText");
+        $(edit_button).click(function (e) {
             var updateAnswer = $("#form-add-answer2").val();
-            $("edit-element").text(updateAnswer);
+            $(form_edit).append(updateAnswer);
+
+            $(form_edit).set(updateAnswer);
+            /*$("edit-element").text(updateAnswer);*/
         })
     });
     $(document).ready(function () {
-        var warapper2 = $("#answer-text1");
+        var wapper2 = $("#answer-text1");
         var add_button2 = $("#btnAddAnswerText");
         var max_filed = 2;
         var x = 1;
         $(add_button2).click(function (e) {
+            //$.ajax(
+            //    {
+            //        type: "POST", //HTTP POST Method  
+            //        url: "Survey/Create2", // Controller/View   
+            //        data: { //Passing data  
+            //            Content: $("#form-add-answer").val(), //Reading text box values using Jquery
+            //        }
+            //    });
             var getAnswerText = $("#form-add-answer").val();
             if (getAnswerText != null) {
                 if (x < max_filed) {
-                    $(warapper2).append('<p id="answer-text-element">' + getAnswerText + '</p>');
-                }
-            } else {
-                alert("Please enter answer");
-            } 
+                    $(wapper2).append('<p id="answer-text-element">' + getAnswerText + '</p>');
+            //    }
+            //} else {
+            //    alert("Please enter answer");
+            //}
         })
     })
 </script>
-
 <script>
     $(document).ready(function () {
         var max_fields = 10; //maximum input boxes allowed
         var wrapper1 = $("#answers"); //Fields wrapper
-        var add_button = $("#btnSubmit1"); //Add button ID  
+        var add_button = $("#btnSubmit1"); //Add button ID
         var x = 1; //initlal text box count
         $(add_button).click(function (e) { //on add input button click
             var hihiValue = $("#form-add-answer2").val();
             e.preventDefault();
-                if (x < max_fields) { //max input box allowed
-                    //text box increment
-                    $(wrapper1).append('<li id="edit-element"><input type="checkbox"/> ' + hihiValue +'</li > '); //add input box
-                    x++;                                               a
-                }
-            var hihiValue = $("#form-add-answer2").val("");
+            if (x < max_fields) { //max input box allowed
+                //text box increment
+                $(wrapper1).append('<li id="edit-element"><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
+                x++;
+            }
+            hihiValue = $("#form-add-answer2").val("");
         });
     });
 </script>
@@ -358,9 +372,10 @@
         }
     }
 </script>
-@*<script>
+<script>
     $(document).ready(function () {
-        var max_fields = 10; //maximum input boxes allowed  
+
+        var max_fields = 10; //maximum input boxes allowed
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
         var x = 1; //initlal text box count
@@ -382,9 +397,7 @@
 
             e.preventDefault();
             $(this).parent('div').remove();
-            x--;    
+            x--;
         })
     });
-   
-</script>*@
-
+</script>

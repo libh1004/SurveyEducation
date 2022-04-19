@@ -1,0 +1,269 @@
+﻿<style>
+    .ml-3{
+        padding-left: 10px;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản lý Survey/</span>Thêm Survey</h4>
+    <div class="row">
+        <ul class="nav nav-pills m-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Tạo mới survey</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Tạo mới google survey</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"> Thông tin cơ bản</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true"> Danh sách câu hỏi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"> Thông tin thêm</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content  bg-light" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form>
+                                <div class="col-12 col-mb-8">
+                                    <div class="row m-2 basic-survey">
+                                        <div class="col-2"> <label class="form-label" for="basic-default-fullname">Tên</label></div>
+                                        <div class="col-6"> <input type="text" name="survey-name" class="form-control" id="basic-default-surveyname" placeholder="SurveyName" /></div>
+                                    </div>
+                                    <div class="row m-2 basic-survey">
+                                        <div class="col-2"><label class="form-label" for="basic-default-company">Thời gian bắt đầu</label></div>
+                                        <div class="col-4"><input type="date" name="start-time" class="form-control" id="basic-default-company" placeholder="Start Time" /></div>
+                                    </div>
+                                    <div class="row m-2 basic-survey">
+                                        <div class="col-2"><label class="form-label" for="basic-default-company">Thời gian kết thúc</label></div>
+                                        <div class="col-4"><input type="date" name="end-time" class="form-control" id="basic-default-company" placeholder="End Time" /></div>
+                                    </div>
+                                    <div class="row m-2 basic-survey" ">
+                                        <div class="col-2"><label class="form-label" for="basic-default-company">Mô tả</label></div>
+                                        <div class="col-10"><textarea name="description" class="form-control" id="basic-default-company" placeholder="Description"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" id="btnSubmitBasicSurvey" class="btn btn-primary col-1 mt-4">Tiếp theo</button>
+                                    <h1 id="demo"></h1>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <button type="button" class="btn btn-success" id="btn-add-question">
+                                <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm câu hỏi
+                            </button>
+                            <div class="accordion mt-3" id="accordionExample">
+                                <div class="card accordion-item active">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
+                                            1. How are you today?
+                                        </button>
+                                    </h2>
+
+                                    <div id="accordionOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample" style="">
+                                        <div class="accordion-body">
+                                            <div class="float-start">
+                                                I am fine
+                                            </div>
+                                            <div class="float-end m-2">
+                                                <button type="button" class="btn btn-icon btn-outline-secondary">
+                                                    <span class="tf-icons bx bx-edit"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-outline-danger">
+                                                    <span class="tf-icons bx bx-trash"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 mb-2 ml-3">
+                                            <div class="col">
+                                                <button type="button" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                    <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                    <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>      
+                                    
+                                </div>
+                                <div class="card accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="false" aria-controls="accordionTwo">
+                                            2. What are you doing?
+                                        </button>
+                                    </h2>
+                                    <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="">
+                                                <label class="form-check-label" for="defaultRadio2"> Playing </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="">
+                                                <label class="form-check-label" for="defaultRadio2"> Learning </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="">
+                                                <label class="form-check-label" for="defaultRadio2"> Listening </label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 mb-2 ml-3">
+                                            <div class="col">
+                                                <button type="button" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                    <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                    <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                </div>
+                                <div class="card accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionThree" aria-expanded="false" aria-controls="accordionThree">
+                                            3. What is your problem?
+                                        </button>
+                                    </h2>
+                                    <div id="accordionThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                                <label class="form-check-label" for="defaultCheck3"> Health problem</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                                <label class="form-check-label" for="defaultCheck3"> Seven love </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                                <label class="form-check-label" for="defaultCheck3"> Not enough money </label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 mb-2 ml-3">
+                                            <div class="col">
+                                                <button type="button" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                    <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
+                                                </button>&nbsp;
+                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                    <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" id="btnSubmitBasicSurvey" class="btn btn-primary col-1 mt-4">Tiếp theo</button>
+                                <h1 id="demo"></h1>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYMUf-GqATlWkI-3gtGryGryg8fJHH_aOTXff_xkt-SBrF-g/viewform?usp=sf_link"></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="question-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Nhập nội dung câu hỏi</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="nameLarge" class="form-label">Tiêu đề câu hỏi</label>
+                        <input type="text" id="nameLarge" class="form-control" placeholder="Enter Name" />
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <select id="defaultSelect" class="form-select">
+                            <option>Loại câu hỏi</option>
+                            <option value="1">Nhập text</option>
+                            <option value="2">Lựa chọn radio button</option>
+                            <option value="3">Chọn nhiều checkbox</option>
+                        </select>
+                    </div>                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+                <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-question-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Chắc chắn xóa câu hỏi?</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            @*<div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="nameLarge" class="form-label">Chắc chắn xóa câu hỏi?</label>
+                    </div>
+                </div>              
+            </div>*@
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Bỏ qua
+                </button>
+                <button type="button" class="btn btn-primary">Xác nhận xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#btn-add-question').click(function () {
+            $('#question-modal').modal('show');
+        })
+        $('.btn-edit-question').click(function () {
+            $('#question-modal').modal('show');
+        })
+        $('.btn-delete-question').click(function () {
+            $('#delete-question-modal').modal('show');
+        })
+        
+    })
+</script>

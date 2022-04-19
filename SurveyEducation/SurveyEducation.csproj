@@ -130,6 +130,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
+    <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
     <None Include="Areas\Admin\Views\Survey\Create2.cshtml" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -16,6 +16,13 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             return View(db.Surveys.ToList());
         }
+
+        [HttpGet]
+        public ActionResult AddSurvey()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

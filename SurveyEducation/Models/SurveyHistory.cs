@@ -6,12 +6,15 @@ using System.Web;
 
 namespace SurveyEducation.Models
 {
-    public class Question
+    public class SurveyHistory
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ICollection<User> Users { get; set; }
         public int SurveyId { get; set; }
         [ForeignKey("SurveyId")]
-        public virtual Survey Survey { get; set; }
+        public virtual ICollection<Survey> Surveys { get; set; }
         public string Answers { get; set; }
         public int Status { get; set; }
     }

@@ -26,30 +26,34 @@
                     <div class="tab-content  bg-light" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <form>
-                                <div class="col-12 col-mb-4">
+                                <div class="col-12 col-mb-8">
                                     <div class="row m-2 basic-survey">
                                         <div class="col-2"> <label class="form-label" for="basic-default-fullname">Survey Name </label></div>
-                                        <div class="col-5"> <input type="text" name="survey-name" class="form-control" id="basic-default-fullname" placeholder="SurveyName" /></div>
+                                        <div class="col-5"> <input type="text" name="survey-name" class="form-control" id="basic-default-surveyname" placeholder="SurveyName" /></div>
                                     </div>
-                                    <div class="row m-2 basic-survey"">
+                                    <div class="row m-2 basic-survey" ">
                                         <div class="col-2"><label class="form-label" for="basic-default-company">Start Time</label></div>
                                         <div class="col-5"><input type="date" name="start-time" class="form-control" id="basic-default-company" placeholder="Start Time" /></div>
                                     </div>
-                                    <div class="row m-2 basic-survey"">
+                                    <div class="row m-2 basic-survey" ">
                                         <div class="col-2"><label class="form-label" for="basic-default-company">End Time</label></div>
                                         <div class="col-5"><input type="date" name="end-time" class="form-control" id="basic-default-company" placeholder="End Time" /></div>
                                     </div>
-                                    <div class="row m-2 basic-survey"">
+                                    <div class="row m-2 basic-survey" ">
                                         <div class="col-2"><label class="form-label" for="basic-default-company">Created By</label></div>
                                         <div class="col-5"><input type="text" name="creator" class="form-control" id="basic-default-company" placeholder="Created By" /></div>
                                     </div>
+                                    <div class="row m-2 basic-survey" ">
+                                        <div class="col-2"><label class="form-label" for="basic-default-company">Description</label></div>
+                                        <div class="col-5"><textarea name="description" class="form-control" id="basic-default-company" placeholder="Description"></textarea></div>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
+                                    <button type="submit" id="btnSubmitBasicSurvey" class="btn btn-primary col-1 mt-4">Next</button>
                                     <h1 id="demo"></h1>
-                                    <button type="submit" id="btnSubmitBasicSurvey1" class="btn btn-primary col-1 mt-4">Next</button>
                                 </div>
                             </form>
-                        </div>                        
+                        </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <form>
                                 <div class="col-12 col-mb-4">
@@ -69,12 +73,11 @@
                                              aria-labelledby="headingOne"
                                              data-bs-parent="#accordionExample">
                                             <div class="accordion-body-text">
-                                                <div class="row"id="answer-text1" >
-                                                    @*<div></div>*@
+                                                <div class="row" id="answer-text">
                                                 </div>
                                                 <div class="col ms-lg-4 mb-5">
                                                     <input type="text" id="form-add-answer" class="col-md-8 p-2" />
-                                                    <button type="button" class="btn btn-primary " id="btnAddAnswerText">Add</button>
+                                                    <button type="button" class="btn btn-primary" id="btnSaveAnswerText">Add answer</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,18 +99,12 @@
                                              data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <div class="row" id="answers">
-                                                  
                                                 </div>
                                             </div>
                                             <div class="col form-select-many">
-                                                <input type="text" name="answer234" id="form-add-answer2" class="col-md-8 p-2 ms-lg-4 mb-3" />
-                                                <button type="button" class="btn btn-primary" id="btnSubmit1" onclick="handleAddAnswer2()">Add answer</button>
+                                                <input type="text" id="form-add-answer2" class="col-md-8 p-2 ms-lg-4 mb-3" />
+                                                <button type="submit" class="btn btn-primary" id="btnSubmit1">Add answer</button>
                                             </div>
-                                            @*<div class="col">
-                                                <button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
-                                                <button class="btn btn-success" id="btnSaveAnswerText">Save</button>
-                                                <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>
-                                            </div>*@
                                         </div>
                                     </div>
                                     <div class="card accordion-item m-3">
@@ -126,11 +123,12 @@
                                              aria-labelledby="headingTwo"
                                              data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                    <div  class="row" id="radioAnswer">
-                                                    </div>
-                                                <div class="col form-select-many">
-                                                    <input type="text" name="answer234" id="form-add-answer3" class="col-md-8 p-2 ms-lg-4 mb-3" />
+                                                <div class="row" id="radioAnswer">
+                                                </div>
+                                                <div class="col form-select-one">
+                                                    <input type="text" id="form-add-answer3" class="col-md-8 p-2 ms-lg-4 mb-3" />
                                                     <button type="button" class="btn btn-primary" id="btnSubmit2" onclick="handleAddAnswer2()">Add answer</button>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -155,7 +153,7 @@
                                                     <div id="selecForm" class="row">
                                                     </div>
                                                 </div>
-                                                <div class="col form-select-many">
+                                                <div class="col form-select-many4">
                                                     <button type="button" class="btn btn-primary" id="btnSubmit3" onclick="handleAddAnswer2()">Add answer</button>
                                                 </div>
                                             </div>
@@ -241,7 +239,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary col-1 mt-4" onclick="handleSubmitButton('sendInfo')">Send</button>
+                                    <button type="submit" class="btn btn-primary col-1 mt-4">Send</button>
                                 </div>
                             </form>
                         </div>
@@ -267,57 +265,83 @@
     $(document).ready(function () {
         $("#btnEditAnswerText").click(function (e) {
             e.preventDefault();
-            var getAnswer1 = $("#edit-element").text();
+            var getAnswer1 = $(".edit-element").text();
             $("#form-add-answer2").val(getAnswer1);
+        });
 
-        })
-    });
-    $(document).ready(function () {
         var form_edit = $(".form-select-many");
         var edit_button = $("#btnSaveAnswerText");
         $(edit_button).click(function (e) {
             var updateAnswer = $("#form-add-answer2").val();
             $(form_edit).append(updateAnswer);
-
-            $(form_edit).set(updateAnswer);
             /*$("edit-element").text(updateAnswer);*/
         })
-    });
-    $(document).ready(function () {
-        var warapper2 = $("#answer-text1");
-        var add_button2 = $("#btnAddAnswerText");
-        var max_filed = 2;
-        var x = 1;
-        $(add_button2).click(function (e) {
-            var getAnswerText = $("#form-add-answer").val();
+
+        var max_fields = 2; //maximum input boxes allowed
+        var wrapper1 = $("#answer-text"); //Fields wrapper
+        var add_button = $("#btnSubmitAnswerText"); //Add button ID
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) {
+            var getAnswerText = $("input[name=answerText]").val();
             e.preventDefault();
             if (getAnswerText != null) {
-                if (x < max_filed) {
-                    $(warapper2).append('<div class="col-md-10"><p id="answer-text-element" class="ms-lg-3"> &nbsp &nbsp' + getAnswerText + '</p></div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn" id="btnDeleteAnswer"><i class="fa-solid fa-trash-can"></i></button></div>');
+                if (x < max_fields) { //max input box allowed
+                    //text box increment
+                    //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
+                    $(wrapper1).append('<div class="col-md-10"><input id="answer-text-element" class="ms-lg-3"> &nbsp &nbsp' + getAnswerText + '</p></div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn" id="btnDeleteAnswer"><i class="fa-solid fa-trash-can"></i></button></div>');
                 }
-            } else {
-                alert("Please enter answer");
+                getAnswerText = $("#form-add-answer").val("");
             }
+        });
+        $(this).("#btnEditAnswerText").click(function (e) {
+            alert("hello");
+            //e.preventDefault();
+            //var getAnswer1 = $("#edit-element").text();
+            //$("#form-add-answer2").val(getAnswer1);
+
         })
-    })
+    });
 </script>
 <script>
     $(document).ready(function () {
-        var max_fields = 10; //maximum input boxes allowed
+        var max_fields = 4; //maximum input boxes allowed
+        var i = 0;
         var wrapper1 = $("#answers"); //Fields wrapper
         var add_button = $("#btnSubmit1"); //Add button ID
         var x = 1; //initlal text box count
         $(add_button).click(function (e) { //on add input button click
-            var hihiValue = $("#form-add-answer2").val();
+            var getAnswers = $("#form-add-answer2").val();
             e.preventDefault();
-            if (x < max_fields) { //max input box allowed
+            if (x <= max_fields) { //max input box allowed
+                i++;
                 //text box increment
                 //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
-                $(wrapper1).append('<div class="col-md-10" id="edit-element"><input type="checkbox"/> &nbsp &nbsp' + hihiValue + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn" id="btnDeleteAnswer" onclic><i class="fa-solid fa-trash-can"></i></button></div>'); //add input box
+                $(wrapper1).append('<div class="col-md-10" id="edit-element' + i + '"><input type="checkbox"/> &nbsp &nbsp' + getAnswers + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswers' + i + '"><i class="fa-solid fa-pen-to-square"></i></button><button class="btn" id="btnSaveAnswers' + i +'"><i class="fa-solid fa-trash-can"></i></button> <button class="btn" id="btnDeleteAnswers'+i+'"><i class="fa-solid fa-trash-can"></i></button></div>');
                 x++;
+                getAnswers = $("#form-add-answer2").val("");
+                $("#btnEditAnswers" + i).on('click', function (editAnswers) {
+                    editAnswers.preventDefault();
+                    var text = $("#edit-element" + i).text();
+                    $("#form-add-answer2").val(text);
+                })
+                $("#btnSaveAnswers" + i).click(function (saveAnswers) {
+                    saveAnswers.preventDefault();
+                    var updateValue = $("#form-add-answer2").val();
+                    document.getElementById("edit-element" + i).innerHTML = updateValue;
+                    updateValue = $("#form-add-answer2").val(""); 
+                })
+                $("#btnDeleteAnswers" + i).click(function (removeAnswers) {
+                    removeAnswers.preventDefault();
+                    var removeAnswers = $("#edit-element" + i).val();
+
+                    alert("Are you want to delete this answer?");
+                    $(wrapper1).remove(removeAnswers);
+                })
             }
-            hihiValue = $("#form-add-answer2").val("");
         });
+        $("#btnSaveAnswers").click(function (saveAnswers) {
+            saveAnswers.preventDefault();
+        })
     });
 </script>
 <script>
@@ -379,18 +403,6 @@
     });
 </script>
 <script>
-    function myFunction() {
-        alert("Are you sure you want to delete this survey?");
-    }
-</script>
-@*<script>
-        function myFunction() {
-            const list = document.getElementById("btnDeleteAnswer");
-            alert("Are you sure you want to delete this survey?");
-            list.removeChild(list.firstElementChild);
-        }
-    </script>*@
-<script>
     function addCheckbox() {
         var table = document.getElementById('checkbox');
         var value = $("#answer").val();
@@ -449,7 +461,7 @@
             if (hihiValue != "") {
                 if (x < max_fields) { //max input box allowed
                     //text box increment
-                    $(wrapper).append('<div><input type="checkbox"  name="mytext[]">' + hihiValue + '<a href="#" class="remove_field">Remove</a></div>'); //add input box
+                    $(wrapper).append('<div><input type="checkbox" name="mytext[]">' + hihiValue + '<a href="#" class="remove_field">Remove</a></div>'); //add input box
                     x++;
                 }
                 hihiValue = $("#hihi1").val("");
@@ -458,23 +470,23 @@
             }
         });
         $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-
             e.preventDefault();
             $(this).parent('div').remove();
             x--;
         })
     });
 </script>
-<script>
+@*<script>
     $(document).ready(function () {
-        var surveyName = $("input[name=survey-name"]).val();
-        $("#btnSubmitBasicSurvey1").click(function (e) {
-           
-            alert(surveyName);
+        $("#btnSubmitBasicSurvey").click(function (e) { 
+            var surveyName = $("#basic-default-surveyname").val();
             var startTime = $("input[name=start-time"]).val();
             var endTime = $("input[name=end-time"]).val();
             var creator = $("input[name=creator"]).val();
-   
+            var desc = $("textarea[name=description"]).val();
+
+            //var saveBasicSurvey = { "surveyName": surveyName, "startTime": startTime, "endTime": endTime, "creator": creator, "desc": desc };
+            localStorage.setItem("surveyName", surveyName);
         })
     })
-</script>
+</script>*@

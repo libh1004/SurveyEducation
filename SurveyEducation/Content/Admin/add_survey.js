@@ -16,13 +16,13 @@ var IndexRender = {
                                         <div class="accordion-body" id="question-answer${i + 1}></div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
-                                                <button type="button" class="btn btn-outline-primary btn-add-answer"  id="${i + 1}">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer"  id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
                                                 </button>
                                             </div>
@@ -41,13 +41,13 @@ var IndexRender = {
                                         <div class="accordion-body" id="question-answer${i + 1}></div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
-                                                <button type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
                                                 </button>
                                             </div>
@@ -65,13 +65,13 @@ var IndexRender = {
                                         <div class="accordion-body" id="question-answer${i + 1}"></div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
-                                                <button type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-danger btn-delete-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
                                                 </button>
                                             </div>
@@ -142,6 +142,15 @@ var Index = function () {
             var currentObject = listObj[parseInt(currentIndex)];
             $('#current-object-index').val(currentIndex);
             showEditModal(currentObject);
+        });
+
+        // add event vào các phần tử sinh ra bằng js
+        $(document).on('click', '.btn-delete-question', function () {
+            var currentIndex = $(this).attr('data-current-index');
+            var currentObject = listObj[parseInt(currentIndex)];
+            $('#current-object-index').val(currentIndex);
+            listObj.splice(currentIndex, 1);
+            $("#accordionExample").html(IndexRender.render_Question(listObj));
         });
 
         $('#btn-add-question').click(function () {

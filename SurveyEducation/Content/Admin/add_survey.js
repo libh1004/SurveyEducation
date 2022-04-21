@@ -19,7 +19,7 @@ var IndexRender = {
                                                 <button type="button" class="btn btn-outline-primary btn-add-answer"  id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
                                                 <button type="button" class="btn btn-outline-danger btn-delete-question">
@@ -44,7 +44,7 @@ var IndexRender = {
                                                 <button type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
                                                 <button type="button" class="btn btn-outline-danger btn-delete-question">
@@ -68,7 +68,7 @@ var IndexRender = {
                                                 <button type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
                                                     <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm trả lời
                                                 </button>&nbsp;
-                                                <button type="button" class="btn btn-outline-secondary btn-edit-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
                                                 <button type="button" class="btn btn-outline-danger btn-delete-question">
@@ -91,11 +91,39 @@ var IndexRender = {
 var Index = function () {
     /* ------ Methods ------ */
     var addNewQuestion = function () {
+        var formAction = $('#question-modal-action').val(); // check kiểu thao tác, thêm mới hay sửa.
         var obj = new Object();
         obj.nameLarge = document.getElementById('nameLarge').value;
         obj.type = document.getElementById("defaultSelect").value;
-        listObj.push(obj);
+        if (parseInt(formAction) == 1) {
+            // thêm mới.           
+            listObj.push(obj);
+           
+        } else if (parseInt(formAction) == 2) {
+            var currentIndex = parseInt($('#current-object-index').val());
+            listObj[currentIndex] = obj;
+        }
         $("#accordionExample").html(IndexRender.render_Question(listObj));
+        resetModal();           
+    }
+
+    var resetModal = function () {
+        $('#nameLarge').val('');
+        $('#defaultSelect').val(0);
+        $('#question-modal').modal('hide');
+        $('#question-modal-action').val(1);
+    }
+
+    var showCreateModal = function () {
+        resetModal();
+        $('#question-modal').modal('show');
+    }
+
+    var showEditModal = function (obj) {
+        $('#nameLarge').val(obj.nameLarge);
+        $('#defaultSelect').val(obj.type);
+        $('#question-modal-action').val(2);
+        $('#question-modal').modal('show');
     }
 
     /* ------ Handles ------ */
@@ -108,6 +136,17 @@ var Index = function () {
             var id = $(this).attr('id');
             alert(id)
         });
+        // add event vào các phần tử sinh ra bằng js
+        $(document).on('click', '.btn-edit-question', function () {           
+            var currentIndex = $(this).attr('data-current-index');
+            var currentObject = listObj[parseInt(currentIndex)];
+            $('#current-object-index').val(currentIndex);
+            showEditModal(currentObject);
+        });
+
+        $('#btn-add-question').click(function () {
+            showCreateModal();
+        })
     }
     return {
         initialize: function () {

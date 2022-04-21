@@ -82,6 +82,8 @@
 
 </div>
 <div class="modal fade" id="question-modal" tabindex="-1" aria-hidden="true">
+    <input type="hidden" id="question-modal-action" name="question-modal-action" value="1" />
+    <input type="hidden" id="current-object-index" name="current-object-index" value="0" />
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -101,7 +103,7 @@
                 <div class="row g-2">
                     <div class="col mb-0">
                         <select id="defaultSelect" class="form-select">
-                            <option selected disabled>Loại câu hỏi</option>
+                            <option selected disabled value="0">Loại câu hỏi</option>
                             <option value="1">Nhập text</option>
                             <option value="2">Lựa chọn radio button</option>
                             <option value="3">Chọn nhiều checkbox</option>
@@ -148,15 +150,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="~/Content/Admin/add_survey.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#btn-add-question').click(function () {
-            $('#question-modal').modal('show');
-        })
-        $('.btn-edit-question').click(function () {
-            $('#question-modal').modal('show');
-            var getQuestionElement = $('#question-element').text();
-            $('#nameLarge').val(getQuestionElement);
-        })
+    document.addEventListener('DOMContentLoaded', function () {            
         $('.save-change-question').click(function () {
             var updateQuestion = $('#nameLarge').val();
             $('#question-element').val(updateQuestion);

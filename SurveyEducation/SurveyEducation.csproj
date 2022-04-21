@@ -234,6 +234,7 @@
     <Content Include="Areas\Admin\Public\tasks\prod.js" />
     <Content Include="bin\SurveyEducation.dll" />
     <Content Include="bin\SurveyEducation.pdb" />
+    <Content Include="Content\Admin\add_survey.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

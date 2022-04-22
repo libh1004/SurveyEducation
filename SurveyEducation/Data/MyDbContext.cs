@@ -12,7 +12,7 @@ namespace SurveyEducation.Data
         public MyDbContext() : base("name=ConnectionString")
         {
         }
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<AdminModel> Admins { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<FacultyStaff> FacultyStaffs { get; set; }
         public DbSet<Answer> Answers { get; set; }

@@ -56,43 +56,88 @@
 
     <ul class="menu-inner py-1">
         <li class="menu-item active">
-            
             @Html.ActionLink("Dashboard", "Index", "Dashboard", routeValues: null, htmlAttributes: new { @class = "menu-link" })
         </li>
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Admin</span>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Survey</div>
+            <a href="/Admin/Survey/AddSurvey" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Boxicons">Quản lý Survey</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    @Html.ActionLink("Create survey", "Create", "Survey", routeValues: null, htmlAttributes: new {@class="menu-link"})
+                    <a href="/Admin/Survey/AddSurvey" class="menu-link">
+                        <div data-i18n="Account">Tạo mới Survey</div>
+                    </a>
                 </li>
                 <li class="menu-item">
-                    @Html.ActionLink("List survey", "Index", "Survey", routeValues: null, htmlAttributes: new { @class = "menu-link" })
+                    <a href="/Admin/Survey" class="menu-link">
+                        <div data-i18n="Account">Danh sách Survey</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Account Settings">Quản lý danh mục</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="pages-account-settings-account.html" class="menu-link">
+                        <div data-i18n="Account">Thêm mới danh mục</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Danh sách danh mục</div>
+                    </a>
                 </li>
             </ul>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Account</div>
+                <div data-i18n="Account Settings">Quản lý tài khoản</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">Create account</div>
+                        <div data-i18n="Account">Thêm mới tài khoản</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">List account</div>
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Danh sách tài khoản</div>
                     </a>
                 </li>
             </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dollar"></i>
+                <div data-i18n="Account Settings">Quản lý cuộc thi</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="pages-account-settings-account.html" class="menu-link">
+                        <div data-i18n="Account">Thêm mới cuộc thi</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Danh sách cuộc thi</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-wallet-alt"></i>
+                <div data-i18n="Account Settings">Báo cáo thống kê</div>
+            </a>            
         </li>
     </ul>
 </aside>

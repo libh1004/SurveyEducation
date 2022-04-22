@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,27 +9,20 @@ namespace SurveyEducation.Models
     public enum StatusValue
     {
         Draft,
-        Active, 
-        Deactive,
-        Delected,
         Finished
     }
     public class Survey
     {
         public int Id { get; set; }
-        public virtual ICollection<Question> Questions { get; set; }
-        public string Name { get; set; }
-        public DateTime StartedAt { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public DateTime CreatedBy { get; set; }
-        public DateTime UpdatedBy { get; set; }
-        public DateTime DeletedBy { get; set; }
-        public StatusValue Status { get; set; }
-        public string Image { get; set; }
-        public string Detail { get; set; }
+        public string Description { get; set; }
         public string Tag { get; set; }
-
+        public StatusValue Status { get; set; }
+        public virtual SurveyHistory SurveyHistory { get; set; }
+        public int QuestionId { get; set; }
+        [ForeignKey("QuestionId")]
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

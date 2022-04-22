@@ -253,7 +253,6 @@
             e.preventDefault();
             var getAnswer1 = $("#edit-element").text();
             $("#form-add-answer2").val(getAnswer1);
-           
         })
     });
     $(document).ready(function () {
@@ -291,24 +290,17 @@
             e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     //text box increment
-                    $(wrapper1).append('<li id="edit-element"><input type="checkbox"/> ' + hihiValue +'</li > '); //add input box
-                    x++;                                               a
+                    $(wrapper1).append('<li class="edit-element"><input type="checkbox"/> ' + hihiValue +'</li > '); //add input box
+                    x++;                                 
                 }
-            var hihiValue = $("#form-add-answer2").val("");
+            hihiValue = $("#form-add-answer2").val("");
         });
     });
 </script>
 <script>
-    //function onFocusOut() {
-    //    var value = $("#basic-default-company").val()
-    //    alert(value)
-    //}
-    //function handleAddAnswer() {
-    //    var value = $("#form-add-answer").val();
-    //    $("#basic-default-company-1").text(value);
-    //}
     function myFunction() {
         alert("Are you sure you want to delete this survey?");
+
     }
 </script>
 <script>
@@ -358,7 +350,7 @@
         }
     }
 </script>
-@*<script>
+<script>
     $(document).ready(function () {
         var max_fields = 10; //maximum input boxes allowed  
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
@@ -386,5 +378,5 @@
         })
     });
    
-</script>*@
+</script>
 

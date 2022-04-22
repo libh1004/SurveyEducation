@@ -1,6 +1,5 @@
 ﻿using SurveyEducation.Data;
 using SurveyEducation.Models;
-using SurveyEducation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,61 +16,72 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             return View(db.Surveys.ToList());
         }
+
+        [HttpGet]
+        public ActionResult AddSurvey()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(SurveyViewModel surveyvm)
-        {
-            var survey = new Survey()
-            {
-                Name = surveyvm.Name,
-                StartedAt = surveyvm.StartedAt,
-                CreatedAt = surveyvm.CreatedAt,
-                UpdatedAt = surveyvm.UpdatedAt,
-                DeletedAt = surveyvm.DeletedAt,
-                CreatedBy = surveyvm.CreatedBy,
-                UpdatedBy = surveyvm.UpdatedBy,
-                DeletedBy = surveyvm.DeletedBy,
-                Status = (Models.StatusValue)surveyvm.Status,
-                Image = surveyvm.Image,
-                Detail = surveyvm.Detail,
-                Tag = surveyvm.Tag
-            };
-            db.Surveys.Add(survey);
-            db.SaveChanges();
-            return View("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(SurveyViewModel surveyvm)
+        //{
+        //    var survey = new Survey()
+        //    {
+        //        Name = surveyvm.Name,
+        //        StartedAt = surveyvm.StartedAt,
+        //        CreatedAt = surveyvm.CreatedAt,
+        //        UpdatedAt = surveyvm.UpdatedAt,
+        //        DeletedAt = surveyvm.DeletedAt,
+        //        CreatedBy = surveyvm.CreatedBy,
+        //        UpdatedBy = surveyvm.UpdatedBy,
+        //        DeletedBy = surveyvm.DeletedBy,
+        //        Status = (Models.StatusValue)surveyvm.Status,
+        //        Image = surveyvm.Image,
+        //        Detail = surveyvm.Detail,
+        //        Tag = surveyvm.Tag
+        //    };
+        //    db.Surveys.Add(survey);
+        //    db.SaveChanges();
+        //    return View("Index");
+        //}
         [HttpGet]
         public ActionResult Create2()
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create2(SurveyViewModel surveyvm)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create2(SurveyViewModel surveyvm)
+        //{
+        //    var survey = new Survey()
+        //    {
+        //        Name = surveyvm.Name,
+        //        StartedAt = surveyvm.StartedAt,
+        //        CreatedAt = surveyvm.CreatedAt,
+        //        UpdatedAt = surveyvm.UpdatedAt,
+        //        DeletedAt = surveyvm.DeletedAt,
+        //        CreatedBy = surveyvm.CreatedBy,
+        //        UpdatedBy = surveyvm.UpdatedBy,
+        //        DeletedBy = surveyvm.DeletedBy,
+        //        Status = (Models.StatusValue)surveyvm.Status,
+        //        Image = surveyvm.Image,
+        //        Detail = surveyvm.Detail,
+        //        Tag = surveyvm.Tag
+        //    };
+        //    db.Surveys.Add(survey);
+        //    db.SaveChanges();
+        //    return View("Index");
+        //}
+        public ActionResult Create3()
         {
-            var survey = new Survey()
-            {
-                Name = surveyvm.Name,
-                StartedAt = surveyvm.StartedAt,
-                CreatedAt = surveyvm.CreatedAt,
-                UpdatedAt = surveyvm.UpdatedAt,
-                DeletedAt = surveyvm.DeletedAt,
-                CreatedBy = surveyvm.CreatedBy,
-                UpdatedBy = surveyvm.UpdatedBy,
-                DeletedBy = surveyvm.DeletedBy,
-                Status = (Models.StatusValue)surveyvm.Status,
-                Image = surveyvm.Image,
-                Detail = surveyvm.Detail,
-                Tag = surveyvm.Tag
-            };
-            db.Surveys.Add(survey);
-            db.SaveChanges();
-            return View("Index");
+            return View();
         }
     }
 }

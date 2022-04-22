@@ -144,6 +144,7 @@ var Index = function () {
             showEditModal(currentObject);
         });
 
+
         // add event vào các phần tử sinh ra bằng js
         $(document).on('click', '.btn-delete-question', function () {
             var currentIndex = $(this).attr('data-current-index');

@@ -7,9 +7,17 @@
   top: 0px;
   z-index: 10;
 }
-
+/*-------------------- --------------------------------------------------*/
+ul li {
+    list-style: none;
+}
+.header_25{
+    padding: 20px;
+    text-align: center;
+}
+/*-----------------------------------------------------------------------*/
 .bg-menu-theme .menu-header {
-  position: relative;
+    position: relative;
 }
 .bg-menu-theme .menu-header:before {
   content: "";

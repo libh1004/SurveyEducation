@@ -7,6 +7,7 @@ using System.Web;
 
 namespace SurveyEducation.Models
 {
+
     public class SurveyHistory
     {
         public int Id { get; set; }

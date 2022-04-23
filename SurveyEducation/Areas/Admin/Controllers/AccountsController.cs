@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SurveyEducation.Areas.Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountsController : Controller
     {
 
         public ActionResult Index()

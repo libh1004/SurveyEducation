@@ -6,6 +6,12 @@ using System.Web;
 
 namespace SurveyEducation.Models
 {
+    public enum Type
+    {
+        Text,
+        Checkbox, 
+        Radio
+    }
     public class Question
     {
         public int Id { get; set; }
@@ -13,6 +19,7 @@ namespace SurveyEducation.Models
         [ForeignKey("SurveyId")]
         public virtual Survey Survey { get; set; }
         public string Answers { get; set; }
+        public Type QuestionType { get; set; }
         public int Status { get; set; }
     }
 }

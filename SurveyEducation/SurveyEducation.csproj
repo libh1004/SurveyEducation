@@ -130,13 +130,23 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\SurveyHistoryViewModel.cs" />
+    <Compile Include="ViewModels\SurveyViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
     <None Include="Areas\Admin\Views\Survey\Create2.cshtml" />
+    <Compile Include="Areas\User\Controllers\AccountController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204230200124_InitData.cs" />
+    <Compile Include="Migrations\202204230200124_InitData.Designer.cs">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Question.cs" />
@@ -385,12 +395,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Default\" />
-    <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Views\Account\" />
     <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Libs\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
@@ -400,6 +410,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204230200124_InitData.resx">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

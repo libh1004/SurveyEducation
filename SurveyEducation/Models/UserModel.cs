@@ -11,7 +11,7 @@ namespace SurveyEducation.Models
         FacultyStaff,
         Student
     }
-    public class User
+    public class UserModel
     {
         public int Id { get; set; }
         public string Fullname { get; set; }

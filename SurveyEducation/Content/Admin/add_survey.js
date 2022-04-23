@@ -43,7 +43,7 @@ var IndexRender = {
                 var lstAnswer = ``;
                 if (lstObj[i].answers !== undefined || lstObj[i].answers != 0) {
                     for (var j = 0; j < lstObj[i].answers.length; j++) {
-                        lstAnswer += IndexRender.render_Question_Answer(lstObj[i].type, lstObj[i].answers[j]);
+                        lstAnswer += IndexRender.render_Question_Answer(lstObj[i].type, lstObj[i].answers[j], j);
                     }
                 }
                 if (lstAnswer === "") {
@@ -160,12 +160,12 @@ var IndexRender = {
         var html = ``;
         if (questionType == 2) {
             html += `<div class="form-check">
-                <input name="default-radio-${index}" class="form-check-input" type="radio" value="" id="defaultRadio${index}" checked="">
+                <input name="default-radio-input" class="form-check-input" type="radio" value="${answer}" id="defaultRadio${index}" checked="">
                 <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
                 </div>`
         } else {
             html += `<div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck${index}">
+                         <input class="form-check-input" type="checkbox" value="${answer}" id="defaultCheck${index}">
                          <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
                          </div>`
         }

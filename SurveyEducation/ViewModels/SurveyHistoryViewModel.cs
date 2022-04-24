@@ -14,7 +14,7 @@ namespace SurveyEducation.ViewModels
         public int Id { get; set; }
         [Key, Column(Order = 1)]
         public int UserId { get; set; }
-        public virtual ICollection<UserModel> Users { get; set; }
+        public virtual ICollection<Account> Users { get; set; }
         [Key, Column(Order = 2)]
         public int SurveyId { get; set; }
         public virtual ICollection<Survey> Surveys { get; set; }

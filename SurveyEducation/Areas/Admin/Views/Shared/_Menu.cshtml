@@ -104,9 +104,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="Admin/Account/Create" class="menu-link">
-                        <div data-i18n="Account">Thêm mới tài khoản</div>
-                    </a>
+                    @Html.ActionLink("Thêm tài khoản mới", "AddAccount", "Account", routeValues: null, htmlAttributes:new { @class= "menu-link" })
                 </li>
                 <li class="menu-item">
                     <a href="Admin/Account" class="menu-link">

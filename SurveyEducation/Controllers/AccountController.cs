@@ -1,9 +1,13 @@
-﻿using SurveyEducation.Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,39 +15,99 @@ namespace SurveyEducation.Controllers
 {
     public class AccountController : Controller
     {
-        MyDbContext db = new MyDbContext();
-        [HttpGet]
+        private MyDbContext db;
+        private UserManager<Account> userManager;
+        private RoleManager<AppRole> roleManager;
+        private SignInManager<Account, string> signInManager;
+        public AccountController()
+        {
+            db = new MyDbContext();
+            UserStore<Account> userStore = new UserStore<Account>(db);
+            userManager = new UserManager<Account>(userStore);
+            RoleStore<AppRole> roleStore = new RoleStore<AppRole>(db);
+            roleManager = new RoleManager<AppRole>(roleStore);
+        }
         public ActionResult Register()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Register(UserViewModel userViewModel)
+        public async Task<ActionResult> AddAccount(AccountViewModel accountVM)
         {
-            var user = new UserModel()
+            Account user = new Account()
             {
-                Fullname = userViewModel.Fullname,
-                Phone = userViewModel.Phone,
-                Email = userViewModel.Email,
-                Address = userViewModel.Address,
-                Password = userViewModel.Password,
-                EmployeeNumber = userViewModel.EmployeeNumber,
-                AddmissionDate = userViewModel.AddmissionDate,
-                DateOfJoining = userViewModel.DateOfJoining
+                UserName = accountVM.UserName,
+                Status = 0,
+                Email = accountVM.Email,
+                Fullname = accountVM.Fullname,
+                EmployeeNumber = "100",
+                DisabledAt = DateTime.Now,
+                AddmissionDate = DateTime.Now,
+                DateOfJoining = DateTime.Now
             };
-            db.Users.Add(user);
-            db.SaveChanges();
-            return View("Login");
+            var result = await userManager.CreateAsync(user, accountVM.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index","Home");   
+            }
+            else
+            {
+                return View("Register");
+            }
         }
-        [HttpGet]
-        public ActionResult Login()
+        public async Task<ActionResult> AddRole()
         {
-            return View();
+            AppRole role = new AppRole()
+            {
+                Name = "Student"
+            };
+            var result = await roleManager.CreateAsync(role);
+            if (result.Succeeded)
+            {
+                return View("Successful");
+            }
+            else
+            {
+                return View("Fail");
+            }
         }
-        [HttpPost]
-        public ActionResult Login(string username, string password)
+        public async Task<ActionResult> AddAccountToRole()
         {
-            return View();
+            string userId = "096ccf0f-baea-4ae4-8c84-e6d7f051f00d";
+            string roleName1 = "Admin";
+            string roleName2 = "FacultyOrStaff";
+            string roleName3 = "Student";
+            var result = await userManager.AddToRolesAsync(userId, roleName3);
+            if (result.Succeeded)
+            {
+                return View("Successful");
+            }
+            else
+            {
+                return View("Fail");
+            }
         }
+       public async Task<ActionResult> Login()
+        {
+            string username = "lino";
+            string password = "";
+            var account = await userManager.FindAsync(username, password);
+            if(account != null)
+            {
+                signInManager = new SignInManager<Account, string>(userManager, Request.GetOwinContext().Authentication);
+                await signInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
+                return View("Successful");
+            }
+            else
+            {
+                return View("Fail");
+            }
+        }
+        public ActionResult Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            return Redirect("/Account/Login");
+        }
+
+     
     }
 }

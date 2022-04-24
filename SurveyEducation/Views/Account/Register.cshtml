@@ -1,45 +1,45 @@
-﻿<!DOCTYPE html>
+﻿@model SurveyEducation.ViewModels.AccountViewModel
+<!DOCTYPE html>
 <html lang="en"
       class="light-style customizer-hide"
       dir="ltr"
       data-theme="theme-default"
       data-assets-path="../assets/"
       data-template="vertical-menu-template-free">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+            <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
-    <meta name="description" content="" />
+            <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+            <!-- Favicon -->
+            @*<img src="~/Areas/Admin/Public/assets/img/favicon/favicon.ico" />*@
+            <!-- Fonts -->
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+                  rel="stylesheet" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-          rel="stylesheet" />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link href="~/Areas/Admin/Public/assets/vendor/fonts/boxicons.css" rel="stylesheet" />
-    <!-- Core CSS -->
-    <link href="~/Areas/Admin/Public/assets/vendor/css/core.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Public/assets/vendor/css/theme-default.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/Public/assets/css/demo.css" rel="stylesheet" />
-    <!-- Vendors CSS -->
-    <link href="~/Areas/Admin/Public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
-    <!-- Page CSS -->
-    <!-- Page -->
-    <link href="~/Areas/Admin/Public/assets/vendor/css/pages/page-auth.css" rel="stylesheet" />
-    <!-- Helpers -->
-    <script src="~/Areas/Admin/Public/assets/vendor/js/helpers.js"></script>
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="~/Areas/Admin/Public/assets/js/config.js"></script>
-</head>
+            <!-- Icons. Uncomment required icon fonts -->
+            <link href="~/Areas/Admin/Public/assets/vendor/fonts/boxicons.css" rel="stylesheet" />
+            <!-- Core CSS -->
+            <link href="~/Areas/Admin/Public/assets/vendor/css/core.css" rel="stylesheet" />
+            <link href="~/Areas/Admin/Public/assets/vendor/css/theme-default.css" rel="stylesheet" />
+            <link href="~/Areas/Admin/Public/assets/css/demo.css" rel="stylesheet" />
+            <!-- Vendors CSS -->
+            <link href="~/Areas/Admin/Public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
+            <!-- Page CSS -->
+            <!-- Page -->
+            <link href="~/Areas/Admin/Public/assets/vendor/css/pages/page-auth.css" rel="stylesheet" />
+            <!-- Helpers -->
+            <script src="~/Areas/Admin/Public/assets/vendor/js/helpers.js"></script>
+            <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+            <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+            <script src="~/Areas/Admin/Public/assets/js/config.js"></script>
+        </head>
 
 <body>
     <!-- Content -->
@@ -102,52 +102,46 @@
                         <!-- /Logo -->
                         <h4 class="mb-2">Adventure starts here 🚀</h4>
                         <p class="mb-4">Make your app management easy and fun!</p>
+                        @using (Html.BeginForm("AddAccount", "Account"))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Fullname, new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Fullname, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label class="ckbox">
+                                    <input type="checkbox"><span>Xác Nhận Thông Tin</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary pd-x-20">Button</button>
+                            </div>
+                        }
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="username"
-                                       name="username"
-                                       placeholder="Enter your username"
-                                       autofocus />
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
-                            </div>
-                            <div class="mb-3 form-password-toggle">
-                                <label class="form-label" for="password">Password</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="password"
-                                           id="password"
-                                           class="form-control"
-                                           name="password"
-                                           placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                           aria-describedby="password" />
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                                    <label class="form-check-label" for="terms-conditions">
-                                        I agree to
-                                        <a href="javascript:void(0);">privacy policy & terms</a>
-                                    </label>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary d-grid w-100">Sign up</button>
-                        </form>
-
-                        <p class="text-center">
-                            <span>Already have an account?</span>
-                            <a href="auth-login-basic.html">
-                                <span>Sign in instead</span>
-                            </a>
-                        </p>
+                        @*<p class="text-center">
+            <span>Already have an account?</span>
+            <a href="auth-login-basic.html">
+                <span>Sign in instead</span>
+            </a>
+        </p>*@
                     </div>
                 </div>
                 <!-- Register Card -->
@@ -156,12 +150,6 @@
     </div>
 
     <!-- / Content -->
-
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-           target="_blank"
-           class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

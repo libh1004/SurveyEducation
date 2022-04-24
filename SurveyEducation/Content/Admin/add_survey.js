@@ -63,7 +63,8 @@ var IndexRender = {
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
-                                                <button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
+
+<button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
                                                 </button>
                                             </div>

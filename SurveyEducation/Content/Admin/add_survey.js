@@ -181,7 +181,7 @@ var Index = function () {
         var obj = new Object();
         obj.nameLarge = document.getElementById('nameLarge').value;
         obj.type = document.getElementById("defaultSelect").value;
-        obj.answers = [];
+        obj.answers = [];   
         if (parseInt(formAction) == 1) {
             // thêm mới.           
             listObj.push(obj);
@@ -233,6 +233,17 @@ var Index = function () {
         $('#add-answer-modal').modal('hide');
     }
 
+    var submitForm = function () {
+        var obj = new Object();
+        obj.name = document.getElementById('survey-name').value;
+        obj.startTime = document.getElementById('start-time').value;
+        obj.endTime = document.getElementById('end-time').value;
+        obj.description = document.getElementById('description').value;
+        obj.questions = listObj;
+
+        var json = JSON.stringify(obj);
+    }
+
     /* ------ Handles ------ */
     var handleBox = function () {
         $("#btnSubmitQuestion").click(function () {
@@ -272,6 +283,21 @@ var Index = function () {
             let currentIndex = document.getElementById('current-question-index').value;
             addNewAnswer(currentIndex,)
         });
+
+        //$(document).on('click', '.submit-survey', function () {
+        //    let currentIndex = document.getElementById('current-question-index').value;
+        //    var obj = new Object();
+        //    obj.name = document.getElementById('survey-name').value;
+        //    obj.startTime = document.getElementById('start-time').value;
+        //    obj.endTime = document.getElementById('end-time').value;
+        //    obj.description = document.getElementById('description').value;
+        //    obj.questions = listObj;
+        //});
+
+        $(document).on('click', '#btnSubmitBasicSurvey', function () {
+            /* submitForm();*/
+            
+        })
     }
     return {
         initialize: function () {

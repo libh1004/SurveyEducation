@@ -19,6 +19,8 @@ namespace SurveyEducation.ViewModels
         {
             [Key]
             public int Id { get; set; }
+            [Required(ErrorMessage = "Please enter survey name.")]
+            public string Name { get; set; }
             [Required(ErrorMessage = "Please enter start time.")]
             [DataType(DataType.DateTime)]
             [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

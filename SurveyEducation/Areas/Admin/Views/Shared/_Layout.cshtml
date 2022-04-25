@@ -8,7 +8,7 @@
 <!-- head -->
 @Html.Partial("_Header")
 <body>
- 
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -68,7 +68,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
+                                                    @using Microsoft.AspNet.Identity
+                                                    @if (Request.IsAuthenticated)
+                                                    {
+                                                        <span class="fw-semibold d-block">@User.Identity.GetUserName()</span>
+                                                    }
                                                     <small class="text-muted">Admin</small>
                                                 </div>
                                             </div>
@@ -102,10 +106,14 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
-                                            <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out</span>
-                                        </a>
+
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <a class="dropdown-item" href="auth-login-basic.html">
+                                                <i class="bx bx-power-off me-2"></i>
+                                                <span class="align-middle">@User.Identity.GetUserName() (<a href="/Account/Logout" onclick="return confirm('Logout?')">Log Out</a></span>
+                                            </a>
+                                        }
                                     </li>
                                 </ul>
                             </li>
@@ -119,7 +127,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     @RenderBody()
-                 
+
                     <!-- / Content -->
                     <!-- Footer -->
                     @Html.Partial("_Footer")

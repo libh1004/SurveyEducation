@@ -104,7 +104,9 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    @Html.ActionLink("Thêm tài khoản mới", "AddAccount", "Account", routeValues: null, htmlAttributes:new { @class= "menu-link" })
+                    <a href="Admin/AddAccount" class="menu-link">
+                        Thêm tài khoản
+                    </a>
                 </li>
                 <li class="menu-item">
                     <a href="Admin/Account" class="menu-link">
@@ -138,13 +140,13 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="/Account/Login" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet-alt"></i>
                 <div data-i18n="Account Settings">Đăng nhập</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
+            <a href="/Account/Register" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-wallet-alt"></i>
                 <div data-i18n="Account Settings">Đăng ký</div>
             </a>

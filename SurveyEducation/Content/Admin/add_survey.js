@@ -37,7 +37,6 @@ var IndexRender = {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>`
             } else if (lstObj[i].type == 2) {
                 var lstAnswer = ``;
@@ -54,7 +53,7 @@ var IndexRender = {
                                         </button>
                                     </h2>
                                     <div id="accordion${i + 1}" class="accordion-collapse collapse" aria-labelledby="heading${i + 1}" data-bs-parent="#accordionExample" style="">
-                                        <div class="accordion-body" id="question-answer${i + 1}></div>
+                                        <div class="accordion-body" id="question-answer${i + 1}"></div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
@@ -63,8 +62,7 @@ var IndexRender = {
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-secondary btn-edit-question">
                                                     <span class="tf-icons bx bx-edit"></span>&nbsp; Sửa
                                                 </button>&nbsp;
-
-<button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
+                                                <button data-current-index="${i}" type="button" class="btn btn-outline-danger btn-delete-question">
                                                     <span class="tf-icons bx bx-trash"></span>&nbsp; Xóa
                                                 </button>
                                             </div>
@@ -79,7 +77,7 @@ var IndexRender = {
                                         </button>
                                     </h2>
                                     <div id="accordion${i + 1}" class="accordion-collapse collapse" aria-labelledby="heading${i + 1}" data-bs-parent="#accordionExample" style="">
-                                        <div class="accordion-body" id="question-answer${i + 1}>` + lstAnswer + `</div>
+                                        <div class="accordion-body" id="question-answer${i + 1}">` + lstAnswer + `</div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
@@ -152,7 +150,6 @@ var IndexRender = {
                                     </div>
                                 </div>`
                 }
-
             }
         }
         return html;
@@ -161,14 +158,30 @@ var IndexRender = {
         var html = ``;
         if (questionType == 2) {
             html += `<div class="form-check">
-                <input name="default-radio-input" class="form-check-input" type="radio" value="${answer}" id="defaultRadio${index}" checked="">
-                <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
-                </div>`
+                        <div class="row">
+                            <div class="col-md-9 mt-2">
+                                <input name="default-radio-input" class="form-check-input" type="radio" name="${answer}" value="${answer}" id="defaultRadio${index}" checked="">
+                                <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
+                            </div>
+                            <div class="col-md-3">
+                                <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                            </div>
+                        </div>
+                     </div>`
         } else {
             html += `<div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="${answer}" id="defaultCheck${index}">
-                         <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
-                         </div>`
+                        <div class="row">
+                            <div class="col-md-9 mt-2">
+                                <input class="form-check-input" type="checkbox" name="${answer}" value="${answer}" id="defaultCheck${index}">
+                                <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
+                            </div>
+                            <div class="col-md-3">
+                                <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                            </div>
+                        </div>
+                     </div>`
         }
         return html;
     }
@@ -180,6 +193,7 @@ var Index = function () {
         var formAction = $('#question-modal-action').val(); // check kiểu thao tác, thêm mới hay sửa.
         var obj = new Object();
         obj.nameLarge = document.getElementById('nameLarge').value;
+        obj.answer = document.getElementById('index'.value);
         obj.type = document.getElementById("defaultSelect").value;
         obj.answers = [];
         if (parseInt(formAction) == 1) {
@@ -254,14 +268,17 @@ var Index = function () {
             showEditModal(currentObject);
         });
 
-
         // add event vào các phần tử sinh ra bằng js
         $(document).on('click', '.btn-delete-question', function () {
-            var currentIndex = $(this).attr('data-current-index');
-            var currentObject = listObj[parseInt(currentIndex)];
-            $('#current-object-index').val(currentIndex);
-            listObj.splice(currentIndex, 1);
-            $("#accordionExample").html(IndexRender.render_Question(listObj));
+            if (confirm("Are you sure delete!") == true) {
+                var currentIndex = $(this).attr('data-current-index');
+                var currentObject = listObj[parseInt(currentIndex)];
+                $('#current-object-index').val(currentIndex);
+                listObj.splice(currentIndex, 1);
+                $("#accordionExample").html(IndexRender.render_Question(listObj));
+            } else {
+                return false;
+            }
         });
 
         $('#btn-add-question').click(function () {

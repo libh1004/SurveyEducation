@@ -163,6 +163,14 @@
     <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
       <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204241041196_InitDatabase1.cs" />
+    <Compile Include="Migrations\202204241041196_InitDatabase1.Designer.cs">
+      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204241407481_InitDatabase2.cs" />
+    <Compile Include="Migrations\202204241407481_InitDatabase2.Designer.cs">
+      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
@@ -186,6 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Views\Account\Success.cshtml" />
     <Content Include="Views\Account\Fail.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Public\assets\css\demo.css" />
@@ -459,7 +468,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Script.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Content.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Create3.cshtml" />
@@ -527,6 +535,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
       <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204241041196_InitDatabase1.resx">
+      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204241407481_InitDatabase2.resx">
+      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,12 +12,13 @@ namespace SurveyEducation.Models
         FacultyStaff,
         Student
     }
-
     public class Account : IdentityUser
     {
-        public string Fullname { get; set; }
+        public string UserName { get; set; }
         public DateTime DisabledAt { get; set; }
         public string Address { get; set; }
+        public string Thumbnail { get; set; }
+        public string PhoneNumber { get; set; }
         public int Status { get; set; }
         public string EmployeeNumber { get; set; }
         public DateTime AddmissionDate { get; set; }

@@ -38,8 +38,7 @@ namespace SurveyEducation.Controllers
                 UserName = accountVM.UserName,
                 Status = 0,
                 Email = accountVM.Email,
-                Fullname = accountVM.Fullname,
-                EmployeeNumber = "100",
+                EmployeeNumber = accountVM.EmployeeNumber,
                 DisabledAt = DateTime.Now,
                 AddmissionDate = DateTime.Now,
                 DateOfJoining = DateTime.Now
@@ -47,7 +46,7 @@ namespace SurveyEducation.Controllers
             var result = await userManager.CreateAsync(user, accountVM.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index","Home");   
+                return View("Login");
             }
             else
             {
@@ -86,20 +85,26 @@ namespace SurveyEducation.Controllers
                 return View("Fail");
             }
         }
-       public async Task<ActionResult> Login()
+        [HttpGet]
+        public ActionResult Login()
         {
-            string username = "lino";
-            string password = "";
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Login(AccountViewModel accountVM)
+        {
+            string username = accountVM.UserName;
+            string password = accountVM.Password;
             var account = await userManager.FindAsync(username, password);
-            if(account != null)
+            if (account != null)
             {
                 signInManager = new SignInManager<Account, string>(userManager, Request.GetOwinContext().Authentication);
                 await signInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
-                return View("Successful");
+                return Redirect("~/Admin/Dashboard");
             }
             else
             {
-                return View("Fail");
+                return View("Login");
             }
         }
         public ActionResult Logout()
@@ -108,6 +113,9 @@ namespace SurveyEducation.Controllers
             return Redirect("/Account/Login");
         }
 
-     
+        public ActionResult AddUser()
+        {
+            return View();
+        }
     }
 }

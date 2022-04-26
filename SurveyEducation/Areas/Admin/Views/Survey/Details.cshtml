@@ -1,0 +1,98 @@
+﻿@model  SurveyEducation.Models.Survey
+@*@{
+        List<string> stringList = ;
+    }*@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Survey Information</span></h4>
+    <div class="row">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane show active bg-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <ul class="clearfix form-section page-section page_1" style="list-style: none; margin: 0px; font-size: 16px; margin: 0 200px; color: rgb(0, 24, 88); font-family: Inter, &quot; Lucida Grande&quot;, &quot; Lucida Sans Unicode&quot;, &quot; Lucida Sans&quot;, Verdana, sans-serif; ">
+                    <li id="id_25" data-type="control_head" data-qid="25" data-order="1" data-selectioncount="0" class="form-line clearfix isNotSelected form-input-wide form-input-wide-lix`ne-fix lineAlignment-Center" style="z-index: 1;" draggable="false">
+                        <div class="question-wrapper questionWrapper  false">
+                            <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                <div class="form-header-group  header-large">
+                                    <div class="header-text httac htvam">
+                                        <h1 id="header_25" class="form-header" data-component="header">
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <div class="inlineEditor" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
+                                                    @Html.DisplayFor(model => model.Name)
+                                                </div>
+                                            </div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="id_26" data-type="control_fullname" data-qid="26" data-order="2" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Auto-Top mt-5" style="z-index: 1;">
+                        <div class="question-wrapper questionWrapper false">
+                            <label id="label_26" class="form-label form-label-top form-label-auto" for="none" style="width: 100%;">
+                            </label>
+                            <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                <div data-wrapper-react="true">
+                                    <span class="form-sub-label-container" data-input-type="first" style="vertical-align: top;">
+                                        <p>Thời gian bắt đầu: @Html.DisplayFor(model => model.StartTime)</p>
+                                    </span>
+                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
+                                        <p>Thời gian kết thúc: @Html.DisplayFor(model => model.StartTime)</p>
+                                    </span>
+                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
+                                        <p>Mô tả: @Html.DisplayFor(model => model.Description)</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    @foreach (var q in Model.Questions)
+                    {
+                        <li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                            <div class="question-wrapper questionWrapper  false">
+                                <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                                    <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                        <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                            <p>@Html.DisplayFor(modelItem => q.Content)</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                    <div class="form-single-column" role="group" aria-labelledby="label_22" data-component="radio">
+
+                                        @if (q.QuestionType != SurveyEducation.Models.Type.Text &&
+                                                            q.Answers != null)
+                                        {
+                                            foreach (var a in q.Answers.Split('|').ToList())
+                                            {
+                                                <span class="form-radio-item mt-4" style="clear: left;">
+                                                    <span class="dragger-item"></span>
+                                                    <input class="form-radio" aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input_22_0" name="q22_howWould" @Html>
+                                                    <span>
+                                                        <div class="editor-container editorHasText" style="display: inline-block;">
+                                                            <label class="inlineEditor" placeholder="Type an option" data-gramm="false" id="label_input_22_0" style="display: inline-block;">
+                                                                @*@Html.DisplayFor(modelItem => q.Answers)*@
+                                                                @Html.Label(a)
+                                                            </label>
+                                                        </div>
+                                                    </span>
+                                                </span>
+                                                <br />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input placeholder="điền câu trả lời" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,16 +16,19 @@ namespace SurveyEducation.Areas.Admin.Controllers
     public class SurveyController : Controller
     {
         MyDbContext db = new MyDbContext();
+
         [HttpGet]
         public ActionResult Index()
         {
             return View(db.Surveys.ToList());
         }
+
         [HttpGet]
         public ActionResult AddSurvey()
         {
             return View();
         }
+
         [HttpPost]
         public string SaveSurvey()
         {
@@ -70,6 +73,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             });
             return returnJson;
         }
+
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -84,9 +88,10 @@ namespace SurveyEducation.Areas.Admin.Controllers
             }
             return View(survey);
         }
+
         public ActionResult Delete(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -99,6 +104,28 @@ namespace SurveyEducation.Areas.Admin.Controllers
             {
                 db.Surveys.Remove(survey);
                 return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public dynamic GetSurvey(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var returnJson = JsonConvert.SerializeObject(survey, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return returnJson;
             }
         }
     }

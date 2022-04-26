@@ -234,12 +234,12 @@ var Index = function () {
         $('#add-answer-modal').modal('show');
     }
 
-    var showEditAnswerModal = function () {
-        $('#add-answer-modal').modal('show');
-    }
+    //var showEditAnswerModal = function () {
+    //    $('#add-answer-modal').modal('show');
+    //}
     var addNewAnswer = function (currentIndex) {
-        var formActionAnswer = $('#answer-modal-action').val();
-        if (parseInt(formActionAnswer) == 1) {
+        /*var formActionAnswer = $('#answer-modal-action').val();*/
+        /*if (parseInt(formActionAnswer) == 1) {*/
             var currentObject = listObj[parseInt(currentIndex)];
             var newAnswer = document.getElementById('txt-answer').value;
             var answers = [];
@@ -253,10 +253,10 @@ var Index = function () {
             $("#accordionExample").html(IndexRender.render_Question(listObj));
             $('#txt-answer').val('');
             $('#add-answer-modal').modal('hide');
-        } else if (parseInt(formActionAnswer) == 2) {
-            var currentIndex = parseInt($('#current-object-index').val());
-            listObj[currentIndex] = obj;
-        }
+        //} else if (parseInt(formActionAnswer) == 2) {
+        //    var currentIndex = parseInt($('#current-object-index').val());
+        //    listObj[currentIndex] = obj;
+        //}
 
     }
 
@@ -275,8 +275,14 @@ var Index = function () {
             contentType: "application/json charset=utf-8",
             dataType: "json",
             data: json,
-            success: function (response) {
-                alert(response)
+            success: function (data, textStatus, jqXHR) {
+                console.log(textStatus + ": " + jqXHR.status);
+                if (textStatus === "success" || jqXHR.status == 200) {
+                    window.location.href = "/Admin/Survey";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
             }
         });
     }
@@ -336,10 +342,16 @@ var Index = function () {
         //})
         $(document).on('click', '#btn-edit-answer', function () {
             var currentIndex = $(this).attr('data-current-index');
-            alert(1);
             showAddAnswerModal();
-
         })
+
+        $('#pills-profile-tab').click(function () {
+            //<div class="tab-pane fade bg-white" id="pills-gg-form" role="tabpanel" aria-labelledby="pills-profile-tab">
+            //    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxvE2eXbJBKhXFcmWX9qx8UGJ2Rk2Rbmubay1br0jyJ15tA/viewform?embedded=true" width="100%" height="3021" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
+            //</div>
+        })
+
+
     }
     return {
         initialize: function () {

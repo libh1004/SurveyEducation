@@ -31,25 +31,19 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> AddAccount()
+        public async Task<ActionResult> AddAccount(AccountViewModel accountVM)
         {
-            string password = "123@123Aa";
-            Account account = new Account()
+            Account user = new Account()
             {
-                UserName = "NguyenVanP"
+                UserName = accountVM.UserName,
+                Status = 0,
+                Email = accountVM.Email,
+                EmployeeNumber = accountVM.EmployeeNumber,
+                DisabledAt = DateTime.Now,
+                AddmissionDate = DateTime.Now,
+                DateOfJoining = DateTime.Now
             };
-                //Account user = new Account()
-            //{
-            //    UserName = accountVM.UserName,
-            //    Status = 0,
-            //    Email = accountVM.Email,
-            //    EmployeeNumber = accountVM.EmployeeNumber,
-            //    DisabledAt = DateTime.Now,
-            //    AddmissionDate = DateTime.Now,
-            //    DateOfJoining = DateTime.Now
-            //};
-            //var result = await userManager.CreateAsync(user, accountVM.Password);
-            var result = await userManager.CreateAsync(account, password);
+            var result = await userManager.CreateAsync(user, accountVM.Password);
             if (result.Succeeded)
             {
                 return View("Login");
@@ -68,27 +62,25 @@ namespace SurveyEducation.Controllers
             var result = await roleManager.CreateAsync(role);
             if (result.Succeeded)
             {
-                return View("Successful");
+                return ViewBag.Message = "Add Role Successful!";
             }
             else
             {
-                return View("Fail");
+                return ViewBag.Message = "Add Role Fail!";
             }
         }
-        public async Task<ActionResult> AddAccountToRole()
+        public async Task<ActionResult> AddAccountToRole(AppRole appRole)
         {
-            string userId = "096ccf0f-baea-4ae4-8c84-e6d7f051f00d";
-            string roleName1 = "Admin";
-            string roleName2 = "FacultyOrStaff";
-            string roleName3 = "Student";
-            var result = await userManager.AddToRolesAsync(userId, roleName3);
+            string userId = appRole.UserId;
+            string roleName = "";
+            var result = await userManager.AddToRolesAsync(userId, roleName);
             if (result.Succeeded)
             {
-                return View("Successful");
+                return ViewBag.Message = "Add Role Successful!";
             }
             else
             {
-                return View("Fail");
+                return ViewBag.Message = "Add Role Fail!";
             }
         }
         [HttpGet]
@@ -106,6 +98,7 @@ namespace SurveyEducation.Controllers
             {
                 signInManager = new SignInManager<Account, string>(userManager, Request.GetOwinContext().Authentication);
                 await signInManager.SignInAsync(account, isPersistent: false, rememberBrowser: false);
+                ViewBag.Message = "Login successful!";
                 return Redirect("~/Admin/Dashboard");
             }
             else

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,19 +21,13 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             return View(db.Surveys.ToList());
         }
-
         [HttpGet]
         public ActionResult AddSurvey()
         {
             return View();
         }
-        public ActionResult Create()
-        {
-
-            return View(db.Surveys.ToList());
-        }
         [HttpPost]
-        public JsonResult SaveSurvey()
+        public string SaveSurvey()
         {
             var req = Request.InputStream;
             var json = new StreamReader(req).ReadToEnd();
@@ -69,11 +64,42 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 db.Questions.Add(question);
                 db.SaveChanges();
             }
-            return Json(newSurvey);
+            var returnJson = JsonConvert.SerializeObject(newSurvey, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return returnJson;
         }
-        public ActionResult ShowSurvey()
+        [HttpGet]
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            return View(survey);
+        }
+        public ActionResult Delete(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                db.Surveys.Remove(survey);
+                return RedirectToAction("Index");
+            }
         }
     }
 }

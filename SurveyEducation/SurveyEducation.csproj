@@ -157,7 +157,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SurveysController.cs" />
     <Compile Include="Areas\User\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.cs" />

@@ -65,24 +65,58 @@
                                         {
                                             foreach (var a in q.Answers.Split('|').ToList())
                                             {
-                                                <span class="form-radio-item mt-4" style="clear: left;">
-                                                    <span class="dragger-item"></span>
-                                                    <input class="form-radio" aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input_22_0" name="q22_howWould" @Html>
-                                                    <span>
-                                                        <div class="editor-container editorHasText" style="display: inline-block;">
-                                                            <label class="inlineEditor" placeholder="Type an option" data-gramm="false" id="label_input_22_0" style="display: inline-block;">
-                                                                @*@Html.DisplayFor(modelItem => q.Answers)*@
-                                                                @Html.Label(a)
-                                                            </label>
-                                                        </div>
-                                                    </span>
-                                                </span>
-                                                <br />
+                                                <!--<span class="form-radio-item mt-4" style="clear: left;">
+            <span class="dragger-item"></span>
+            <input class="form-radio" aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input_22_0" name="q22_howWould" @Html>
+            <span>
+                <div class="editor-container editorHasText" style="display: inline-block;">
+                    <label class="inlineEditor" placeholder="Type an option" data-gramm="false" id="label_input_22_0" style="display: inline-block;">-->
+                                                @*@Html.DisplayFor(modelItem => q.Answers)*@
+                                                <!--@Html.Label(a)
+                        </label>
+                    </div>
+                </span>
+            </span>
+            <br />-->
+                                                // text
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                                </div>
+                                                // radio button
+                                                <div class="col-md">
+                                                    <small class="text-light fw-semibold">Radio</small>
+                                                    <div class="form-check mt-3">
+                                                        <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio1">
+                                                        <label class="form-check-label" for="defaultRadio1"> Unchecked </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="">
+                                                        <label class="form-check-label" for="defaultRadio2"> Checked </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" value="" id="disabledRadio1" disabled="">
+                                                        <label class="form-check-label" for="disabledRadio1"> Disabled unchecked </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" value="" id="disabledRadio2" disabled="" checked="">
+                                                        <label class="form-check-label" for="disabledRadio2"> Disabled checkbox </label>
+                                                    </div>
+                                                </div>
+
+                                                // checkbox
+                                                <div class="col-md">
+                                                    <small class="text-light fw-semibold">Checkboxes</small>
+                                                    <div class="form-check mt-3">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                        <label class="form-check-label" for="defaultCheck1"> Unchecked </label>
+                                                    </div>
+                                                </div>
                                             }
                                         }
                                         else
                                         {
-                                            <input placeholder="điền câu trả lời" />
+                                            @*<input placeholder="điền câu trả lời" />*@
                                         }
                                     </div>
                                 </div>

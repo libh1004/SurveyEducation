@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SurveyEducation.Models
 {
-    public enum RoleValue
+    public enum Role
     {
         Admin,
         FacultyStaff,

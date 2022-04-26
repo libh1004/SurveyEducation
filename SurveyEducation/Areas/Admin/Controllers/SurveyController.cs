@@ -26,7 +26,11 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Create()
+        {
 
+            return View(db.Surveys.ToList());
+        }
         [HttpPost]
         public JsonResult SaveSurvey()
         {
@@ -56,7 +60,6 @@ namespace SurveyEducation.Areas.Admin.Controllers
                     lstStr = string.Join("|", q["answers"]);
                 }
                 var questionAnswers = lstStr;
-
                 var question = new Question();
                 question.SurveyId = newSurvey.Id;
                 question.QuestionType = (SurveyEducation.Models.Type)questionType;
@@ -67,6 +70,10 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 db.SaveChanges();
             }
             return Json(newSurvey);
+        }
+        public ActionResult ShowSurvey()
+        {
+            return View();
         }
     }
 }

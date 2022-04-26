@@ -158,6 +158,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
+    <Compile Include="Areas\User\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
@@ -492,6 +493,7 @@
     <Content Include="bin\SurveyEducation.dll.config" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
+    <Content Include="Areas\Admin\Views\Survey\ShowSurvey.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -522,8 +524,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Default\" />
-    <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Views\Survey\" />
     <Folder Include="Libs\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>

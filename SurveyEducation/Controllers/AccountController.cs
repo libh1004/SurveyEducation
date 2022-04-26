@@ -31,19 +31,25 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> AddAccount(AccountViewModel accountVM)
+        public async Task<ActionResult> AddAccount()
         {
-            Account user = new Account()
+            string password = "123@123Aa";
+            Account account = new Account()
             {
-                UserName = accountVM.UserName,
-                Status = 0,
-                Email = accountVM.Email,
-                EmployeeNumber = accountVM.EmployeeNumber,
-                DisabledAt = DateTime.Now,
-                AddmissionDate = DateTime.Now,
-                DateOfJoining = DateTime.Now
+                UserName = "NguyenVanP"
             };
-            var result = await userManager.CreateAsync(user, accountVM.Password);
+                //Account user = new Account()
+            //{
+            //    UserName = accountVM.UserName,
+            //    Status = 0,
+            //    Email = accountVM.Email,
+            //    EmployeeNumber = accountVM.EmployeeNumber,
+            //    DisabledAt = DateTime.Now,
+            //    AddmissionDate = DateTime.Now,
+            //    DateOfJoining = DateTime.Now
+            //};
+            //var result = await userManager.CreateAsync(user, accountVM.Password);
+            var result = await userManager.CreateAsync(account, password);
             if (result.Succeeded)
             {
                 return View("Login");

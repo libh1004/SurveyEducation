@@ -158,6 +158,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
+    <Compile Include="Areas\User\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Migrations\202204240336096_InitData.cs" />
     <Compile Include="Migrations\202204240336096_InitData.Designer.cs">
@@ -175,6 +176,10 @@
     <Compile Include="Migrations\202204251522481_InitDatabase3.Designer.cs">
       <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204261404299_InitDatabase4.cs" />
+    <Compile Include="Migrations\202204261404299_InitDatabase4.Designer.cs">
+      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AppRole.cs" />
@@ -187,8 +192,6 @@
     <Compile Include="ViewModels\SurveyHistoryViewModel.cs" />
     <Compile Include="ViewModels\SurveyViewModel.cs" />
     <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
-    <Content Include="Areas\Admin\Views\Accounts\Register.cshtml" />
-    <None Include="Areas\Admin\Views\Survey\Create2.cshtml" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\MyDbContext.cs" />
@@ -509,6 +512,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
+    <Content Include="Areas\Admin\Views\Survey\ShowSurvey.cshtml" />
+    <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
+    <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -538,9 +544,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Accounts\" />
     <Folder Include="Areas\Admin\Views\Default\" />
-    <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Views\Survey\" />
     <Folder Include="Libs\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
@@ -565,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204251522481_InitDatabase3.resx">
       <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204261404299_InitDatabase4.resx">
+      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

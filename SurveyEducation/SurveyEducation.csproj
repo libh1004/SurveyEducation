@@ -171,6 +171,10 @@
     <Compile Include="Migrations\202204241407481_InitDatabase2.Designer.cs">
       <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204251522481_InitDatabase3.cs" />
+    <Compile Include="Migrations\202204251522481_InitDatabase3.Designer.cs">
+      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
@@ -541,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204241407481_InitDatabase2.resx">
       <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251522481_InitDatabase3.resx">
+      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

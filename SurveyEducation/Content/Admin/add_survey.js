@@ -54,7 +54,7 @@ var IndexRender = {
                                         </button>
                                     </h2>
                                     <div id="accordion${i + 1}" class="accordion-collapse collapse" aria-labelledby="heading${i + 1}" data-bs-parent="#accordionExample" style="">
-                                        <div class="accordion-body" id="question-answer${i + 1}></div>
+                                        <div class="accordion-body" id="question-answer${i + 1}"></div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
@@ -79,7 +79,7 @@ var IndexRender = {
                                         </button>
                                     </h2>
                                     <div id="accordion${i + 1}" class="accordion-collapse collapse" aria-labelledby="heading${i + 1}" data-bs-parent="#accordionExample" style="">
-                                        <div class="accordion-body" id="question-answer${i + 1}>` + lstAnswer + `</div>
+                                        <div class="accordion-body" id="question-answer${i + 1}">` + lstAnswer + `</div>
                                         <div class="row mt-5 mb-2 ml-3">
                                             <div class="col">
                                                 <button data-current-index="${i}" type="button" class="btn btn-outline-primary btn-add-answer" id="${i + 1}">
@@ -161,13 +161,29 @@ var IndexRender = {
         var html = ``;
         if (questionType == 2) {
             html += `<div class="form-check">
-                <input name="default-radio-input" class="form-check-input" type="radio" value="${answer}" id="defaultRadio${index}" checked="">
-                <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
+                <div class="row">
+                            <div class="col-md-9 mt-2" id="btn${index + 1}">
+                                <input name="default-radio-input" class="form-check-input" type="radio" name="${answer}" value="${answer}" id="defaultRadio${index}" checked="">
+                                <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
+                            </div>
+                            <div class="col-md-3"">
+                                <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                            </div>
+                        </div>
                 </div>`
         } else {
             html += `<div class="form-check">
-                         <input class="form-check-input" type="checkbox" value="${answer}" id="defaultCheck${index}">
-                         <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
+                         <div class="row">
+                            <div class="col-md-9 mt-2" id="btn${index + 1}">
+                                <input class="form-check-input" type="checkbox" name="${answer}" value="${answer}" id="defaultCheck${index}">
+                                <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
+                            </div>
+                            <div class="col-md-3">
+                                <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                            </div>
+                        </div>
                          </div>`
         }
         return html;
@@ -178,15 +194,25 @@ var Index = function () {
     /* ------ Methods ------ */
     var addNewQuestion = function () {
         var formAction = $('#question-modal-action').val(); // check kiểu thao tác, thêm mới hay sửa.
+        var formActionAnswer = $('#add-answer-modal').val();
         var obj = new Object();
         obj.nameLarge = document.getElementById('nameLarge').value;
         obj.type = document.getElementById("defaultSelect").value;
-        obj.answers = [];   
+        obj.answers = [];
+        // câu hỏi
         if (parseInt(formAction) == 1) {
             // thêm mới.           
             listObj.push(obj);
 
         } else if (parseInt(formAction) == 2) {
+            var currentIndex = parseInt($('#current-object-index').val());
+            listObj[currentIndex] = obj;
+        }
+
+        // câu trả lời
+        if (parseInt(formActionAnswer) == 1) {
+            listObj.push();
+        } else if (parseInt(formActionAnswer) == 2) {
             var currentIndex = parseInt($('#current-object-index').val());
             listObj[currentIndex] = obj;
         }
@@ -217,6 +243,9 @@ var Index = function () {
         $('#add-answer-modal').modal('show');
     }
 
+    var showEditAnswerModal = function () {
+        $('#btn-edit-answer').modal('show');
+    }
     var addNewAnswer = function (currentIndex) {
         var currentObject = listObj[parseInt(currentIndex)];
         var newAnswer = document.getElementById('txt-answer').value;
@@ -240,8 +269,18 @@ var Index = function () {
         obj.endTime = document.getElementById('end-time').value;
         obj.description = document.getElementById('description').value;
         obj.questions = listObj;
-
         var json = JSON.stringify(obj);
+        console.log(json);
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Survey/SaveSurvey",
+            contentType: "application/json charset=utf-8",
+            dataType: "json",
+            data: json,
+            success: function (response) {
+                alert(response)
+            }
+        });
     }
 
     /* ------ Handles ------ */
@@ -268,11 +307,15 @@ var Index = function () {
 
         // add event vào các phần tử sinh ra bằng js
         $(document).on('click', '.btn-delete-question', function () {
-            var currentIndex = $(this).attr('data-current-index');
-            var currentObject = listObj[parseInt(currentIndex)];
-            $('#current-object-index').val(currentIndex);
-            listObj.splice(currentIndex, 1);
-            $("#accordionExample").html(IndexRender.render_Question(listObj));
+            if (confirm("Are you sure delete?")) {
+                var currentIndex = $(this).attr('data-current-index');
+                var currentObject = listObj[parseInt(currentIndex)];
+                $('#current-object-index').val(currentIndex);
+                listObj.splice(currentIndex, 1);
+                $("#accordionExample").html(IndexRender.render_Question(listObj));
+            } else {
+                return false;
+            }
         });
 
         $('#btn-add-question').click(function () {
@@ -284,19 +327,20 @@ var Index = function () {
             addNewAnswer(currentIndex,)
         });
 
-        //$(document).on('click', '.submit-survey', function () {
-        //    let currentIndex = document.getElementById('current-question-index').value;
-        //    var obj = new Object();
-        //    obj.name = document.getElementById('survey-name').value;
-        //    obj.startTime = document.getElementById('start-time').value;
-        //    obj.endTime = document.getElementById('end-time').value;
-        //    obj.description = document.getElementById('description').value;
-        //    obj.questions = listObj;
-        //});
+        $(document).on('click', '.submit-survey', function () {
+            submitForm();
+        });
 
-        $(document).on('click', '#btnSubmitBasicSurvey', function () {
-            /* submitForm();*/
-            
+        //$(document).on('click', '#btnNextStep', function () {
+        //    $('#home-tab').removeClass('active');
+        //    $('#home').removeClass('active');
+        //    $('#profile-tab').addClass('active');
+        //    $('#profile').addClass('active');
+        //})
+
+        $(document).on('click', '#btn-edit-answer', function () {
+            var currentIndex = $(this).attr('data-current-index');
+            alert(1);
         })
     }
     return {

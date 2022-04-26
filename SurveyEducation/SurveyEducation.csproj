@@ -159,9 +159,9 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202204240336096_InitData.cs" />
+    <Compile Include="Migrations\202204240336096_InitData.Designer.cs">
+      <DependentUpon>202204240336096_InitData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202204241041196_InitDatabase1.cs" />
     <Compile Include="Migrations\202204241041196_InitDatabase1.Designer.cs">
@@ -560,8 +560,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204240336096_InitData.resx">
+      <DependentUpon>202204240336096_InitData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204241041196_InitDatabase1.resx">
       <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>

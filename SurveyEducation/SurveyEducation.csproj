@@ -156,9 +156,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminModelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Migrations\202204230200124_InitData.cs" />
+    <Compile Include="Migrations\202204230200124_InitData.Designer.cs">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
       <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
@@ -173,13 +178,25 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SurveyHistoryViewModel.cs" />
     <Compile Include="ViewModels\SurveyViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminModels\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminModels\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminModels\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminModels\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminModels\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Index.cshtml" />
     <None Include="Areas\Admin\Views\Survey\Create2.cshtml" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -533,6 +550,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204230200124_InitData.resx">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
       <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,5 +26,5 @@ namespace SurveyEducation.Controllers
 
             return View();
         }
-    }
+    } 
 }

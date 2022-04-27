@@ -158,7 +158,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
-    <Compile Include="Areas\User\Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
     <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
@@ -192,7 +192,6 @@
     <Compile Include="ViewModels\SurveyHistoryViewModel.cs" />
     <Compile Include="ViewModels\SurveyViewModel.cs" />
     <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
-    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\MyDbContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -295,6 +294,8 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\Admin\detail_servey.js" />
+    <Content Include="obj\Debug\SurveyEducation.dll" />
+    <Content Include="obj\Debug\SurveyEducation.pdb" />
     <Content Include="Views\Account\Success.cshtml" />
     <Content Include="Views\Account\Fail.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
@@ -398,7 +399,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Public\assets\vendor\fonts\boxicons\boxicons.eot" />
@@ -506,15 +506,12 @@
     <Content Include="Areas\Admin\Views\Shared\_Content.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Create3.cshtml" />
-    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
-    <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
-    <Content Include="Areas\User\Views\Answer\Index.cshtml" />
+    <Content Include="obj\Debug\SurveyEducation.csproj.GenerateResource.cache" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -540,15 +537,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Answer\AddAnswer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Accounts\" />
     <Folder Include="Areas\Admin\Views\Default\" />
-    <Folder Include="Areas\User\Data\" />
-    <Folder Include="Areas\User\Views\Survey\" />
-    <Folder Include="Libs\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -576,6 +571,11 @@
     <EmbeddedResource Include="Migrations\202204261404299_InitDatabase4.resx">
       <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\SurveyEducation.Migrations.InitDatabase.resources" />
+    <EmbeddedResource Include="obj\Debug\SurveyEducation.Migrations.InitDatabase1.resources" />
+    <EmbeddedResource Include="obj\Debug\SurveyEducation.Migrations.InitDatabase2.resources" />
+    <EmbeddedResource Include="obj\Debug\SurveyEducation.Migrations.InitDatabase3.resources" />
+    <EmbeddedResource Include="obj\Debug\SurveyEducation.Migrations.InitDatabase4.resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

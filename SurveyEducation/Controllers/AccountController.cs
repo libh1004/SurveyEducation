@@ -36,14 +36,18 @@ namespace SurveyEducation.Controllers
             Account user = new Account()
             {
                 UserName = accountVM.UserName,
-                Status = 0,
+                
+                Status = 1,
                 Email = accountVM.Email,
+                PasswordHash = accountVM.Password,
                 EmployeeNumber = accountVM.EmployeeNumber,
                 DisabledAt = DateTime.Now,
                 AddmissionDate = DateTime.Now,
                 DateOfJoining = DateTime.Now
             };
-            var result = await userManager.CreateAsync(user, accountVM.Password);
+            var result = await userManager.CreateAsync(user, user.PasswordHash);
+            db.Users.Add(user);
+            db.SaveChanges();
             if (result.Succeeded)
             {
                 return View("Login");

@@ -20,7 +20,8 @@ namespace SurveyEducation.Controllers
 
         public ActionResult Survey()
         {
-            return View(db.Surveys.ToList());
+            //return View(db.Surveys.ToList());
+            return View();
         }
 
         public ActionResult Details(int? id)

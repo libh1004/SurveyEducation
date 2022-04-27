@@ -158,11 +158,10 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
-    <Compile Include="Areas\User\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Migrations\202204240336096_InitData.cs" />
-    <Compile Include="Migrations\202204240336096_InitData.Designer.cs">
-      <DependentUpon>202204240336096_InitData.cs</DependentUpon>
+    <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
+    <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
+      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202204241041196_InitDatabase1.cs" />
     <Compile Include="Migrations\202204241041196_InitDatabase1.Designer.cs">
@@ -294,6 +293,7 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\Admin\detail_servey.js" />
     <Content Include="Views\Account\Success.cshtml" />
     <Content Include="Views\Account\Fail.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
@@ -502,7 +502,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Script.cshtml" />
-    <Content Include="Areas\Admin\Views\Survey\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Content.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Create3.cshtml" />
@@ -512,7 +511,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
-    <Content Include="Areas\Admin\Views\Survey\ShowSurvey.cshtml" />
     <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -546,6 +544,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Accounts\" />
     <Folder Include="Areas\Admin\Views\Default\" />
+    <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Survey\" />
     <Folder Include="Libs\" />
@@ -561,8 +560,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204240336096_InitData.resx">
-      <DependentUpon>202204240336096_InitData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
+      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204241041196_InitDatabase1.resx">
       <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>

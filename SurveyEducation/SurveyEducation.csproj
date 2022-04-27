@@ -159,25 +159,9 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204241041196_InitDatabase1.cs" />
-    <Compile Include="Migrations\202204241041196_InitDatabase1.Designer.cs">
-      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204241407481_InitDatabase2.cs" />
-    <Compile Include="Migrations\202204241407481_InitDatabase2.Designer.cs">
-      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204251522481_InitDatabase3.cs" />
-    <Compile Include="Migrations\202204251522481_InitDatabase3.Designer.cs">
-      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204261404299_InitDatabase4.cs" />
-    <Compile Include="Migrations\202204261404299_InitDatabase4.Designer.cs">
-      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
+    <Compile Include="Migrations\202204230200124_InitData.cs" />
+    <Compile Include="Migrations\202204230200124_InitData.Designer.cs">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -190,6 +174,7 @@
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SurveyHistoryViewModel.cs" />
     <Compile Include="ViewModels\SurveyViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Content Include="Areas\Admin\Views\Survey\AddSurvey.cshtml" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -563,20 +548,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204241041196_InitDatabase1.resx">
-      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204241407481_InitDatabase2.resx">
-      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204251522481_InitDatabase3.resx">
-      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204261404299_InitDatabase4.resx">
-      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204230200124_InitData.resx">
+      <DependentUpon>202204230200124_InitData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

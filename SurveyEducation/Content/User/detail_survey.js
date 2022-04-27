@@ -1,4 +1,6 @@
-﻿const { forEach } = require("core-js/fn/dict");
+﻿/*/*const { forEach } = require("core-js/fn/dict");*/
+
+const { forEach } = require("core-js/library/core/dict");
 
 var IndexRender = {
     render_Question: function (lstObj) {
@@ -18,7 +20,7 @@ var IndexRender = {
                                     <div class="form-single-column" role="group" aria-labelledby="label_22">
                                         <p>Câu trả lời:</p>
                                         <label for="input-text-${item.Id}" class="form-label">Email address</label>
-                                        <input class="form-control" value="${item.Content}" placeholder="Điền câu trả lời" id="input-text-${item.Id}"/>
+                                        <input class="form-control" value="${item.Content}" placeholder="Điền câu trả lời" id="input - text - ${item.Id} "/>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +55,7 @@ var IndexRender = {
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p data-current-index="${index + 1}">Câu hỏi ${index+1}: ${item.Content}</p>
+                                            <p data-current-index="${index + 1}">Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>
@@ -158,27 +160,29 @@ var Index = function () {
         });
 
         $('#btnSubmitAnswer').click(function () {
-            //var questionValue = $('data-current-index').val();
-            ////alert(questionValue);
-            //var answerValue = "";
-            //lstObj.forEach(function (item, index) {
-            //    if (item.QuestionType == 1) {
-            //        answerValue = $("input[value]").val();
-            //    } else if (item.QuestionType == 2) {
-            //        answerValue = $("input[checked]").val();
-            //    } else if (item.QuestionType == 3) {
-            //        var answersValue = $(")
-            //    }
-           
-            //alert(answerValue);
+            var questionValue = $('data-current-index').val();
+            alert(questionValue);
+            //alert(questionValue);
+            var answerValue = "";
+            lstObj.forEach(function (item, index) {
+                if (item.QuestionType == 1) {
+                    answerValue = $("input[value]").val();
+                } else if (item.QuestionType == 2) {
+                    answerValue = $("input[checked]").val();
+                } else if (item.QuestionType == 3) {
+                    answersValue = item.Answers.split('|');
+                    alert(answersValue)
+
+                }
+            }
         })
     }
 
-    return {
-        initialize: async function () {
-            await handleBox();
-        }
+return {
+    initialize: async function () {
+        await handleBox();
     }
+}
 }();
 jQuery(document).ready(function () {
     Index.initialize();

@@ -293,6 +293,7 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\Admin\detail_servey.js" />
     <Content Include="Views\Account\Success.cshtml" />
     <Content Include="Views\Account\Fail.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
@@ -510,7 +511,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
-    <Content Include="Areas\Admin\Views\Survey\ShowSurvey.cshtml" />
     <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

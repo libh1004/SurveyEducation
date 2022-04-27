@@ -48,7 +48,7 @@
                                     <button type="submit" id="btnSubmitBasicSurvey1" class="btn btn-primary col-1 mt-4">Next</button>
                                 </div>
                             </form>
-                        </div>                        
+                        </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <form>
                                 <div class="col-12 col-mb-4">
@@ -101,10 +101,10 @@
                                                 <button type="button" class="btn btn-primary" id="btnSubmit1" onclick="handleAddAnswer2()">Add answer</button>
                                             </div>
                                             @*<div class="col">
-                                                <button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
-                                                <button class="btn btn-success" id="btnSaveAnswerText">Save</button>
-                                                <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>
-                                            </div>*@
+                                                    <button class="btn btn-warning" id="btnEditAnswerText">Edit</button>
+                                                    <button class="btn btn-success" id="btnSaveAnswerText">Save</button>
+                                                    <button class="btn btn-primary" id="btnDeleteAnswer">Delete</button>
+                                                </div>*@
                                         </div>
                                     </div>
                                     <div class="card accordion-item m-3">
@@ -236,7 +236,7 @@
                                                    aria-describedby="basic-icon-default-phone2" />
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary col-1 mt-4" onclick="handleSubmitButton('sendInfo')">Send</button>
                                 </div>
@@ -602,232 +602,235 @@
                 </ul>
             </div>
             <div class="tab-pane fade bg-white" id="pills-gg-form" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxvE2eXbJBKhXFcmWX9qx8UGJ2Rk2Rbmubay1br0jyJ15tA/viewform?embedded=true" width="100%" height="3021" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe></div>
-
-    </div>
-    @*<div class="input_fields_wrap">
-            <button class="add_field_button">Add More Fields</button>
-            <div>
-                <input type="text" id="hihi1"/>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxvE2eXbJBKhXFcmWX9qx8UGJ2Rk2Rbmubay1br0jyJ15tA/viewform?embedded=true" width="100%" height="3021" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
             </div>
-        </div>*@
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#btnEditAnswerText").click(function (e) {
-                e.preventDefault();
-                var getAnswer1 = $("#edit-element").text();
-                $("#form-add-answer2").val(getAnswer1);
 
-            })
-        });
-        $(document).ready(function () {
-            var form_edit = $(".form-select-many");
-            var edit_button = $("#btnSaveAnswerText");
-            $(edit_button).click(function (e) {
-                var updateAnswer = $("#form-add-answer2").val();
-                $(form_edit).append(updateAnswer);
+        </div>
+    </div>
+</div>
+@*<div class="input_fields_wrap">
+        <button class="add_field_button">Add More Fields</button>
+        <div>
+            <input type="text" id="hihi1"/>
+        </div>
+    </div>*@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btnEditAnswerText").click(function (e) {
+            e.preventDefault();
+            var getAnswer1 = $("#edit-element").text();
+            $("#form-add-answer2").val(getAnswer1);
 
-                $(form_edit).set(updateAnswer);
-                /*$("edit-element").text(updateAnswer);*/
-            })
-        });
-        $(document).ready(function () {
-            var warapper2 = $("#answer-text1");
-            var add_button2 = $("#btnAddAnswerText");
-            var max_filed = 2;
-            var x = 1;
-            $(add_button2).click(function (e) {
-                var getAnswerText = $("#form-add-answer").val();
-                e.preventDefault();
-                if (getAnswerText != null) {
-                    if (x < max_filed) {
-                        $(warapper2).append('<div class="col-md-10"><p id="answer-text-element" class="ms-lg-3"> &nbsp &nbsp' + getAnswerText + '</p></div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square"  style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"   ><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div>');
-                    }
-                } else {
-                    alert("Please enter answer");
-                }
-            })
         })
-    </script>
-    <script>
-        $(document).ready(function () {
-            var max_fields = 10; //maximum input boxes allowed
-            var wrapper1 = $("#answers"); //Fields wrapper
-            var add_button = $("#btnSubmit1"); //Add button ID
-            var x = 1; //initlal text box count
-            $(add_button).click(function (e) { //on add input button click
-                var hihiValue = $("#form-add-answer2").val();
-                e.preventDefault();
-                if (x < max_fields) { //max input box allowed
-                    //text box increment
-                    //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
-                    $(wrapper1).append('<div class="col-md-10" id="edit-element"><input type="checkbox"/> &nbsp &nbsp' + hihiValue + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can" style="color:red"></i></button></div>'); //add input box
-                    x++;
+    });
+    $(document).ready(function () {
+        var form_edit = $(".form-select-many");
+        var edit_button = $("#btnSaveAnswerText");
+        $(edit_button).click(function (e) {
+            var updateAnswer = $("#form-add-answer2").val();
+            $(form_edit).append(updateAnswer);
+
+            $(form_edit).set(updateAnswer);
+            /*$("edit-element").text(updateAnswer);*/
+        })
+    });
+    $(document).ready(function () {
+        var warapper2 = $("#answer-text1");
+        var add_button2 = $("#btnAddAnswerText");
+        var max_filed = 2;
+        var x = 1;
+        $(add_button2).click(function (e) {
+            var getAnswerText = $("#form-add-answer").val();
+            e.preventDefault();
+            if (getAnswerText != null) {
+                if (x < max_filed) {
+                    $(warapper2).append('<div class="col-md-10"><p id="answer-text-element" class="ms-lg-3"> &nbsp &nbsp' + getAnswerText + '</p></div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square"  style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"   ><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div>');
                 }
-                hihiValue = $("#form-add-answer2").val("");
-            });
+            } else {
+                alert("Please enter answer");
+            }
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper1 = $("#answers"); //Fields wrapper
+        var add_button = $("#btnSubmit1"); //Add button ID
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            var hihiValue = $("#form-add-answer2").val();
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                //text box increment
+                //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
+                $(wrapper1).append('<div class="col-md-10" id="edit-element"><input type="checkbox"/> &nbsp &nbsp' + hihiValue + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can" style="color:red"></i></button></div>'); //add input box
+                x++;
+            }
+            hihiValue = $("#form-add-answer2").val("");
         });
-    </script>
-    <script>
-        $(document).ready(function () {
-            var max_fields = 4; //maximum input boxes allowed
-            var wrapper1 = $("#radioAnswer"); //Fields wrapper
-            var add_button = $("#btnSubmit2"); //Add button ID
-            var x = 1; //initlal text box count
-            $(add_button).click(function (e) { //on add input button click
-                var radio = $("#form-add-answer3").val();
-                e.preventDefault();
-                if (x < max_fields) { //max input box allowed
-                    //text box increment
-                    //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
-                    $(wrapper1).append('<div id="edit-element" class="col-md-10"><input type="radio"/> &nbsp &nbsp' + radio + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div> '); //add input box
-                    x++;
-                }
-                radio = $("#form-add-answer3").val("");
-            });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var max_fields = 4; //maximum input boxes allowed
+        var wrapper1 = $("#radioAnswer"); //Fields wrapper
+        var add_button = $("#btnSubmit2"); //Add button ID
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            var radio = $("#form-add-answer3").val();
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                //text box increment
+                //$(wrapper1).append('<li id="edit-element" ><input type="checkbox"/> ' + hihiValue + '</li > '); //add input box
+                $(wrapper1).append('<div id="edit-element" class="col-md-10"><input type="radio"/> &nbsp &nbsp' + radio + '</div><div class="col-md-2"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div> '); //add input box
+                x++;
+            }
+            radio = $("#form-add-answer3").val("");
         });
-        function addCheckbox() {
-            var table = document.getElementById('checkbox');
-            var value = $("#radioAnswer").val();
-            var rowCount = table.rows.length;
-            var cellCount = table.rows[0].cells.length;
-            var row = table.insertRow(rowCount);
-            for (var i = 0; i <= cellCount; i++) {
-                var cell = 'cell' + i;
-                cell = row.insertCell(i);
-                var copycel = document.getElementById('col' + i).innerHTML;
-                cell.innerHTML = copycel;
-                if (i == 2) {
-                    var radioinput = document.getElementById('col2').getElementsByTagName('input');
-                    for (var j = 0; j <= radioinput.length; j++) {
-                        if (radioinput[j].type == 'radio') {
-                            var rownum = rowCount;
-                            radioinput[j].name = 'gender[' + rownum + ']';
-                        }
+    });
+    function addCheckbox() {
+        var table = document.getElementById('checkbox');
+        var value = $("#radioAnswer").val();
+        var rowCount = table.rows.length;
+        var cellCount = table.rows[0].cells.length;
+        var row = table.insertRow(rowCount);
+        for (var i = 0; i <= cellCount; i++) {
+            var cell = 'cell' + i;
+            cell = row.insertCell(i);
+            var copycel = document.getElementById('col' + i).innerHTML;
+            cell.innerHTML = copycel;
+            if (i == 2) {
+                var radioinput = document.getElementById('col2').getElementsByTagName('input');
+                for (var j = 0; j <= radioinput.length; j++) {
+                    if (radioinput[j].type == 'radio') {
+                        var rownum = rowCount;
+                        radioinput[j].name = 'gender[' + rownum + ']';
                     }
                 }
             }
         }
-    </script>
-    <script>
-        $(document).ready(function () {
-            var max_fields = 10;
-            var wrapper1 = $("#selecForm");
-            var add_button = $("#btnSubmit3");
-            var x = 1;
-            $(add_button).click(function (e) {
-                var selecForm = $("#form-add-answer4").val();
-                e.preventDefault();
-                if (x < max_fields) {
-                    $(wrapper1).append('<div class="col-md-9 mt-3" id="myList"><select class="form-select col-md-8" aria-label="Default select example">< option selected > Open this select menu</option ><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select ></div>' + selecForm + '<div class="col-md-2  mt-3"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div>');
-                    x++;
-                }
-                selecForm = $("#form-add-answer4").val("");
-            });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper1 = $("#selecForm");
+        var add_button = $("#btnSubmit3");
+        var x = 1;
+        $(add_button).click(function (e) {
+            var selecForm = $("#form-add-answer4").val();
+            e.preventDefault();
+            if (x < max_fields) {
+                $(wrapper1).append('<div class="col-md-9 mt-3" id="myList"><select class="form-select col-md-8" aria-label="Default select example">< option selected > Open this select menu</option ><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select ></div>' + selecForm + '<div class="col-md-2  mt-3"><button class="btn" id="btnEditAnswerText"><i class="fa-solid fa-pen-to-square" style="color:#1E53F0"></i></button> <button class="btn" id="btnDeleteAnswer" onclick="myFunction()"><i class="fa-solid fa-trash-can"  style="color:red"></i></button></div>');
+                x++;
+            }
+            selecForm = $("#form-add-answer4").val("");
         });
-    </script>
-    <script>
-        //function onFocusOut() {
-        //    var value = $("#basic-default-company").val()
-        //    alert(value)
-        //}
-        //function handleAddAnswer() {
-        //    var value = $("#form-add-answer").val();
-        //    $("#basic-default-company-1").text(value);
-        //}
+    });
+</script>
+<script>
+    //function onFocusOut() {
+    //    var value = $("#basic-default-company").val()
+    //    alert(value)
+    //}
+    //function handleAddAnswer() {
+    //    var value = $("#form-add-answer").val();
+    //    $("#basic-default-company-1").text(value);
+    //}
 
+    function myFunction() {
+        alert("Are you sure you want to delete this survey?");
+    }
+</script>
+<script>
+    function myFunction() {
+        const list = document.getElementById("myTabContent");
+        alert("Are you sure you want to delete this survey?");
+        list.removeChild(list.firstElementChild);
+    }
+</script>
+@*<script>
         function myFunction() {
-            alert("Are you sure you want to delete this survey?");
-        }
-    </script>
-    <script>
-        function myFunction() {
-            const list = document.getElementById("myTabContent");
+            const list = document.getElementById("btnDeleteAnswer");
             alert("Are you sure you want to delete this survey?");
             list.removeChild(list.firstElementChild);
         }
-    </script>
-    @*<script>
-            function myFunction() {
-                const list = document.getElementById("btnDeleteAnswer");
-                alert("Are you sure you want to delete this survey?");
-                list.removeChild(list.firstElementChild);
-            }
-        </script>*@
-    <script>
-        function addCheckbox() {
-            var table = document.getElementById('checkbox');
-            var value = $("#answer").val();
-            var rowCount = table.rows.length;
-            var cellCount = table.rows[0].cells.length;
-            var row = table.insertRow(rowCount);
-            for (var i = 0; i <= cellCount; i++) {
-                var cell = 'cell' + i;
-                cell = row.insertCell(i);
-                var copycel = document.getElementById('col' + i).innerHTML;
-                cell.innerHTML = copycel;
-                if (i == 2) {
-                    var radioinput = document.getElementById('col2').getElementsByTagName('input');
-                    for (var j = 0; j <= radioinput.length; j++) {
-                        if (radioinput[j].type == 'radio') {
-                            var rownum = rowCount;
-                            radioinput[j].name = 'gender[' + rownum + ']';
-                        }
+    </script>*@
+<script>
+    function addCheckbox() {
+        var table = document.getElementById('checkbox');
+        var value = $("#answer").val();
+        var rowCount = table.rows.length;
+        var cellCount = table.rows[0].cells.length;
+        var row = table.insertRow(rowCount);
+        for (var i = 0; i <= cellCount; i++) {
+            var cell = 'cell' + i;
+            cell = row.insertCell(i);
+            var copycel = document.getElementById('col' + i).innerHTML;
+            cell.innerHTML = copycel;
+            if (i == 2) {
+                var radioinput = document.getElementById('col2').getElementsByTagName('input');
+                for (var j = 0; j <= radioinput.length; j++) {
+                    if (radioinput[j].type == 'radio') {
+                        var rownum = rowCount;
+                        radioinput[j].name = 'gender[' + rownum + ']';
                     }
                 }
             }
         }
-    </script>
-    <script>
-        function addRows() {
-            var table = document.getElementById('emptbl');
-            var rowCount = table.rows.length;
-            var cellCount = table.rows[0].cells.length;
-            var row = table.insertRow(rowCount);
-            for (var i = 0; i <= cellCount; i++) {
-                var cell = 'cell' + i;
-                cell = row.insertCell(i);
-                var copycel = document.getElementById('col' + i).innerHTML;
-                cell.innerHTML = copycel;
-                if (i == 2) {
-                    var radioinput = document.getElementById('col2').getElementsByTagName('input');
-                    for (var j = 0; j <= radioinput.length; j++) {
-                        if (radioinput[j].type == 'radio') {
-                            var rownum = rowCount;
-                            radioinput[j].name = 'gender[' + rownum + ']';
-                        }
+    }
+</script>
+<script>
+    function addRows() {
+        var table = document.getElementById('emptbl');
+        var rowCount = table.rows.length;
+        var cellCount = table.rows[0].cells.length;
+        var row = table.insertRow(rowCount);
+        for (var i = 0; i <= cellCount; i++) {
+            var cell = 'cell' + i;
+            cell = row.insertCell(i);
+            var copycel = document.getElementById('col' + i).innerHTML;
+            cell.innerHTML = copycel;
+            if (i == 2) {
+                var radioinput = document.getElementById('col2').getElementsByTagName('input');
+                for (var j = 0; j <= radioinput.length; j++) {
+                    if (radioinput[j].type == 'radio') {
+                        var rownum = rowCount;
+                        radioinput[j].name = 'gender[' + rownum + ']';
                     }
                 }
             }
         }
-    </script>
-    <script>
-        $(document).ready(function () {
-            var max_fields = 10; //maximum input boxes allowed
-            var wrapper = $(".input_fields_wrap"); //Fields wrapper
-            var add_button = $(".add_field_button"); //Add button ID
-            var x = 1; //initlal text box count
-            $(add_button).click(function (e) { //on add input button click
-                var hihiValue = $("#hihi1").val();
-                e.preventDefault();
-                if (hihiValue != "") {
-                    if (x < max_fields) { //max input box allowed
-                        //text box increment
-                        $(wrapper).append('<div><input type="checkbox"  name="mytext[]">' + hihiValue + '<a href="#" class="remove_field">Remove</a></div>'); //add input box
-                        x++;
-                    }
-                    hihiValue = $("#hihi1").val("");
-                } else {
-                    alert("input bi null")
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+        var x = 1; //initlal text box count
+        $(add_button).click(function (e) { //on add input button click
+            var hihiValue = $("#hihi1").val();
+            e.preventDefault();
+            if (hihiValue != "") {
+                if (x < max_fields) { //max input box allowed
+                    //text box increment
+                    $(wrapper).append('<div><input type="checkbox"  name="mytext[]">' + hihiValue + '<a href="#" class="remove_field">Remove</a></div>'); //add input box
+                    x++;
                 }
-            });
-            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-
-                e.preventDefault();
-                $(this).parent('div').remove();
-                x--;
-            })
+                hihiValue = $("#hihi1").val("");
+            } else {
+                alert("input bi null")
+            }
         });
-    </script>
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    });
+</script>

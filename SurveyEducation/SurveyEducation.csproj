@@ -513,6 +513,9 @@
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
     <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Survey\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Survey\Create2.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

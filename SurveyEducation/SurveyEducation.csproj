@@ -158,27 +158,10 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SurveyController.cs" />
-    <Compile Include="Areas\User\Controllers\AnswerController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.cs" />
-    <Compile Include="Migrations\202204230727472_InitDatabase.Designer.cs">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204241041196_InitDatabase1.cs" />
-    <Compile Include="Migrations\202204241041196_InitDatabase1.Designer.cs">
-      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204241407481_InitDatabase2.cs" />
-    <Compile Include="Migrations\202204241407481_InitDatabase2.Designer.cs">
-      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204251522481_InitDatabase3.cs" />
-    <Compile Include="Migrations\202204251522481_InitDatabase3.Designer.cs">
-      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204261404299_InitDatabase4.cs" />
-    <Compile Include="Migrations\202204261404299_InitDatabase4.Designer.cs">
-      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
+    <Compile Include="Migrations\202204270015230_InitialDB.cs" />
+    <Compile Include="Migrations\202204270015230_InitialDB.Designer.cs">
+      <DependentUpon>202204270015230_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -294,7 +277,6 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\Admin\detail_servey.js" />
     <Content Include="Views\Account\Success.cshtml" />
     <Content Include="Views\Account\Fail.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
@@ -512,15 +494,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="obj\Debug\SurveyEducation.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\SurveyEducation.csproj.CoreCompileInputs.cache" />
+    <Content Include="Areas\Admin\Views\Survey\ShowSurvey.cshtml" />
     <Content Include="Areas\User\Views\DoSurvey\AddAnswer.cshtml" />
     <Content Include="Areas\Admin\Views\Survey\Details.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Areas\User\Views\Answer\Index.cshtml" />
-=======
-    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Survey\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Survey\Create2.cshtml" />
->>>>>>> 56085cb80cd2d32694ed76eb34f0b75eacdeb110
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -552,6 +528,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Accounts\" />
     <Folder Include="Areas\Admin\Views\Default\" />
+    <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Survey\" />
     <Folder Include="Libs\" />
@@ -567,20 +544,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204230727472_InitDatabase.resx">
-      <DependentUpon>202204230727472_InitDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204241041196_InitDatabase1.resx">
-      <DependentUpon>202204241041196_InitDatabase1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204241407481_InitDatabase2.resx">
-      <DependentUpon>202204241407481_InitDatabase2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204251522481_InitDatabase3.resx">
-      <DependentUpon>202204251522481_InitDatabase3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204261404299_InitDatabase4.resx">
-      <DependentUpon>202204261404299_InitDatabase4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204270015230_InitialDB.resx">
+      <DependentUpon>202204270015230_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

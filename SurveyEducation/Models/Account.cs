@@ -20,6 +20,7 @@ namespace SurveyEducation.Models
         public string Thumbnail { get; set; }
         public string PhoneNumber { get; set; }
         public int Status { get; set; }
+        public string RoleNumber { get; set; }
         public string EmployeeNumber { get; set; }
         public DateTime AddmissionDate { get; set; }
         public DateTime DateOfJoining { get; set; }

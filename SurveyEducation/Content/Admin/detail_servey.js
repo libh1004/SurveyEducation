@@ -84,8 +84,7 @@
                     </div>
                     </span>
                     </span>
-                    </div>
-                    <br />`
+                    </div>`
                 } else {
                     html += `<div class="form-check">
                     <span class="form-radio-item mt-4" style="clear: left;">
@@ -99,14 +98,13 @@
                     </div>
                     </span>
                     </span>
-                    </div>
-                    <br />`
+                    </div>`
                 }
             })
         } else {
             answers.forEach(function (item, index) {
                 html += `<div class="form-check mt-3">
-                    <span class="form-radio-item mt-4" style="clear: left;">
+                <span class="form-radio-item mt-4" style="clear: left;">
                     <span class="dragger-item"></span>
                     <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-${questionId}" value="${item}">
                     <span>
@@ -117,8 +115,7 @@
                     </div>
                     </span>
                     </span>
-                    </div>
-                    <br />`
+                    </div>`
             });
         }
         return html;

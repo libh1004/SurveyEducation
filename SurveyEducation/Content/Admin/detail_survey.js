@@ -15,7 +15,6 @@
                                 <div class="form-input-wide" data-layout="full" style="position: relative;">
                                     <div class="form-single-column" role="group" aria-labelledby="label_22">
                                         <p>Câu trả lời:</p>
-                                        <label for="input-text-${item.Id}" class="form-label">Email address</label>
                                         <input class="form-control" placeholder="điền câu trả lời" id="input-text-${item.Id}"/>
                                     </div>
                                 </div>

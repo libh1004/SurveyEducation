@@ -1,25 +1,76 @@
-﻿var IndexRender = {
-    render_Question: function (lstObj) {
+﻿var StatisticRender = {
+    render_Table_Statistic: function (obj) {
         var html = ``;
+        for (var i = 0; i < obj.length; i++) {
+            var statusHtml = StatisticRender.render_Status(obj[i].Survey.Status);
+            html += `<tr>
+                    <td>#${obj[i].Survey.Id}</td>
+                    <td>${obj[i].Survey.Name}</td>
+                    <td>${obj[i].SurveyHistories.length}</td>
+                    <td>${statusHtml}</td>
+                    <td>
+                    <div class="dropdown">
+                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item btnShowDetail" id="${obj[i].Survey.Id}"><i class="fa-solid fa-eye"></i>&nbsp;Detail</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-flag-checkered"></i>&nbsp;Start</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-arrow-down-up-lock"></i>&nbsp;Close</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-trash"></i>&nbsp;Delete</a>
+                    </div>
+                    </div>
+                    </td>
+                    </tr>`
+        }
         return html;
     },
-    render_Question_Answer: function (questionType, answers, questionId) {
-        var html = ``;
+
+    render_Status: function (status) {
+        html = ``;
+        if (status == 1) {
+            html = `<span class="badge bg-label-primary me-1">Active</span>`
+        } else if (status == 0) {
+            html = `<span class="badge bg-label-warning me-1">Pending</span>`
+        } else if (status == 2) {
+            html = `<span class="badge bg-label-success me-1">Completed</span>`
+        }
         return html;
     }
 }
 
-
-var Index = function () {
+var Statistic = function () {
     /* ------ Methods ------ */
-    var getStatistic = async function (obj) {
-        
+    var getStatistic = async function () {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Survey/StatisticSurveyApi",
+            contentType: "application/json charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                console.log(textStatus + ": " + jqXHR.status);
+                if (textStatus === "success" || jqXHR.status == 200) {
+                    $('#tb-statistic').html(StatisticRender.render_Table_Statistic(data))
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+            }
+        });
+    }
+
+    var showDetail = async function (id) {
+        window.location.href = '/Admin/Survey/DetailStatisticSurvey/' + id
     }
 
     /* ------ Handles ------ */
     var handleBox = async function () {
-        $('[data-box="statistic-box"]').map(async function (item) {
-            getStatistic($(item));
+        $('#tb-statistic').map(async function () {
+            await getStatistic();
+        });
+
+        $(document).on('click', '.btnShowDetail', async function () {
+            await showDetail(this.id);
         });
     }
 
@@ -31,5 +82,5 @@ var Index = function () {
 }();
 
 jQuery(document).ready(function () {
-    Index.initialize();
+    Statistic.initialize();
 });

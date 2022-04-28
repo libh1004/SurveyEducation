@@ -158,5 +158,55 @@ namespace SurveyEducation.Areas.Admin.Controllers
             });
             return returnJson;
         }
+
+        // mục đích thay đổi status của survey.
+        // dùng cho trường hợp start và close survey
+        [HttpPut]
+        public dynamic ChangeStatusSurvey(int? id)
+        {
+            var req = Request.InputStream;
+            var json = new StreamReader(req).ReadToEnd();
+            dynamic jsonObject = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
+            var status = jsonObject["name"];
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                survey.Status = status;
+                db.SaveChanges();
+                var returnJson = JsonConvert.SerializeObject(survey, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return returnJson;
+            }
+        }
+        public ActionResult DetailStatisticSurvey(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            var lst = new List<Account>();
+            var surveyHistory = db.SurveyHistories.Where(x => x.SurveyId == survey.Id).ToList();
+            foreach (var item in surveyHistory)
+            {
+                var user = db.Users.Where(x => x.Id == item.UserId).FirstOrDefault();
+                lst.Add(user);
+            }
+            return View(lst.AsEnumerable<Account>());
+        }
     }
 }

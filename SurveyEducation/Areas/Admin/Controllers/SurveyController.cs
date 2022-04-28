@@ -29,6 +29,12 @@ namespace SurveyEducation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult StatisticSurveys()
+        {
+            return View();
+        }
+
         [HttpPost]
         public string SaveSurvey()
         {
@@ -106,7 +112,6 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
-
         [HttpGet]
         public dynamic GetSurvey(int? id)
         {
@@ -127,6 +132,31 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 });
                 return returnJson;
             }
+        }
+        public ActionResult StatisticSurvey()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public dynamic StatisticSurveyApi()
+        {
+            var lst = new List<SurveyDTO>();
+            var surveys = db.Surveys.ToList();
+            foreach(var s in surveys)
+            {
+                var surveyHistory = db.SurveyHistories.Where(x => x.SurveyId == s.Id).ToList();
+                var surveyDTO = new SurveyDTO();
+                surveyDTO.Survey = s;
+                surveyDTO.SurveyHistories = surveyHistory;
+                lst.Add(surveyDTO);
+            }
+
+            var returnJson = JsonConvert.SerializeObject(lst, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return returnJson;
         }
     }
 }

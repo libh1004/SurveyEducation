@@ -63,7 +63,7 @@ namespace SurveyEducation.Areas.User.Controllers
             var surveyHistory = new SurveyHistory();
             surveyHistory.Answers = JsonConvert.SerializeObject(answers);
             surveyHistory.SurveyId = Convert.ToInt32(surveyId);
-            surveyHistory.UserId = Convert.ToInt32(User.Identity.GetUserId());
+            surveyHistory.UserId = (dynamic) Session["UserName"];
             surveyHistory.Status = 1;
             db.SurveyHistories.Add(surveyHistory);
             db.SaveChanges();

@@ -10,13 +10,10 @@ namespace SurveyEducation.Models
 
     public class SurveyHistory
     {
+        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Key, Column(Order = 1)]
         public int UserId { get; set; }
-        public virtual ICollection<Account> Users { get; set; }
-        [Key, Column(Order = 2)]
         public int SurveyId { get; set; }
-        public virtual ICollection<Survey> Surveys { get; set; }
         public string Answers { get; set; }
         public int Status { get; set; }
     }

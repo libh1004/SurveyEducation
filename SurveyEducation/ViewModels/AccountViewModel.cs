@@ -18,7 +18,6 @@ namespace SurveyEducation.ViewModels
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public DateTime DisabledAt { get; set; }
         public string Thumbnail { get; set; }
         public string RoleNumber { get; set; }
         public string EmployeeNumber { get; set; }

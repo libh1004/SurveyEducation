@@ -1,12 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using SurveyEducation.Data;
 using SurveyEducation.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace SurveyEducation.Areas.User.Controllers
 {
@@ -48,6 +51,27 @@ namespace SurveyEducation.Areas.User.Controllers
                 });
                 return returnJson;
             }
+        }
+        [HttpPost]
+        public dynamic SubmitSurvey()
+        {
+            var req = Request.InputStream;
+            var json = new StreamReader(req).ReadToEnd();
+            dynamic jsonObject = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
+            var surveyId = jsonObject["SurveyId"];
+            var answers = jsonObject["Answers"];
+            var surveyHistory = new SurveyHistory();
+            surveyHistory.Answers = JsonConvert.SerializeObject(answers);
+            surveyHistory.SurveyId = Convert.ToInt32(surveyId);
+            surveyHistory.UserId = Convert.ToInt32(User.Identity.GetUserId());
+            surveyHistory.Status = 1;
+            db.SurveyHistories.Add(surveyHistory);
+            db.SaveChanges();
+            var returnJson = JsonConvert.SerializeObject(surveyHistory, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return returnJson;
         }
     }
 }

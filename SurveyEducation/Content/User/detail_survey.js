@@ -1,8 +1,4 @@
-﻿/*/*const { forEach } = require("core-js/fn/dict");*/
-
-const { forEach } = require("core-js/library/core/dict");
-
-var IndexRender = {
+﻿var IndexRender = {
     render_Question: function (lstObj) {
         var html = ``;
         lstObj.forEach(function (item, index) {
@@ -12,15 +8,15 @@ var IndexRender = {
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p data-current-index="1" >Câu hỏi ${index + 1}: ${item.Content}</p>
+                                            <p data-current-index="${item.Id}" >Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>
                                 <div class="form-input-wide" data-layout="full" style="position: relative;">
                                     <div class="form-single-column" role="group" aria-labelledby="label_22">
                                         <p>Câu trả lời:</p>
-                                        <label for="input-text-${item.Id}" class="form-label">Email address</label>
-                                        <input class="form-control" value="${item.Content}" placeholder="Điền câu trả lời" id="input - text - ${item.Id} "/>
+                                       
+                                        <input class="form-control" type="text" placeholder="Điền câu trả lời" id="input-text-${item.Id}"/>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +30,7 @@ var IndexRender = {
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p data-current-index="${index + 1}">Câu hỏi ${index + 1}: ${item.Content}</p>
+                                            <p data-current-index="${item.Id}">Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>
@@ -55,7 +51,7 @@ var IndexRender = {
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p data-current-index="${index + 1}">Câu hỏi ${index + 1}: ${item.Content}</p>
+                                            <p data-current-index="${item.Id}">Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>
@@ -79,7 +75,7 @@ var IndexRender = {
                     html = `<div class="form-check">
                     <span class="form-radio-item mt-4" style="clear: left;">
                     <span class="dragger-item"></span>
-                    <input aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input-radio-${questionId}" value="${item}" checked>
+                    <input aria-describedby="label_22" name="radio" type="radio" tabindex="-1" class="form-radio" id="input-radio-${questionId}" value="${item}" checked>
                     <span>
                     <div class="editor-container editorHasText" style="display: inline-block;">
                     <label class="inlineEditor" data-gramm="false" id="label-input-${questionId}" style="display: inline-block;">
@@ -93,7 +89,7 @@ var IndexRender = {
                     html += `<div class="form-check">
                     <span class="form-radio-item mt-4" style="clear: left;">
                     <span class="dragger-item"></span>
-                    <input aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input-radio-${questionId}" value="${item}">
+                    <input aria-describedby="label_22" name="radio" type="radio" tabindex="-1" class="form-radio" id="input-radio-${questionId}" value="${item}">
                     <span>
                     <div class="editor-container editorHasText" style="display: inline-block;">
                     <label class="inlineEditor" data-gramm="false" id="label-input-${questionId}" style="display: inline-block;">
@@ -110,7 +106,7 @@ var IndexRender = {
                 html += `<div class="form-check mt-3">
                 <span class="form-radio-item mt-4" style="clear: left;">
                     <span class="dragger-item"></span>
-                    <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-${questionId}" value="${item}">
+                    <input aria-describedby="label_22" type="checkbox" name="chk[]" tabindex="-1" class="form-radio" id="input-checkbox-${questionId}" value="${item}">
                     <span>
                     <div class="editor-container editorHasText" style="display: inline-block;">
                     <label class="inlineEditor" data-gramm="false" id="label-input-${questionId}" style="display: inline-block;">
@@ -152,6 +148,24 @@ var Index = function () {
         })
     }
 
+    var submitSurvey = async function (obj, id) {
+        var json = new Object();
+        json.SurveyId = id;
+        json.Answers = obj;
+
+        var rawResponse = await fetch('/Answer/SubmitSurvey', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(json)
+        })
+
+        var content = await rawResponse.json();
+        console.log(content);
+    }
+
     /* ------ Handles ------ */
     var handleBox = async function () {
         $('[data-box="questions-box"]').map(async function (index, item) {
@@ -159,30 +173,61 @@ var Index = function () {
             await getSurvey($(item), id);
         });
 
-        $('#btnSubmitAnswer').click(function () {
-            var questionValue = $('data-current-index').val();
-            alert(questionValue);
+        $('#btnSubmitAnswer').click(async function () {
+            //var questionValue = $('data-current-index').val();
             //alert(questionValue);
-            var answerValue = "";
-            lstObj.forEach(function (item, index) {
-                if (item.QuestionType == 1) {
-                    answerValue = $("input[value]").val();
-                } else if (item.QuestionType == 2) {
-                    answerValue = $("input[checked]").val();
-                } else if (item.QuestionType == 3) {
-                    answersValue = item.Answers.split('|');
-                    alert(answersValue)
+            ////alert(questionValue);
+            //var answerValue = "";
+            //lstObj.forEach(function (item, index) {
+            //    if (item.QuestionType == 1) {
+            //        answerValue = $("input[value]").val();
+            //    } else if (item.QuestionType == 2) {
+            //        answerValue = $("input[checked]").val();
+            //    } else if (item.QuestionType == 3) {
+            //        answersValue = item.Answers.split('|');
+            //        alert(answersValue)
 
+            //    }
+            //});
+            var results = [];
+            var cbAnswers = [];
+            $('input').each(async function () {
+                if ($(this).attr('type') == 'text') {
+                    results.push({
+                        QuestionId: this.id.split('-').pop(),
+                        Answer: this.value
+                    })
+                } else if ($(this).attr('type') == 'radio') {
+                    if ($(this).is(':checked')) {
+                        results.push({
+                            QuestionId: this.id.split('-').pop(),
+                            Answer: this.value
+                        })
+                    }
+                }
+            })
+            var cbQId = null;
+            var cboxes = document.getElementsByName('chk[]')
+            for (var i = 0; i < cboxes.length; i++) {
+                if (cboxes[i].checked) {
+                    cbQId = cboxes[i].id.split('-').pop()
+                    cbAnswers.push(cboxes[i].value)
                 }
             }
-        })
+            results.push({
+                QuestionId: cbQId,
+                Answer: cbAnswers.join('|')
+            })
+            console.log(JSON.stringify(results))
+            var id = document.URL.split('/')[document.URL.split('/').length - 1];
+            await submitSurvey(results, id);
+        });
     }
-
-return {
-    initialize: async function () {
-        await handleBox();
+    return {
+        initialize: async function () {
+            await handleBox();
+        }
     }
-}
 }();
 jQuery(document).ready(function () {
     Index.initialize();

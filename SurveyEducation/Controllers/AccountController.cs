@@ -157,11 +157,7 @@ namespace SurveyEducation.Controllers
                     // sai pass
                     return RedirectToAction("Login");
                 }
-                Session["UserName"] = new
-                {
-                    username = data.UserName,
-                    id = data.Id
-                };
+                Session["UserName"] = data;
 
                 return Redirect("/Home/Index");
             }
@@ -172,6 +168,7 @@ namespace SurveyEducation.Controllers
         public ActionResult Logout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
+            Session.Remove("UserName");
             return Redirect("/Account/Login");
         }
     }

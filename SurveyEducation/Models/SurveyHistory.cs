@@ -12,7 +12,7 @@ namespace SurveyEducation.Models
     {
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int SurveyId { get; set; }
         public string Answers { get; set; }
         public int Status { get; set; }

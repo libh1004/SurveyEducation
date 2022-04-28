@@ -64,7 +64,7 @@ namespace SurveyEducation.Controllers
             {
                 AppRole roleStudent = new AppRole()
                 {
-                    Name = "Student"
+                    Name = Models.RoleValue.Student
                 };
                 var result1 = await roleManager.CreateAsync(roleStudent);
                 if (result1.Succeeded)
@@ -80,7 +80,7 @@ namespace SurveyEducation.Controllers
             {
                 AppRole roleFacultyStaff = new AppRole()
                 {
-                    Name = "FacultyOrStaff"
+                    Name = Models.RoleValue.FacultyOrStaff
                 };
                 var result2 = await roleManager.CreateAsync(roleFacultyStaff);
                 if (result2.Succeeded)
@@ -96,7 +96,9 @@ namespace SurveyEducation.Controllers
         }
         public async Task<ActionResult> AddAccountToRole(AppRole appRole)
         {
-            string userId = appRole.UserId;
+            Account account = new Account();
+            string getAccountId = account.Id;
+            string userId = getAccountId;
             string roleName = "Student";
             var result = await userManager.AddToRolesAsync(userId, roleName);
             if (result.Succeeded)
@@ -143,11 +145,10 @@ namespace SurveyEducation.Controllers
                     Session["UserName"] = data.FirstOrDefault().UserName;
                     Session["Password"] = data.FirstOrDefault().PasswordHash;
 
-                    return Redirect("/Admin/Dashboard");
+                    return Redirect("/Home/Index");
                 }
                 else
                 {
-                    ViewBag.error = "Login failed";
                     return RedirectToAction("Login");
                 }
             }

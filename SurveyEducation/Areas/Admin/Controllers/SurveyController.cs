@@ -66,7 +66,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 var questionAnswers = lstStr;
                 var question = new Question();
                 question.SurveyId = newSurvey.Id;
-                question.QuestionType = (SurveyEducation.Models.Type)questionType;
+                question.QuestionType = questionType;
                 question.Content = questionValue;
                 question.Answers = questionAnswers;
                 question.Status = 1;
@@ -223,16 +223,32 @@ namespace SurveyEducation.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            if(userId == null)
+            if (userId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            var surveyHistory = db.SurveyHistories.Where(s => s.UserId == user.Id && s.SurveyId == survey.Id).FirstOrDefault();
+            if(surveyHistory == null)
+            {
+                return HttpNotFound();
+            }
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(survey);
+            var listAnswer = JsonConvert.DeserializeObject<List<Result>>(surveyHistory.Answers);
+            foreach(var answer in listAnswer)
+            {
+
+            }
+            SurveyResult surveyResult = new SurveyResult()
+            {
+                Survey = survey,
+                SurveyHistory = surveyHistory,
+
+            };
+            return View(surveyResult);
         }
     }
 }

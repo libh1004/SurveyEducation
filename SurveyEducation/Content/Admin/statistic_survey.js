@@ -15,9 +15,6 @@
                     </button>
                     <div class="dropdown-menu">
                     <a class="dropdown-item btnShowDetail" id="${obj[i].Survey.Id}"><i class="fa-solid fa-eye"></i>&nbsp;Detail</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-flag-checkered"></i>&nbsp;Start</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-arrow-down-up-lock"></i>&nbsp;Close</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="fa-solid fa-trash"></i>&nbsp;Delete</a>
                     </div>
                     </div>
                     </td>

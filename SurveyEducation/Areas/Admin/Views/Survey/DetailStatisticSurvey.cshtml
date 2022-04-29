@@ -1,24 +1,49 @@
-﻿@using SurveyEducation.Models
-@model List<Account>
+﻿@*@using SurveyEducation.Models
+    @model List<Account>
 
-<div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Details Statistic Survey</span></h4>
-
-    <!-- Basic Bootstrap Table -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Details Statistic Survey</span></h4>
+        @@ -19,15 +20,15 @@
+        @foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                @Html.ActionLink("Detail", "ShowResultUser", "Survey", new { id = Url.RequestContext.RouteData.Values["id"], userId = @item.Id }, null)
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+            }
+        }
+    </div>*@
+@model IEnumerable<SurveyEducation.Models.Account>
+<div class="container">
     <div class="card">
         <h5 class="card-header">Table Basic</h5>
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Username</th>
-                        <th>Action</th>
+                        <th>UserId</th>
+                        <th>UserName</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @foreach (var item in Model)
                     {
+                        if (item != null)
+                        {
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.UserName</td>
@@ -28,14 +53,16 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    @Html.ActionLink("Detail", "ShowResultUser", "Survey", new { id = Url.RequestContext.RouteData.Values["id"], userId = @item.Id}, null)
+                                    @Html.ActionLink("Detail", "ShowResultUser", "Survey", new { id = Url.RequestContext.RouteData.Values["id"], userId = @item.Id }, null)
                                 </div>
                             </div>
                         </td>
                     </tr>
+                        }
                     }
                 </tbody>
-                </table>
-            </div>
+
+            </table>
         </div>
     </div>
+</div>

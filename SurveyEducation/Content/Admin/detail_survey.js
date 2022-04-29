@@ -50,7 +50,7 @@
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p>Câu hỏi ${index+1}: ${item.Content}</p>
+                                            <p>Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>

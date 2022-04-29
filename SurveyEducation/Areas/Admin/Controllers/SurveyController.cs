@@ -188,6 +188,8 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return returnJson;
             }
         }
+
+        [HttpGet]
         public ActionResult DetailStatisticSurvey(int? id)
         {
             if (id == null)
@@ -206,7 +208,31 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 var user = db.Users.Where(x => x.Id == item.UserId).FirstOrDefault();
                 lst.Add(user);
             }
-            return View(lst.AsEnumerable<Account>());
+            return View(lst);
+        }
+
+        [HttpGet]
+        public ActionResult ShowResultUser(int? id, string userId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            if(userId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(survey);
         }
     }
 }

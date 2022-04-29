@@ -238,14 +238,12 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             var listAnswer = JsonConvert.DeserializeObject<List<Result>>(surveyHistory.Answers);
-            foreach(var answer in listAnswer)
-            {
-
-            }
+           
             SurveyResult surveyResult = new SurveyResult()
             {
                 Survey = survey,
                 SurveyHistory = surveyHistory,
+                Answers = listAnswer
 
             };
             return View(surveyResult);

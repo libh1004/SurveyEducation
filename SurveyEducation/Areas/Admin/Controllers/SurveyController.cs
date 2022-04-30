@@ -29,6 +29,12 @@ namespace SurveyEducation.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult StatisticSurveys()
+        {
+            return View();
+        }
+
         [HttpPost]
         public string SaveSurvey()
         {
@@ -60,7 +66,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 var questionAnswers = lstStr;
                 var question = new Question();
                 question.SurveyId = newSurvey.Id;
-                question.QuestionType = (SurveyEducation.Models.Type)questionType;
+                question.QuestionType = questionType;
                 question.Content = questionValue;
                 question.Answers = questionAnswers;
                 question.Status = 1;
@@ -106,7 +112,6 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
-
         [HttpGet]
         public dynamic GetSurvey(int? id)
         {
@@ -127,6 +132,121 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 });
                 return returnJson;
             }
+        }
+        public ActionResult StatisticSurvey()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public dynamic StatisticSurveyApi()
+        {
+            var lst = new List<SurveyDTO>();
+            var surveys = db.Surveys.ToList();
+            foreach(var s in surveys)
+            {
+                var surveyHistory = db.SurveyHistories.Where(x => x.SurveyId == s.Id).ToList();
+                var surveyDTO = new SurveyDTO();
+                surveyDTO.Survey = s;
+                surveyDTO.SurveyHistories = surveyHistory;
+                lst.Add(surveyDTO);
+            }
+
+            var returnJson = JsonConvert.SerializeObject(lst, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return returnJson;
+        }
+
+        // mục đích thay đổi status của survey.
+        // dùng cho trường hợp start và close survey
+        [HttpPut]
+        public dynamic ChangeStatusSurvey(int? id)
+        {
+            var req = Request.InputStream;
+            var json = new StreamReader(req).ReadToEnd();
+            dynamic jsonObject = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
+            var status = jsonObject["name"];
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                survey.Status = status;
+                db.SaveChanges();
+                var returnJson = JsonConvert.SerializeObject(survey, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return returnJson;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DetailStatisticSurvey(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            var lst = new List<Account>();
+            var surveyHistory = db.SurveyHistories.Where(x => x.SurveyId == survey.Id).ToList();
+            foreach (var item in surveyHistory)
+            {
+                var user = db.Users.Where(x => x.Id == item.UserId).FirstOrDefault();
+                lst.Add(user);
+            }
+            return View(lst);
+        }
+
+        [HttpGet]
+        public ActionResult ShowResultUser(int? id, string userId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            if (userId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            var surveyHistory = db.SurveyHistories.Where(s => s.UserId == user.Id && s.SurveyId == survey.Id).FirstOrDefault();
+            if(surveyHistory == null)
+            {
+                return HttpNotFound();
+            }
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var listAnswer = JsonConvert.DeserializeObject<List<Result>>(surveyHistory.Answers);
+           
+            SurveyResult surveyResult = new SurveyResult()
+            {
+                Survey = survey,
+                SurveyHistory = surveyHistory,
+                Answers = listAnswer
+
+            };
+            return View(surveyResult);
         }
     }
 }

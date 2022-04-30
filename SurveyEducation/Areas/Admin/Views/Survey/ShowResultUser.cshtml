@@ -69,10 +69,6 @@
                                                     {
                                                         <input class="form-control" value="@rs.Answer" />
                                                     }
-                                                    else
-                                                    {
-                                                        <input class="form-control" value="" />
-                                                    }
                                                 }
                                             }
                                         </div>
@@ -100,12 +96,23 @@
                                             <p>Câu trả lời:</p>
                                             <div class="form-check">
                                                 <div class="row">
-                                                    @foreach (var a in Model.Answers)
+                                                    @{
+                                                        var questions = question.Answers.Split('|');
+                                                        string result = null;
+                                                        foreach (var answer in Model.Answers)
+                                                        {
+                                                            if (string.Equals(answer.QuestionId, question.Id))
+                                                            {
+                                                                result = answer.Answer;
+                                                            }
+                                                        }
+
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(result))
                                                     {
-                                                        
                                                         <div class="col-md-9 mt-2">
-                                                            <input name="default-radio-input" class="form-check-input" type="radio" value="@a" checked="">
-                                                            <label class="form-check-label">@a.Answer</label>
+                                                            <input name="default-radio-input" class="form-check-input" type="radio" value="@result" checked="">
+                                                            <label class="form-check-label">@result</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
@@ -138,12 +145,21 @@
                                             <div class="form-check">
                                                 <div class="row">
                                                     @{
-                                                        var answers = question.Answers.Split('|');
+                                                        var questions = question.Answers.Split('|');
+                                                        List<string> result = null;
+                                                        foreach (var answer in Model.Answers)
+                                                        {
+                                                            if (string.Equals(answer.QuestionId, question.Id))
+                                                            {
+                                                                result = answer.Answer.Split('|').ToList<string>();
+                                                            }
+                                                        }
+
                                                     }
-                                                    @foreach (var a in answers)
+                                                    @foreach (var a in result)
                                                     {
                                                         <div class="col-md-9 mt-2">
-                                                            <input class="form-check-input" type="checkbox" value="@a">
+                                                            <input class="form-check-input" type="checkbox" checked value="@a">
                                                             <label class="form-check-label"> @a</label>
                                                         </div>
                                                         <div class="col-md-3">

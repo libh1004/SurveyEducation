@@ -54,7 +54,7 @@ namespace SurveyEducation.Controllers
             Console.WriteLine(user.Id);
             if (result.Succeeded)
             {
-                return View("Login");
+                return RedirectToAction("Login");
             }
             else
             {

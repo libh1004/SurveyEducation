@@ -14,8 +14,8 @@
                                 <div class="form-header-group  header-large">
                                     <div class="header-text httac htvam">
                                         <h1 id="header_25" class="form-header" data-component="header">
-                                            <div class="editor-container editorHasText" style="display: inline-block;">
-                                                <div class="inlineEditor" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
+                                            <div class="editor-container editorHasText"">
+                                                <div class="inlineEditor text-center" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
                                                     @Html.DisplayFor(model => model.Name)
                                                 </div>
                                             </div>
@@ -32,12 +32,9 @@
                             <div class="form-input-wide" data-layout="full" style="position: relative;">
                                 <div data-wrapper-react="true">
                                     <span class="form-sub-label-container" data-input-type="first" style="vertical-align: top;">
-                                        <p>Thời gian bắt đầu: @Html.DisplayFor(model => model.StartTime)</p>
+                                        <p>Thời gian bắt đầu: @Html.DisplayFor(model => model.StartTime) - Thời gian kết thúc: @Html.DisplayFor(model => model.StartTime)</p>
                                     </span>
-                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
-                                        <p>Thời gian kết thúc: @Html.DisplayFor(model => model.StartTime)</p>
-                                    </span>
-                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
+                                    <span class="form-sub-label-container text-center" data-input-type="last" style="vertical-align: top;">
                                         <p>Mô tả: @Html.DisplayFor(model => model.Description)</p>
                                     </span>
                                 </div>
@@ -45,7 +42,7 @@
                         </div>
                     </li>
                 </ul>
-                <ul data-box="questions-box"></ul>
+                <ul data-box="questions-box" class="col-md-8 align-items-center" style="margin: 0 auto"></ul>
             </div>
         </div>
     </div>

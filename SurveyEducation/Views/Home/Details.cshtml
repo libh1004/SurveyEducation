@@ -2,56 +2,208 @@
 @*@{
         List<string> stringList = ;
     }*@
-<div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Survey Information</span></h4>
-    <div class="row">
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane show active bg-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <ul class="clearfix form-section page-section page_1" style="list-style: none; margin: 0px; font-size: 16px; margin: 0 200px; color: rgb(0, 24, 88); font-family: Inter, &quot; Lucida Grande&quot;, &quot; Lucida Sans Unicode&quot;, &quot; Lucida Sans&quot;, Verdana, sans-serif; ">
-                    <li id="id_25" data-type="control_head" data-qid="25" data-order="1" data-selectioncount="0" class="form-line clearfix isNotSelected form-input-wide form-input-wide-lix`ne-fix lineAlignment-Center" style="z-index: 1;" draggable="false">
-                        <div class="question-wrapper questionWrapper  false">
-                            <div class="form-input-wide" data-layout="full" style="position: relative;">
-                                <div class="form-header-group  header-large">
-                                    <div class="header-text httac htvam">
-                                        <h1 id="header_25" class="form-header" data-component="header">
-                                            <div class="editor-container editorHasText" style="display: inline-block;">
-                                                <div class="inlineEditor" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
-                                                    @Html.DisplayFor(model => model.Name)
-                                                </div>
-                                            </div>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li id="id_26" data-type="control_fullname" data-qid="26" data-order="2" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Auto-Top mt-5" style="z-index: 1;">
-                        <div class="question-wrapper questionWrapper false">
-                            <label id="label_26" class="form-label form-label-top form-label-auto" for="none" style="width: 100%;">
-                            </label>
-                            <div class="form-input-wide" data-layout="full" style="position: relative;">
-                                <div data-wrapper-react="true">
-                                    <span class="form-sub-label-container" data-input-type="first" style="vertical-align: top;">
-                                        <p>Thời gian bắt đầu: @Html.DisplayFor(model => model.StartTime)</p>
-                                    </span>
-                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
-                                        <p>Thời gian kết thúc: @Html.DisplayFor(model => model.StartTime)</p>
-                                    </span>
-                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
-                                        <p>Mô tả: @Html.DisplayFor(model => model.Description)</p>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <ul data-box="questions-box"></ul>
-                <button type="button" id="btnSubmitAnswer" class="btn btn-primary">Submit</button>
+<style>
+    .txtFullname {
+        border-radius: 5px;
+    }
+</style>
+<div class="col-lg-12 mb-5">
+    <div class="single-blog-item">
+        <img src="https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300" alt="" class="img-fluid rounded d-flex align-items-center mt-4 col-md-8" style="margin: 0 auto">
+
+
+        <div class="tab-pane show active bg-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <h2 class="mt-3 mb-4 text-center">@Html.DisplayFor(model => model.Name)</h2>
+            <div class="blog-item-meta bg-gray py-1 px-2 d-flex">
+                <span class="text-black text-capitalize d-flex align-items-center" style="margin: 0 auto"><i class="ti-time mr-1"></i> @Html.DisplayFor(model => model.StartTime) - @Html.DisplayFor(model => model.EndTime)</span>
             </div>
+            <ul data-box="questions-box" class="col-md-8 align-items-center" style="margin: 0 auto">
+                <div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                    <div class="question-wrapper questionWrapper  false">
+                        <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                            <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                    <p>Câu hỏi 1: Tên bạn là</p>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="form-input-wide" data-layout="full" style="position: relative;">
+                            <div class="form-single-column" role="group" aria-labelledby="label_22">
+                                <p>Câu trả lời:</p>
+                                <label for="input-text-5" class="form-label">Email address</label>
+                                <input class="form-control" placeholder="điền câu trả lời" id="input-text-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                    <div class="question-wrapper questionWrapper  false">
+                        <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                            <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                    <p>Câu hỏi 2: Giới tính của bạn là ?</p>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="form-input-wide" data-layout="full" style="position: relative;">
+                            <div class="form-single-column" role="group" aria-labelledby="label_22" data-component="radio">
+                                <p>Câu trả lời:</p>
+                                <div class="form-check">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input-radio-6" value="Nam" checked="">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-6" style="display: inline-block;">
+                                                    Nam
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="form-check">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input-radio-6" value="Nữ">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-6" style="display: inline-block;">
+                                                    Nữ
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="form-check">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="radio" tabindex="-1" class="form-radio" id="input-radio-6" value="Khác">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-6" style="display: inline-block;">
+                                                    Khác
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                    <div class="question-wrapper questionWrapper  false">
+                        <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                            <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                    <p>Câu hỏi 3: Sở thích của bạn là gì?</p>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="form-input-wide" data-layout="full" style="position: relative;">
+                            <div class="form-single-column" role="group" aria-labelledby="label_22" data-component="checkbox">
+                                <p>Câu trả lời:</p>
+                                <div class="form-check mt-3">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-7" value="Quay tay">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-7" style="display: inline-block;">
+                                                    Quay tay
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div><div class="form-check mt-3">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-7" value="Xem phim">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-7" style="display: inline-block;">
+                                                    Xem phim
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div><div class="form-check mt-3">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-7" value="Đá bóng">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-7" style="display: inline-block;">
+                                                    Đá bóng
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div><div class="form-check mt-3">
+                                    <span class="form-radio-item mt-4" style="clear: left;">
+                                        <span class="dragger-item"></span>
+                                        <input aria-describedby="label_22" type="checkbox" tabindex="-1" class="form-radio" id="input-checkbox-7" value="Chơi cờ">
+                                        <span>
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <label class="inlineEditor" data-gramm="false" id="label-input-7" style="display: inline-block;">
+                                                    Chơi cờ
+                                                </label>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
         </div>
+
+        @*<div class="blog-item-content bg-white p-5 ">
+                <h2 class="mt-3 mb-4 text-center">@Html.DisplayFor(model => model.Name)</h2>
+                <div class="blog-item-meta bg-gray py-1 px-2 d-flex">
+                    <span class="text-black text-capitalize d-flex align-items-center" style="margin: 0 auto"><i class="ti-time mr-1"></i> @Html.DisplayFor(model => model.StartTime) - @Html.DisplayFor(model => model.EndTime)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">Full Name</label>
+                                <input type="text" class="form-control txtFullname" id="basic-default-fullname" placeholder="John Doe">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">Company</label>
+                                <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc.">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-email">Email</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-default-email2">
+                                    <span class="input-group-text" id="basic-default-email2">example.com</span>
+                                </div>
+                                <div class="form-text">You can use letters, numbers &amp; periods</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-phone">Phone No</label>
+                                <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-message">Message</label>
+                                <textarea id="basic-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <ul data-box="questions-box"></ul>
+                </div>
+
+                <ul data-box="questions-box"></ul>
+                <button type="button" id="btnSubmitAnswer" class="btn btn-primary d-flex align-items-center btn-round-full" style="margin: 0 auto">Submit</button>
+            </div>*@
     </div>
 </div>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.1/axios.min.js"></script>
 <script type="text/javascript" src="~/Content/User/detail_survey.js"></script>

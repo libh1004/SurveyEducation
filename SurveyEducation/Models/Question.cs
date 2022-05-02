@@ -20,7 +20,7 @@ namespace SurveyEducation.Models
         [ForeignKey("SurveyId")]
         public virtual Survey Survey { get; set; }
         public string Answers { get; set; }
-        public Type QuestionType { get; set; }
+        public int QuestionType { get; set; }
         public int Status { get; set; }
     }
 }

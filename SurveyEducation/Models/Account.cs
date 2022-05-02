@@ -15,7 +15,6 @@ namespace SurveyEducation.Models
     public class Account : IdentityUser
     {
         public string UserName { get; set; }
-        public DateTime DisabledAt { get; set; }
         public string Address { get; set; }
         public string Thumbnail { get; set; }
         public string PhoneNumber { get; set; }

@@ -9,7 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SurveyEducation.Controllers
 {
@@ -48,9 +51,10 @@ namespace SurveyEducation.Controllers
             var result = await userManager.CreateAsync(user, user.PasswordHash);
             db.Users.Add(user);
             db.SaveChanges();
+            Console.WriteLine(user.Id);
             if (result.Succeeded)
             {
-                return View("Login");
+                return RedirectToAction("Login");
             }
             else
             {
@@ -64,7 +68,7 @@ namespace SurveyEducation.Controllers
             {
                 AppRole roleStudent = new AppRole()
                 {
-                    Name = "Student"
+                    Name = Models.RoleValue.Student
                 };
                 var result1 = await roleManager.CreateAsync(roleStudent);
                 if (result1.Succeeded)
@@ -80,34 +84,36 @@ namespace SurveyEducation.Controllers
             {
                 AppRole roleFacultyStaff = new AppRole()
                 {
-                    Name = "FacultyOrStaff"
+                    Name = Models.RoleValue.FacultyOrStaff
                 };
                 var result2 = await roleManager.CreateAsync(roleFacultyStaff);
                 if (result2.Succeeded)
                 {
-                    return ViewBag.Message = "Add Role Successful!";
+                    return Redirect("~/Home");
                 }
                 else
                 {
                     return ViewBag.Message = "Add Role Fail!";
                 }
+               
             }
-            return Redirect("Admin/Dashboard");
+            return Redirect("~/Home");
         }
-        public async Task<ActionResult> AddAccountToRole(AppRole appRole)
-        {
-            string userId = appRole.UserId;
-            string roleName = "Student";
-            var result = await userManager.AddToRolesAsync(userId, roleName);
-            if (result.Succeeded)
-            {
-                return ViewBag.Message = "Add Role Successful!";
-            }
-            else
-            {
-                return ViewBag.Message = "Add Role Fail!";
-            }
-        }
+          
+        //public async Task<ActionResult> AddAccountToRole(AppRole appRole)
+        //{
+        //    var userId = await userManager.FindByIdAsync(User.Identity.GetUserId());
+        //    string roleName = "Student";
+        //    var result = await userManager.AddToRolesAsync(userId, roleName);
+        //    if (result.Succeeded)
+        //    {
+        //        return ViewBag.Message = "Add Role Successful!";
+        //    }
+        //    else
+        //    {
+        //        return ViewBag.Message = "Add Role Fail!";
+        //    }
+        //}
         [HttpGet]
         public ActionResult Login()
         {
@@ -132,36 +138,38 @@ namespace SurveyEducation.Controllers
         //    }
         //}
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
         {
             if (ModelState.IsValid)
             {
-                var data = db.Users.Where(s => s.UserName.Equals(username));
-                if (data.Count() > 0)
+                
+                var data = db.Users.Where(s => s.UserName.Equals(username)).FirstOrDefault();
+                if (data == null)
                 {
-                    //add session
-                    Session["UserName"] = data.FirstOrDefault().UserName;
-                    Session["Password"] = data.FirstOrDefault().PasswordHash;
-
-                    return Redirect("/Admin/Dashboard");
-                }
-                else
-                {
-                    ViewBag.error = "Login failed";
+                    // user ko ton tai
                     return RedirectToAction("Login");
                 }
+                var passwordHasher = new PasswordHasher();
+                
+                if (passwordHasher.VerifyHashedPassword(data.PasswordHash, password) == PasswordVerificationResult.Failed)
+                {
+                    // sai pass
+                    return RedirectToAction("Login");
+                }
+                Session["UserName"] = data;
+
+                return Redirect("/Home/Index");
             }
             return View("Login");
         }
+        
+
         public ActionResult Logout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
+            Session.Remove("UserName");
             return Redirect("/Account/Login");
-        }
-
-        public ActionResult AddUser()
-        {
-            return View();
         }
     }
 }

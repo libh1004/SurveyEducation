@@ -5,6 +5,16 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (ViewBag.message != null)
+{
+    if (ViewBag.message.Equals("Registered Successfully"))
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @ViewBag.message
+        </div>
+    }
+}
 <h2>Survey</h2>
 
 

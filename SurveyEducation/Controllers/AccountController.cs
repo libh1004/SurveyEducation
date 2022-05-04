@@ -5,14 +5,10 @@ using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace SurveyEducation.Controllers
 {
@@ -47,24 +43,26 @@ namespace SurveyEducation.Controllers
                 EmployeeNumber = accountVM.EmployeeNumber,
                 DateOfJoining = DateTime.Now
             };
-            
+
             var result = await userManager.CreateAsync(user, user.PasswordHash);
             db.Users.Add(user);
             db.SaveChanges();
             Console.WriteLine(user.Id);
             if (result.Succeeded)
             {
+                ViewBag.message = "Registered Successfully";
                 return RedirectToAction("Login");
             }
             else
             {
-                return View("Register");
+                ViewBag.message = "Registered Successfully";
+                return View("Login");
             }
         }
         public async Task<ActionResult> AddRole()
         {
             Account account = new Account();
-            if(account.RoleNumber != null && account.AddmissionDate != null)
+            if (account.RoleNumber != null && account.AddmissionDate != null)
             {
                 AppRole roleStudent = new AppRole()
                 {
@@ -80,7 +78,7 @@ namespace SurveyEducation.Controllers
                     return ViewBag.Message = "Add Role Fail!";
                 }
             }
-            else if(account.EmployeeNumber != null && account.DateOfJoining != null)
+            else if (account.EmployeeNumber != null && account.DateOfJoining != null)
             {
                 AppRole roleFacultyStaff = new AppRole()
                 {
@@ -95,11 +93,11 @@ namespace SurveyEducation.Controllers
                 {
                     return ViewBag.Message = "Add Role Fail!";
                 }
-               
+
             }
             return Redirect("~/Home");
         }
-          
+
         //public async Task<ActionResult> AddAccountToRole(AppRole appRole)
         //{
         //    var userId = await userManager.FindByIdAsync(User.Identity.GetUserId());
@@ -143,27 +141,30 @@ namespace SurveyEducation.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 var data = db.Users.Where(s => s.UserName.Equals(username)).FirstOrDefault();
                 if (data == null)
                 {
                     // user ko ton tai
+                    ViewBag.Message = "user ko ton tai";
                     return RedirectToAction("Login");
                 }
                 var passwordHasher = new PasswordHasher();
-                
+
                 if (passwordHasher.VerifyHashedPassword(data.PasswordHash, password) == PasswordVerificationResult.Failed)
                 {
                     // sai pass
+                    ViewBag.Message = "tai khoan hoac mat khau sai";
                     return RedirectToAction("Login");
                 }
                 Session["UserName"] = data;
+                ViewBag.Message = "user  ton tai";
 
                 return Redirect("/Home/Index");
             }
             return View("Login");
         }
-        
+
 
         public ActionResult Logout()
         {

@@ -7,13 +7,13 @@ namespace SurveyEducation.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitDatabase1 : IMigrationMetadata
+    public sealed partial class InitData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDatabase1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitData));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204241041196_InitDatabase1"; }
+            get { return "202204280451504_InitData"; }
         }
         
         string IMigrationMetadata.Source

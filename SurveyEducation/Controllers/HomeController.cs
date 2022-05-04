@@ -18,47 +18,21 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ViewResult Survey(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Survey()
         {
-
-            ViewBag.ListSurvey = this.db.Surveys.ToList();
-
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.IdSortParm = sortOrder == "Id" ? "id_desc" : "Id";
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-            ViewBag.CurrentFilter = searchString;
-
-            var surveys = from p in db.Surveys
-                          select p;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                surveys = surveys.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-                case "id_desc":
-                    surveys = surveys.OrderByDescending(p => p.Id);
-                    break;
-                default:
-                    surveys = surveys.OrderBy(p => p.Id);
-                    break;
-            }
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(surveys.ToPagedList(pageNumber, pageSize));
+            //return View(db.Surveys.ToList());
+            return View();
         }
-
+        public ActionResult About()
+        {
+            //return View(db.Surveys.ToList());
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            //return View(db.Surveys.ToList());
+            return View();
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)

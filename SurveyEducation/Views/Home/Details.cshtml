@@ -16,6 +16,12 @@
 
         <div class="col-md-8 align-items-center" style="margin: 0 auto">
             <ul data-box="questions-box"></ul>
+            @if (checkUser)
+            {
+                <span>
+                    <button type="button" id="btnSubmitAnswer" class="btn btn-primary align-items-center btn-round" style=" margin: 0 390px">Submit</button>
+                </span>
+            }
         </div>
     </div>
 </div>

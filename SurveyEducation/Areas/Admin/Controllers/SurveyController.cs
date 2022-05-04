@@ -304,6 +304,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.message = "Edit Successfully";
                 db.Entry(survey).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

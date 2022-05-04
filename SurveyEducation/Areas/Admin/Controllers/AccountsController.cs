@@ -44,7 +44,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
                            select p;
             if (!String.IsNullOrEmpty(searchString))
             {
-                accounts = accounts.Where(p => p.UserName.Contains(searchString) || p.Address.Contains(searchString) || p.RoleNumber.Contains(searchString));
+                accounts = accounts.Where(p => p.UserName.Contains(searchString) || p.Address.Contains(searchString) || p.RoleNumber.Contains(searchString) || p.PhoneNumber.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -95,7 +95,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
+        public ActionResult Create([Bind(Include = "Id,UserName,Gmail,PhoneNumber,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Gmail,PhoneNumber,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
         {
             if (ModelState.IsValid)
             {

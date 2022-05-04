@@ -1,0 +1,186 @@
+﻿@model  SurveyEducation.Models.SurveyResult
+@using Newtonsoft.Json;
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Survey Information</span></h4>
+    <div class="row">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane show active bg-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <ul class="clearfix form-section page-section page_1" style="list-style: none; margin: 0px; font-size: 16px; margin: 0 200px; color: rgb(0, 24, 88); font-family: Inter, &quot; Lucida Grande&quot;, &quot; Lucida Sans Unicode&quot;, &quot; Lucida Sans&quot;, Verdana, sans-serif; ">
+                    <li id="id_25" data-type="control_head" data-qid="25" data-order="1" data-selectioncount="0" class="form-line clearfix isNotSelected form-input-wide form-input-wide-lix`ne-fix lineAlignment-Center" style="z-index: 1;" draggable="false">
+                        <div class="question-wrapper questionWrapper  false">
+                            <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                <div class="form-header-group  header-large">
+                                    <div class="header-text httac htvam">
+                                        <h1 id="header_25" class="form-header" data-component="header">
+                                            <div class="editor-container editorHasText" style="display: inline-block;">
+                                                <div class="inlineEditor" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
+                                                    @Html.DisplayFor(model => model.Survey.Name)
+                                                </div>
+                                            </div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="id_26" data-type="control_fullname" data-qid="26" data-order="2" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Auto-Top mt-5" style="z-index: 1;">
+                        <div class="question-wrapper questionWrapper false">
+                            <label id="label_26" class="form-label form-label-top form-label-auto" for="none" style="width: 100%;">
+                            </label>
+                            <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                <div data-wrapper-react="true">
+                                    <span class="form-sub-label-container" data-input-type="first" style="vertical-align: top;">
+                                        <p>Thời gian bắt đầu: @Html.DisplayFor(model => model.Survey.StartTime)</p>
+                                    </span>
+                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
+                                        <p>Thời gian kết thúc: @Html.DisplayFor(model => model.Survey.EndTime)</p>
+                                    </span>
+                                    <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
+                                        <p>Mô tả: @Html.DisplayFor(model => model.Survey.Description)</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul data-box="questions-box">
+
+                    @foreach (var question in Model.Survey.Questions)
+                    {
+                        if (question.QuestionType == 1)
+                        {
+                            <li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                                <div class="question-wrapper questionWrapper  false">
+                                    <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                                        <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                            <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                                <p>Câu hỏi : @question.Content</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                        <div class="form-single-column" role="group" aria-labelledby="label_22">
+                                            <p>Câu trả lời:</p>
+                                            @if (Model.Answers.Count > 0)
+                                            {
+                                                foreach (var rs in Model.Answers)
+                                                {
+                                                    if (string.Equals(rs.QuestionId, question.Id))
+                                                    {
+                                                        <input class="form-control" value="@rs.Answer" />
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else if (question.QuestionType == 2)
+                        {
+                            if (question.Answers != null)
+                            {
+                                //var lstAnswer = IndexRender.render_Question_Answer(item.QuestionType, item.Answers.split('|'), item.Id);
+                            }
+                            <li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                                <div class="question-wrapper questionWrapper  false">
+                                    <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                                        <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                            <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                                <p>Câu hỏi: @question.Content</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                        <div class="form-single-column" role="group" aria-labelledby="label_22" data-component="radio">
+                                            <p>Câu trả lời:</p>
+                                            <div class="form-check">
+                                                <div class="row">
+                                                    @{
+                                                        var questions = question.Answers.Split('|');
+                                                        string result = null;
+                                                        foreach (var answer in Model.Answers)
+                                                        {
+                                                            if (string.Equals(answer.QuestionId, question.Id))
+                                                            {
+                                                                result = answer.Answer;
+                                                            }
+                                                        }
+
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(result))
+                                                    {
+                                                        <div class="col-md-9 mt-2">
+                                                            <input name="default-radio-input" class="form-check-input" type="radio" value="@result" checked="">
+                                                            <label class="form-check-label">@result</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                                            <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        }
+                        else if (question.QuestionType == 3)
+                        {
+                            <li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                                <div class="question-wrapper questionWrapper  false">
+                                    <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
+                                        <div class="editor-container editorHasText" style="display: inline; width: 100%;">
+                                            <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
+                                                <p>Câu hỏi : @question.Content</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <div class="form-input-wide" data-layout="full" style="position: relative;">
+                                        <div class="form-single-column" role="group" aria-labelledby="label_22" data-component="checkbox">
+                                            <p>Câu trả lời:</p>
+                                            <div class="form-check">
+                                                <div class="row">
+                                                    @{
+                                                        var questions = question.Answers.Split('|');
+                                                        List<string> result = null;
+                                                        foreach (var answer in Model.Answers)
+                                                        {
+                                                            if (string.Equals(answer.QuestionId, question.Id))
+                                                            {
+                                                                result = answer.Answer.Split('|').ToList<string>();
+                                                            }
+                                                        }
+
+                                                    }
+                                                    @foreach (var a in result)
+                                                    {
+                                                        <div class="col-md-9 mt-2">
+                                                            <input class="form-check-input" type="checkbox" checked value="@a">
+                                                            <label class="form-check-label"> @a</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                                            <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="~/Content/Admin/show_result_question.js"></script>

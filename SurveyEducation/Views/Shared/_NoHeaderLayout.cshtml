@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="en">
+@Html.Partial("_Head")
+
+<body>
+    @if (ViewBag.message != null)
+    {
+        if (ViewBag.message.Equals("Registered Successfully"))
+        {
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> @ViewBag.message
+            </div>
+        }
+    }
+
+    @RenderBody()
+
+    <!--
+    Essential Scripts
+    =====================================-->
+    @Html.Partial("_Script")
+
+</body>
+</html>

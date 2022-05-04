@@ -5,7 +5,6 @@ using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -44,27 +43,30 @@ namespace SurveyEducation.Controllers
                 EmployeeNumber = accountVM.EmployeeNumber,
                 DateOfJoining = DateTime.Now
             };
-            
+
             var result = await userManager.CreateAsync(user, user.PasswordHash);
             db.Users.Add(user);
             db.SaveChanges();
+            Console.WriteLine(user.Id);
             if (result.Succeeded)
             {
-                return View("Login");
+                ViewBag.message = "Registered Successfully";
+                return RedirectToAction("Login");
             }
             else
             {
-                return View("Register");
+                ViewBag.message = "Registered Successfully";
+                return View("Login");
             }
         }
         public async Task<ActionResult> AddRole()
         {
             Account account = new Account();
-            if(account.RoleNumber != null && account.AddmissionDate != null)
+            if (account.RoleNumber != null && account.AddmissionDate != null)
             {
                 AppRole roleStudent = new AppRole()
                 {
-                    Name = "Student"
+                    Name = Models.RoleValue.Student
                 };
                 var result1 = await roleManager.CreateAsync(roleStudent);
                 if (result1.Succeeded)
@@ -76,38 +78,40 @@ namespace SurveyEducation.Controllers
                     return ViewBag.Message = "Add Role Fail!";
                 }
             }
-            else if(account.EmployeeNumber != null && account.DateOfJoining != null)
+            else if (account.EmployeeNumber != null && account.DateOfJoining != null)
             {
                 AppRole roleFacultyStaff = new AppRole()
                 {
-                    Name = "FacultyOrStaff"
+                    Name = Models.RoleValue.FacultyOrStaff
                 };
                 var result2 = await roleManager.CreateAsync(roleFacultyStaff);
                 if (result2.Succeeded)
                 {
-                    return ViewBag.Message = "Add Role Successful!";
+                    return Redirect("~/Home");
                 }
                 else
                 {
                     return ViewBag.Message = "Add Role Fail!";
                 }
+
             }
-            return Redirect("Admin/Dashboard");
+            return Redirect("~/Home");
         }
-        public async Task<ActionResult> AddAccountToRole(AppRole appRole)
-        {
-            string userId = appRole.UserId;
-            string roleName = "Student";
-            var result = await userManager.AddToRolesAsync(userId, roleName);
-            if (result.Succeeded)
-            {
-                return ViewBag.Message = "Add Role Successful!";
-            }
-            else
-            {
-                return ViewBag.Message = "Add Role Fail!";
-            }
-        }
+
+        //public async Task<ActionResult> AddAccountToRole(AppRole appRole)
+        //{
+        //    var userId = await userManager.FindByIdAsync(User.Identity.GetUserId());
+        //    string roleName = "Student";
+        //    var result = await userManager.AddToRolesAsync(userId, roleName);
+        //    if (result.Succeeded)
+        //    {
+        //        return ViewBag.Message = "Add Role Successful!";
+        //    }
+        //    else
+        //    {
+        //        return ViewBag.Message = "Add Role Fail!";
+        //    }
+        //}
         [HttpGet]
         public ActionResult Login()
         {
@@ -132,36 +136,41 @@ namespace SurveyEducation.Controllers
         //    }
         //}
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
         {
             if (ModelState.IsValid)
             {
-                var data = db.Users.Where(s => s.UserName.Equals(username));
-                if (data.Count() > 0)
-                {
-                    //add session
-                    Session["UserName"] = data.FirstOrDefault().UserName;
-                    Session["Password"] = data.FirstOrDefault().PasswordHash;
 
-                    return Redirect("/Admin/Dashboard");
-                }
-                else
+                var data = db.Users.Where(s => s.UserName.Equals(username)).FirstOrDefault();
+                if (data == null)
                 {
-                    ViewBag.error = "Login failed";
+                    // user ko ton tai
+                    ViewBag.Message = "user ko ton tai";
                     return RedirectToAction("Login");
                 }
+                var passwordHasher = new PasswordHasher();
+
+                if (passwordHasher.VerifyHashedPassword(data.PasswordHash, password) == PasswordVerificationResult.Failed)
+                {
+                    // sai pass
+                    ViewBag.Message = "tai khoan hoac mat khau sai";
+                    return RedirectToAction("Login");
+                }
+                Session["UserName"] = data;
+                ViewBag.Message = "user  ton tai";
+
+                return Redirect("/Home/Index");
             }
             return View("Login");
         }
+
+
         public ActionResult Logout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
+            Session.Remove("UserName");
             return Redirect("/Account/Login");
-        }
-
-        public ActionResult AddUser()
-        {
-            return View();
         }
     }
 }

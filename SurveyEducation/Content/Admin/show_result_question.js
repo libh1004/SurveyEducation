@@ -15,8 +15,7 @@
                                 <div class="form-input-wide" data-layout="full" style="position: relative;">
                                     <div class="form-single-column" role="group" aria-labelledby="label_22">
                                         <p>Câu trả lời:</p>
-                                        <label for="input-text-${item.Id}" class="form-label">Email address</label>
-                                        <input class="form-control" placeholder="điền câu trả lời" id="input-text-${item.Id}"/>
+                                        <input class="form-control" id="input-text-${item.Id}"/>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +50,7 @@
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
                                         <div class="inlineEditor" placeholder="Type a question" data-gramm="false" style="width: 100%;">
-                                            <p>Câu hỏi ${index+1}: ${item.Content}</p>
+                                            <p>Câu hỏi ${index + 1}: ${item.Content}</p>
                                         </div>
                                     </div>
                                 </label>
@@ -124,10 +123,10 @@
 
 var Index = function () {
     /* ------ Methods ------ */
-    var getSurvey = async function (obj, id) {
+    var getResultQuestion = async function (obj, id) {
         $.ajax({
             type: "GET",
-            url: "/Admin/Survey/GetSurvey/" + id,
+            url: "/Admin/Survey/ShowResultUser/" + id,
             contentType: "application/json charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
@@ -137,22 +136,22 @@ var Index = function () {
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
+                console.log("hello:" + textStatus + ": " + jqXHR.status + " " + errorThrown);
             }
         });
     }
 
     /* ------ Handles ------ */
-    var handleBox = async function () {
+    var handleBox2 = async function () {
         $('[data-box="questions-box"]').map(async function (index, item) {
             var id = document.URL.split('/')[document.URL.split('/').length - 1];
-            await getSurvey($(item), id);
+            await getResultQuestion($(item), id);
         });
     }
 
     return {
         initialize: async function () {
-            await handleBox();
+            await handleBox2();
         }
     }
 }();

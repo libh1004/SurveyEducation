@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using PagedList;
 using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -18,9 +20,43 @@ namespace SurveyEducation.Areas.Admin.Controllers
         MyDbContext db = new MyDbContext();
 
         [HttpGet]
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Surveys.ToList());
+
+            ViewBag.ListSurvey = this.db.Surveys.ToList();
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IdSortParm = sortOrder == "Id" ? "id_desc" : "Id";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var surveys = from p in db.Surveys
+                           select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                surveys = surveys.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    surveys = surveys.OrderByDescending(p => p.Id);
+                    break;
+                default:
+                    surveys = surveys.OrderBy(p => p.Id);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(surveys.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -95,23 +131,23 @@ namespace SurveyEducation.Areas.Admin.Controllers
             return View(survey);
         }
 
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Survey survey = db.Surveys.Find(id);
-            if (survey == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                db.Surveys.Remove(survey);
-                return RedirectToAction("Index");
-            }
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Survey survey = db.Surveys.Find(id);
+        //    if (survey == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    else
+        //    {
+        //        db.Surveys.Remove(survey);
+        //        return RedirectToAction("Index");
+        //    }
+        //}
         [HttpGet]
         public dynamic GetSurvey(int? id)
         {
@@ -247,6 +283,54 @@ namespace SurveyEducation.Areas.Admin.Controllers
 
             };
             return View(surveyResult);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Models.Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            return View(survey);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,EndTime,CreatedBy,Description,Tag,Status,SurveyHistory,QuestionId,Questions")] Models.Survey survey)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(survey).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(survey);
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Models.Survey survey = db.Surveys.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            return View(survey);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Models.Survey survey = db.Surveys.Find(id);
+            db.Surveys.Remove(survey);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

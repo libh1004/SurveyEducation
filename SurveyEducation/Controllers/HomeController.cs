@@ -1,4 +1,5 @@
-﻿using SurveyEducation.Data;
+﻿using PagedList;
+using SurveyEducation.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,21 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
-
         public ActionResult Survey()
         {
-            return View(db.Surveys.ToList());
+            //return View(db.Surveys.ToList());
+            return View();
         }
-
+        public ActionResult About()
+        {
+            //return View(db.Surveys.ToList());
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            //return View(db.Surveys.ToList());
+            return View();
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)

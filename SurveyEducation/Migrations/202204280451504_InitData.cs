@@ -3,7 +3,7 @@ namespace SurveyEducation.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDatabase : DbMigration
+    public partial class InitData : DbMigration
     {
         public override void Up()
         {
@@ -12,6 +12,7 @@ namespace SurveyEducation.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Content = c.String(),
                         SurveyId = c.Int(nullable: false),
                         Answers = c.String(),
                         QuestionType = c.Int(nullable: false),
@@ -26,9 +27,10 @@ namespace SurveyEducation.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                         StartTime = c.DateTime(nullable: false),
                         EndTime = c.DateTime(nullable: false),
-                        CreatedBy = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
                         Description = c.String(),
                         Tag = c.String(),
                         Status = c.Int(nullable: false),
@@ -57,10 +59,13 @@ namespace SurveyEducation.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        Fullname = c.String(),
+                        UserName = c.String(nullable: false, maxLength: 256),
                         DisabledAt = c.DateTime(nullable: false),
                         Address = c.String(),
+                        Thumbnail = c.String(),
+                        PhoneNumber = c.String(),
                         Status = c.Int(nullable: false),
+                        RoleNumber = c.String(),
                         EmployeeNumber = c.String(),
                         AddmissionDate = c.DateTime(nullable: false),
                         DateOfJoining = c.DateTime(nullable: false),
@@ -68,13 +73,11 @@ namespace SurveyEducation.Migrations
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
                         PhoneNumberConfirmed = c.Boolean(nullable: false),
                         TwoFactorEnabled = c.Boolean(nullable: false),
                         LockoutEndDateUtc = c.DateTime(),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 256),
                         SurveyHistory_UserId = c.Int(),
                         SurveyHistory_SurveyId = c.Int(),
                     })
@@ -127,6 +130,7 @@ namespace SurveyEducation.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 256),
+                        UserId = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)

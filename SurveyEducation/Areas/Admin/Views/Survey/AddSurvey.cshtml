@@ -10,15 +10,11 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản lý Survey/</span>Thêm Survey</h4>
     <div class="row">
-        <ul class="nav nav-pills m-3" id="pills-tab" role="tablist">
+        @*<ul class="nav nav-pills m-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Tạo mới survey</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Tạo mới google survey</button>
-
-            </li>
-        </ul>
+        </ul>*@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
@@ -29,9 +25,9 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true"> Danh sách câu hỏi</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        @*<li class="nav-item" role="presentation">
                             <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"> Thông tin thêm</button>
-                        </li>
+                        </li>*@
                     </ul>
                     <div class="tab-content  bg-light" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -54,10 +50,7 @@
                                         <div class="col-md-10"><textarea name="description" class="form-control" id="description" placeholder="Description"></textarea></div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" id="btnNextStep" class="btn btn-primary mt-4">Tiếp theo</button>
-                                    <h1 id="demo"></h1>
-                                </div>
+                                
                             </form>
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

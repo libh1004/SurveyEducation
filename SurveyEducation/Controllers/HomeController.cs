@@ -20,9 +20,9 @@ namespace SurveyEducation.Controllers
         }
         public ActionResult Survey()
         {
-            //return View(db.Surveys.ToList());
-            return View();
+            return View(db.Surveys.ToList());
         }
+
         public ActionResult About()
         {
             //return View(db.Surveys.ToList());

@@ -25,7 +25,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
-            ViewBag.ListAccount = this.db.Accounts.ToList();
+            ViewBag.ListAccount = this.db.Users.ToList();
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IdSortParm = sortOrder == "Id" ? "id_desc" : "Id";
@@ -40,11 +40,11 @@ namespace SurveyEducation.Areas.Admin.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var accounts = from p in db.Accounts
+            var accounts = from p in db.Users
                            select p;
             if (!String.IsNullOrEmpty(searchString))
             {
-                accounts = accounts.Where(p => p.UserName.Contains(searchString) || p.Address.Contains(searchString) || p.RoleNumber.Contains(searchString));
+                accounts = accounts.Where(p => p.UserName.Contains(searchString) || p.Address.Contains(searchString) || p.RoleNumber.Contains(searchString) || p.PhoneNumber.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -66,7 +66,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            return View(db.Accounts.ToList());
+            return View(db.Users.ToList());
         }
 
         // GET: Accounts/Details/5
@@ -76,7 +76,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
+            Account account = db.Users.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -95,11 +95,11 @@ namespace SurveyEducation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
+        public ActionResult Create([Bind(Include = "Id,UserName,Gmail,PhoneNumber,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(account);
+                db.Users.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -114,7 +114,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
+            Account account = db.Users.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -127,7 +127,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Gmail,PhoneNumber,Password,DisabledAt,Address,Thumbnail,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining,SurveyHistory")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
+            Account account = db.Users.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -158,8 +158,8 @@ namespace SurveyEducation.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Account account = db.Accounts.Find(id);
-            db.Accounts.Remove(account);
+            Account account = db.Users.Find(id);
+            db.Users.Remove(account);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -128,5 +128,9 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return returnJson;
             }
         }
+        public ActionResult Demo()
+        {
+            return View();
+        }
     }
 }

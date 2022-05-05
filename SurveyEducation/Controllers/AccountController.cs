@@ -45,8 +45,7 @@ namespace SurveyEducation.Controllers
                 DateOfJoining = DateTime.Now
             };
             
-            var result = await userManager.CreateAsync(user, user.PasswordHash);
-            db.Users.Add(user);
+            var result = await userManager.CreateAsync(user, user.PasswordHash);            
             db.SaveChanges();
             if (result.Succeeded)
             {

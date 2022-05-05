@@ -1,164 +1,144 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace SurveyEducation.Areas.Admin.Controllers
 {
     public class AccountsController : Controller
     {
         MyDbContext db = new MyDbContext();
-        [HttpGet]
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-        {
-
-            ViewBag.ListAccount = this.db.Account.ToList();
-
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.IdSortParm = sortOrder == "Id" ? "id_desc" : "Id";
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-            ViewBag.CurrentFilter = searchString;
-
-            var account = from p in db.Account
-                           select p;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                account = account.Where(p => p.UserName.Contains(searchString) || p.Email.Contains(searchString) || p.Thumnail.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-
-                case "id_desc":
-                    account = account.OrderByDescending(p => p.Id);
-                    break;
-                default:
-                    account = account.OrderBy(p => p.Id);
-                    break;
-            }
-
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(account.ToPagedList(pageNumber, pageSize));
-        }
+        private UserManager<Account> userManager;
+        // GET: Accounts
         public ActionResult Index()
         {
             return View(db.Users.ToList());
-        }
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(AccountViewModel accountVM)
-        {
-            if (ModelState.IsValid)
-            {
-                Account account = new Account()
-                {
-                    UserName = accountVM.UserName,
-                    Email = accountVM.Email,
-                    Thumbnail = accountVM.Thumbnail,
-                };
-                db.Users.Add(account);
-                db.SaveChanges();
-                return View(account);
-            }
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
+        }   
+
+        // GET: Accounts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Account.Find(id);
+            Account account = db.Users.Find(id);
             if (account == null)
             {
                 return HttpNotFound();
             }
+            return View(account);
+        }
+
+        // GET: Accounts/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Accounts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(AccountViewModel accountVM)
+        {
+            Account user = new Account();
+            user.UserName = accountVM.UserName;
+            user.Status = 1;
+            user.Email = accountVM.Email;
+            user.RoleNumber = accountVM.RoleNumber;
+            user.PasswordHash = accountVM.Password;
+            user.AddmissionDate = DateTime.Now;
+            user.EmployeeNumber = accountVM.EmployeeNumber;
+            user.DateOfJoining = DateTime.Now;       
+
+            var result = await userManager.CreateAsync(user, user.PasswordHash);
+            db.SaveChanges();
+            if (result.Succeeded)
+            {
+                return View("Login");
+            }
             else
             {
-                return View(account);
+                return View("Register");
             }
         }
-        [HttpGet]
-        public ActionResult Edit(int accountId)
+        // GET: Accounts/Edit/5
+        public ActionResult Edit(int? id)
         {
-            if (accountId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account acc = db.Account.Find(accountId);
-            if (acc == null)
+            Account account = db.Users.Find(id);
+            if (account == null)
             {
                 return HttpNotFound();
             }
-            return View("Index");
+            return View(account);
         }
+
+        // POST: Accounts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Account account)
+        public ActionResult Edit([Bind(Include = "Id,UserName,DisabledAt,Address,Thumbnail,PhoneNumber,Status,RoleNumber,EmployeeNumber,AddmissionDate,DateOfJoining")] Account account)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(account).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(account);
         }
+
+        // GET: Accounts/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Account account = db.Users.Find(id);
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+            return View(account);
+        }
+
+        // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var account = db.Account.Find(id);
-            db.Account.Remove(account);
+            Account account = db.Users.Find(id);
+            db.Users.Remove(account);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public List<Account> Search(string keyword)
-        {
-            if (keyword != null)
-            {
-                var result = from p in db.Account.Where(a => a.Phone.Equals(keyword)) select p;
-                return result.ToList();
-            }
-            return null;
-        }
-        [HttpPost]
-        public ActionResult Delete(IEnumerable<int> idDelete)
-        {
-            foreach (var item in idDelete)
-            {
-                return View(db.Account.ToList());
-            }
-            return View("Index");
-        }
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
+
+
+

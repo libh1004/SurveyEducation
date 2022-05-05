@@ -5,8 +5,8 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Survey Information</span></h4>
     <div class="row">
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane show active bg-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="card">
+            <div class="card-body" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <ul class="clearfix form-section page-section page_1" style="list-style: none; margin: 0px; font-size: 16px; margin: 0 200px; color: rgb(0, 24, 88); font-family: Inter, &quot; Lucida Grande&quot;, &quot; Lucida Sans Unicode&quot;, &quot; Lucida Sans&quot;, Verdana, sans-serif; ">
                     <li id="id_25" data-type="control_head" data-qid="25" data-order="1" data-selectioncount="0" class="form-line clearfix isNotSelected form-input-wide form-input-wide-lix`ne-fix lineAlignment-Center" style="z-index: 1;" draggable="false">
                         <div class="question-wrapper questionWrapper  false">
@@ -46,6 +46,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="form-group col-md-6">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary ms-3" })
 </div>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

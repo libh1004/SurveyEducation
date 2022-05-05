@@ -15,35 +15,35 @@
         </div>
     }
 }
-<h2>Survey</h2>
+<h2 class="ms-4 mt-2">Survey</h2>
 
 
 @using (Html.BeginForm("Index", "Survey", FormMethod.Get))
 {
-    <p>
+    <p class="ms-4">
         Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
 
-<p>
-    @Html.ActionLink("Create New", "AddSurvey", null, new { @class = "btn btn-primary ms-3" })
+<p class="ms-4">
+    @Html.ActionLink("Create New", "AddSurvey", null, new { @class = "btn btn-primary" })
 </p>
 
-<table class="table">
+<table class="table ms-1">
     <tr>
         <th>
             Name
         </th>
-        <th>
+        @*<th>
             CreatedBy
-        </th>
+        </th>*@
         <th>
             Description
         </th>
-        <th>
+        @*<th>
             Tag
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -53,15 +53,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.Tag)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |

@@ -3,7 +3,7 @@
         var html = ``;
         lstObj.forEach(function (item, index) {
             if (item.QuestionType == 1) {
-                html += `<li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                html += `<div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
                             <div class="question-wrapper questionWrapper  false">
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
@@ -19,12 +19,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>`;
+                        </div>`;
             } else if (item.QuestionType == 2) {
                 if (item.Answers != null) {
                     var lstAnswer = IndexRender.render_Question_Answer(item.QuestionType, item.Answers.split('|'), item.Id);
                 }
-                html += `<li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                html += `<div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
                             <div class="question-wrapper questionWrapper  false">
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
@@ -40,12 +40,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>`;
+                        </div>`;
             } else {
                 if (item.Answers != null) {
                     var lstAnswer = IndexRender.render_Question_Answer(item.QuestionType, item.Answers.split('|'), item.Id);
                 }
-                html += `<li id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
+                html += `<div id="id_22" data-type="control_radio" data-qid="22" data-order="5" data-selectioncount="0" class="form-line clearfix isNotSelected lineAlignment-Top mt-5" style="z-index: 1;">
                             <div class="question-wrapper questionWrapper  false">
                                 <label id="label_22" class="form-label form-label-top" for="none" style="width: 100%;">
                                     <div class="editor-container editorHasText" style="display: inline; width: 100%;">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>`;
+                        </div>`;
             }
         });
         return html;

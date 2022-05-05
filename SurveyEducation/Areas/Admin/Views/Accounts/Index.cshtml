@@ -7,18 +7,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="ms-4 mt-2">Index</h2>
 
 @using (Html.BeginForm("Index", "Accounts", FormMethod.Get))
 {
-    <p>
+    <p class="ms-4">
         Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="ms-4">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -34,9 +34,9 @@
         <th>
             SecurityStamp
         </th>*@
-        <th>
+        @*<th>
             PhoneNumber
-        </th>
+        </th>*@
         @*<th>
             PhoneNumberConfirmed
         </th>
@@ -55,12 +55,12 @@
         <th>
             UserName
         </th>
-        <th>
+       @* <th>
             Address
         </th>
         <th>
             Thumbnail
-        </th>
+        </th>*@
         <th>
             Status
         </th>
@@ -94,9 +94,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SecurityStamp)
             </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
+            </td>*@
             @*<td>
                 @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
             </td>
@@ -115,12 +115,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Thumbnail)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>

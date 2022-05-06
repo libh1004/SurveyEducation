@@ -130,24 +130,6 @@ namespace SurveyEducation.Areas.Admin.Controllers
             }
             return View(survey);
         }
-
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Survey survey = db.Surveys.Find(id);
-        //    if (survey == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    else
-        //    {
-        //        db.Surveys.Remove(survey);
-        //        return RedirectToAction("Index");
-        //    }
-        //}
         [HttpGet]
         public dynamic GetSurvey(int? id)
         {

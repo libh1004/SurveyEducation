@@ -5,6 +5,7 @@ using SurveyEducation.Data;
 using SurveyEducation.Models;
 using SurveyEducation.ViewModels;
 using System;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -30,8 +31,10 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
+
         public async Task<ActionResult> AddAccount(AccountViewModel accountVM)
         {
+
             Account user = new Account()
             {
                 UserName = accountVM.UserName,
@@ -43,21 +46,29 @@ namespace SurveyEducation.Controllers
                 EmployeeNumber = accountVM.EmployeeNumber,
                 DateOfJoining = DateTime.Now
             };
-
             var result = await userManager.CreateAsync(user, user.PasswordHash);
             db.Users.Add(user);
-            db.SaveChanges();
-            Console.WriteLine(user.Id);
-            if (result.Succeeded)
+            try
             {
-                ViewBag.message = "Registered Successfully";
-                return RedirectToAction("Login");
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+
+                db.SaveChanges();
+                Console.WriteLine(user.Id);
+                if (result.Succeeded)
+                {
+                    ViewBag.message = "Registered Successfully";
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.message = "Registered Successfully";
+                    return View("Login");
+                }
             }
-            else
-            {
-                ViewBag.message = "Registered Successfully";
-                return View("Login");
-            }
+            catch (Exception e) { }
+            ViewBag.message = "Registered Successfully";
+            return RedirectToAction("Login");
         }
         public async Task<ActionResult> AddRole()
         {
@@ -158,8 +169,7 @@ namespace SurveyEducation.Controllers
                     return RedirectToAction("Login");
                 }
                 Session["UserName"] = data;
-                ViewBag.Message = "user  ton tai";
-
+                ViewBag.Message = "user ton tai";
                 return Redirect("/Home/Index");
             }
             return View("Login");

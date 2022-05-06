@@ -65,46 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="form-group col-md-6">
-                    <label class="control-label col-md-3">Role Number</label>
-                    
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.RoleNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.RoleNumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label col-md-4">Employee Number</label>
-                    
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="form-group col-md-6">
-                    <label class="control-label col-md-3">Addmission Date</label>
-                    
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.AddmissionDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.AddmissionDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6 ">
-                    <label class="control-label col-md-3">Date Of Joining</label>
-                    
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                        @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
+          
             <div class="row mt-3">
                 <div class="form-group col-md-6">
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })

@@ -173,3 +173,22 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="~/Content/Admin/add_survey.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#start-time').datepicker(
+            {
+                minDate: 0,
+                beforeShow: function () {
+                    $(this).datepicker('option', 'maxDate', $('#end-time').val());
+                }
+            });
+        $('#end-time').datepicker(
+            {
+                defaultDate: "+1w",
+                beforeShow: function () {
+                    $(this).datepicker('option', 'minDate', $('#start-time').val());
+                    if ($('#start-time').val() === '') $(this).datepicker('option', 'minDate', 0);
+                }
+            });
+    })
+</script>

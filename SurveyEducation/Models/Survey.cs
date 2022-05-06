@@ -14,6 +14,7 @@ namespace SurveyEducation.Models
     }
     public class Survey
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime StartTime { get; set; }

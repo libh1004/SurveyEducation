@@ -1,0 +1,41 @@
+﻿@model SurveyEducation.Models.Contact
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="card m-4">
+    <h2 class="card-header">Details</h2>
+    <dl class="card-body">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+    <p class="ms-4">
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+    </p>
+</div>

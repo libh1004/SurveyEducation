@@ -51,10 +51,6 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
-
-        // POST: Admin/Blogs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Contact([Bind(Include = "Id,Name,Email,Message")] Contact contact)

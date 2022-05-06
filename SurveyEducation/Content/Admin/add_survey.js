@@ -163,12 +163,12 @@ var IndexRender = {
             html += `<div class="form-check">
                 <div class="row">
                             <div class="col-md-9 mt-2" id="btn${index + 1}">
-                                <input name="default-radio-input" class="form-check-input" type="radio" name="${answer}" value="${answer}" id="defaultRadio${index}" checked="">
-                                <label class="form-check-label" for="defaultRadio${index}"> ${answer} </label>
+                                <input name="default-radio-input"  data-current-index="${index}" class="form-check-input" type="radio" name="${answer}" value="${answer}" id="defaultRadio${index}" checked="">
+                                <label class="form-check-label"  for="defaultRadio${index}"> ${answer} </label>
                             </div>
                             <div class="col-md-3"">
-                                <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
-                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                <span data-value=${answer} data-current-index="${index}" class="btn-edit-answer tf-icons bx bx-edit" style="color: blue; cursor:pointer"></span>
+                                <span class="tf-icons bx bx-trash" style="color: red; cursor:pointer"></span>
                             </div>
                         </div>
                 </div>`
@@ -176,7 +176,7 @@ var IndexRender = {
             html += `<div class="form-check">
                          <div class="row">
                             <div class="col-md-9 mt-2" id="btn${index + 1}">
-                                <input class="form-check-input" type="checkbox" name="${answer}" value="${answer}" id="defaultCheck${index}">
+                                <input class="form-check-input" data-current-index="${index}" type="checkbox" name="${answer}" value="${answer}" id="defaultCheck${index}">
                                 <label class="form-check-label" for="defaultCheck${index}"> ${answer} </label>
                             </div>
                             <div class="col-md-3">
@@ -237,9 +237,9 @@ var Index = function () {
     //var showEditAnswerModal = function () {
     //    $('#add-answer-modal').modal('show');
     //}
-    var addNewAnswer = function (currentIndex) {
-        /*var formActionAnswer = $('#answer-modal-action').val();*/
-        /*if (parseInt(formActionAnswer) == 1) {*/
+    var addNewAnswer = function (currentIndex, type) {
+        
+        if (type == 1) {
             var currentObject = listObj[parseInt(currentIndex)];
             var newAnswer = document.getElementById('txt-answer').value;
             var answers = [];
@@ -253,12 +253,21 @@ var Index = function () {
             $("#accordionExample").html(IndexRender.render_Question(listObj));
             $('#txt-answer').val('');
             $('#add-answer-modal').modal('hide');
-        //} else if (parseInt(formActionAnswer) == 2) {
-        //    var currentIndex = parseInt($('#current-object-index').val());
-        //    listObj[currentIndex] = obj;
-        //}
+        } else if (type == 2) {
+            var a = $(`#defaultRadio${currentIndex}`);
+            var newAnswer = $('#txt-answer').val();
+            var label = $('label[for=' + `defaultRadio${currentIndex}` + ']')
+            
+            a.attr('value', newAnswer)
+            label.text(newAnswer)
+            //$(`#defaultRadio${currentIndex}`).val(newAnswer);
+            $('#add-answer-modal').modal('hide');
+            $('#txt-answer').val('');
+        }
 
     }
+
+    
 
     var submitForm = function () {
         var obj = new Object();
@@ -289,11 +298,14 @@ var Index = function () {
 
     /* ------ Handles ------ */
     var handleBox = function () {
+        var answerEdit = 2;
+
         $("#btnSubmitQuestion").click(function () {
             addNewQuestion();
         })
 
         $(document).on('click', '.btn-add-answer', function () {
+            answerEdit = 1;
             var currentIndex = $(this).attr('data-current-index');
             var currentObject = listObj[parseInt(currentIndex)];
             $('#current-question-index').val(currentIndex);
@@ -326,9 +338,10 @@ var Index = function () {
             showCreateModal();
         })
 
+       
         $(document).on('click', '.add-answer', function () {
             let currentIndex = document.getElementById('current-question-index').value;
-            addNewAnswer(currentIndex,)
+            addNewAnswer(currentIndex, answerEdit)
         });
 
         $(document).on('click', '.submit-survey', function () {
@@ -340,11 +353,16 @@ var Index = function () {
         //    $('#profile-tab').addClass('active');
         //    $('#profile').addClass('active');
         //})
-        $(document).on('click', '#btn-edit-answer', function () {
+        
+        $(document).on('click', '.btn-edit-answer', function () {
             var currentIndex = $(this).attr('data-current-index');
+            var currentObject = listObj[parseInt(currentIndex)];
+            $('#current-question-index').val(currentIndex);
+            var a = $(`#defaultRadio${currentIndex}`).val();
+            answerEdit = 2
+            $('#txt-answer').val(a);
             showAddAnswerModal();
         })
-
         $('#pills-profile-tab').click(function () {
             //<div class="tab-pane fade bg-white" id="pills-gg-form" role="tabpanel" aria-labelledby="pills-profile-tab">
             //    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxvE2eXbJBKhXFcmWX9qx8UGJ2Rk2Rbmubay1br0jyJ15tA/viewform?embedded=true" width="100%" height="3021" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>

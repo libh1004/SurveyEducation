@@ -68,15 +68,23 @@ namespace SurveyEducation.Areas.User.Controllers
                 var obj = (Account) Session["UserName"];
                 surveyHistory.UserId = obj.Id;
             }
-            surveyHistory.Status = 1;
-            Console.WriteLine(surveyHistory);
-            db.SurveyHistories.Add(surveyHistory);
-            db.SaveChanges();
+            var checkUserSurveyHistory = db.SurveyHistories.Where(x => x.SurveyId == surveyHistory.SurveyId).Where(x => x.UserId == surveyHistory.UserId).FirstOrDefault();
+            if(checkUserSurveyHistory == null)
+            {
+                surveyHistory.Status = 1;
+                Console.WriteLine(surveyHistory);
+                db.SurveyHistories.Add(surveyHistory);
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Message = "Bạn đã có dữ liệu rồi, không thể thực hiện submit survey.";
+            }
             var returnJson = JsonConvert.SerializeObject(surveyHistory, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            return returnJson;
+            return RedirectToAction("Index", "Home");
         }
     }
 }

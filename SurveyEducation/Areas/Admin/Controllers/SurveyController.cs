@@ -39,7 +39,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var surveys = from p in db.Surveys
-                           select p;
+                          select p;
             if (!String.IsNullOrEmpty(searchString))
             {
                 surveys = surveys.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
@@ -179,7 +179,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
         {
             var lst = new List<SurveyDTO>();
             var surveys = db.Surveys.ToList();
-            foreach(var s in surveys)
+            foreach (var s in surveys)
             {
                 var surveyHistory = db.SurveyHistories.Where(x => x.SurveyId == s.Id).ToList();
                 var surveyDTO = new SurveyDTO();
@@ -265,7 +265,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
             }
             var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
             var surveyHistory = db.SurveyHistories.Where(s => s.UserId == user.Id && s.SurveyId == survey.Id).FirstOrDefault();
-            if(surveyHistory == null)
+            if (surveyHistory == null)
             {
                 return HttpNotFound();
             }
@@ -274,7 +274,7 @@ namespace SurveyEducation.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             var listAnswer = JsonConvert.DeserializeObject<List<Result>>(surveyHistory.Answers);
-           
+
             SurveyResult surveyResult = new SurveyResult()
             {
                 Survey = survey,

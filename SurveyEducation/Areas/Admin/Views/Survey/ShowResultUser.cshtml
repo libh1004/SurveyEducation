@@ -108,17 +108,32 @@
                                                         }
 
                                                     }
-                                                    @if (!string.IsNullOrEmpty(result))
+                                                    @foreach (var answer in questions)
                                                     {
-                                                        <div class="col-md-9 mt-2">
-                                                            <input name="default-radio-input" class="form-check-input" type="radio" value="@result" checked="">
-                                                            <label class="form-check-label">@result</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
-                                                            <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
-                                                        </div>
+                                                        if (string.Equals(result, answer))
+                                                        {
+                                                            <div class="col-md-9 mt-2">
+                                                                <input name="default-radio-input" class="form-check-input" type="radio" checked value="@answer">
+                                                                <label class="form-check-label">@answer</label>
+                                                            </div><div class="col-md-3">
+                                                                <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-9 mt-2">
+                                                                <input name="default-radio-input" class="form-check-input" type="radio" value="@answer">
+                                                                <label class="form-check-label">@answer</label>
+                                                            </div><div class="col-md-3">
+                                                                <a href=""><span id="btn-edit-answer" class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                                                <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                                            </div>
+                                                        }
+
+
                                                     }
+
 
                                                 </div>
                                             </div>
@@ -146,26 +161,33 @@
                                                 <div class="row">
                                                     @{
                                                         var questions = question.Answers.Split('|');
-                                                        List<string> result = null;
+                                                        List<string> results = null;
                                                         foreach (var answer in Model.Answers)
                                                         {
                                                             if (string.Equals(answer.QuestionId, question.Id))
                                                             {
-                                                                result = answer.Answer.Split('|').ToList<string>();
+                                                                results = answer.Answer.Split('|').ToList<string>();
                                                             }
                                                         }
 
                                                     }
-                                                    @foreach (var a in result)
+                                                    @foreach (var a in questions)
                                                     {
-                                                        <div class="col-md-9 mt-2">
-                                                            <input class="form-check-input" type="checkbox" checked value="@a">
-                                                            <label class="form-check-label"> @a</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
-                                                            <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
-                                                        </div>
+                                                        foreach (var r in results)
+                                                        {
+                                                            if (string.Equals(a, r))
+                                                            {
+                                                                <div class="col-md-9 mt-2">
+                                                                    <input class="form-check-input" type="checkbox" checked value="@a">
+                                                                    <label class="form-check-label"> @a</label>
+                                                                </div><div class="col-md-3">
+                                                                    <a href=""><span class="tf-icons bx bx-edit" style="color: blue"></span></a>
+                                                                    <a href=""><span class="tf-icons bx bx-trash" style="color: red"></span></a>
+                                                                </div>
+                                                            }
+                                                            
+                                                        }
+
                                                     }
 
                                                 </div>

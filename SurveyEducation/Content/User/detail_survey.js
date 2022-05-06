@@ -162,8 +162,10 @@ var Index = function () {
             body: JSON.stringify(json)
         })
 
-        var content = await rawResponse.json();
-        console.log(content);
+        await rawResponse.json();
+        if (await rawResponse.ok) {
+            window.location.href = "/Home/Index"
+        }
     }
 
     /* ------ Handles ------ */

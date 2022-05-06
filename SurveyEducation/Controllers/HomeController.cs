@@ -1,11 +1,8 @@
-﻿using PagedList;
-using SurveyEducation.Data;
+﻿using SurveyEducation.Data;
 using SurveyEducation.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SurveyEducation.Controllers
@@ -19,6 +16,7 @@ namespace SurveyEducation.Controllers
         {
             return View();
         }
+
         public ActionResult Survey()
         {
             return View(db.Surveys.ToList());
@@ -31,10 +29,12 @@ namespace SurveyEducation.Controllers
         }
         public ActionResult Blog()
         {
-            return View();
+            var Blog = db.Blogs.OrderByDescending(p => p.Id).FirstOrDefault();
+            return View(db.Blogs.ToList());
         }
         public ActionResult BlogDetails(int? id)
         {
+            var Blog = db.Blogs.OrderByDescending(p => p.Id).FirstOrDefault();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,11 +46,28 @@ namespace SurveyEducation.Controllers
             }
             return View(blog);
         }
+
         public ActionResult Contact()
         {
-            //return View(db.Surveys.ToList());
             return View();
         }
+
+        // POST: Admin/Blogs/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Contact([Bind(Include = "Id,Name,Email,Message")] Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return RedirectToAction("Contact");
+            }
+            return View("Contact");
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)

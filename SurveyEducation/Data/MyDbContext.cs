@@ -17,5 +17,6 @@ namespace SurveyEducation.Data
         public DbSet<SurveyHistory> SurveyHistories { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

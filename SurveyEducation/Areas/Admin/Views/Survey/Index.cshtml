@@ -5,75 +5,84 @@
 @{
     ViewBag.Title = "Index";
 }
-@if (ViewBag.message != null)
-{
-    if (ViewBag.message.Equals("Registered Successfully"))
+@*@if (ViewBag.message != null)
     {
-        <div class="alert alert-success">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> @ViewBag.message
+        if (ViewBag.message.Equals("Registered Successfully"))
+        {
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> @ViewBag.message
+            </div>
+        }
+    }*@
+
+<div class="card m-4">
+    <div class="card-header">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản lý Survey /</span> Danh sách Survey</h4>
+    </div>
+    <div class="row m-3">
+        @using (Html.BeginForm("Index", "Accounts", FormMethod.Get, new { @class = "col-md-6" }))
+        {
+            <div class="form-group d-flex">
+                <label class="col-md-3 mt-2">Find by keyword</label>
+                <div class="col-md-4">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, null, new { @class = "form-control" })
+                </div>
+                <input type="submit" value="Search" class="btn btn-primary col-md-2 ms-2" />
+            </div>
+        }
+
+        <p class="col-md-6 d-flex justify-content-end">
+            @Html.ActionLink("Create New", "AddSurvey", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="card-body">
+        <table class="table ms-1">
+            <tr>
+                <th>
+                    Name
+                </th>
+                @*<th>
+                        CreatedBy
+                    </th>*@
+                <th>
+                    Description
+                </th>
+                @*<th>
+                        Tag
+                    </th>*@
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    @* <td>
+                            @Html.DisplayFor(modelItem => item.Tag)
+                        </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="row ms-3 mt-3">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         </div>
-    }
-}
-<h2>Survey</h2>
-
-
-@using (Html.BeginForm("Index", "Survey", FormMethod.Get))
-{
-    <p>
-        Find by keyword: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
-}
-
-<p>
-    @Html.ActionLink("Create New", "AddSurvey", null, new { @class = "btn btn-primary ms-3" })
-</p>
-
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            CreatedBy
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Tag
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tag)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
-<div class="row ms-3">
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
 </div>

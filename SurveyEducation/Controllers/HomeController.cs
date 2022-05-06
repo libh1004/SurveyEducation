@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using SurveyEducation.Data;
+using SurveyEducation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,23 @@ namespace SurveyEducation.Controllers
         {
             //return View(db.Surveys.ToList());
             return View();
+        }
+        public ActionResult Blog()
+        {
+            return View();
+        }
+        public ActionResult BlogDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Blog blog = db.Blogs.Find(id);
+            if (blog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(blog);
         }
         public ActionResult Contact()
         {

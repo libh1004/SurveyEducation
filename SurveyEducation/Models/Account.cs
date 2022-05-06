@@ -17,11 +17,8 @@ namespace SurveyEducation.Models
     {
        [Required(ErrorMessage = "Please enter username.")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Please enter address.")]
         public string Address { get; set; }
-        [Required(ErrorMessage = "Please enter thumbnail.")]
         public string Thumbnail { get; set; }
-        [Required(ErrorMessage = "Please enter phonenumber.")]
         public string PhoneNumber { get; set; }
         public int Status { get; set; }
         public string RoleNumber { get; set; }

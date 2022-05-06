@@ -14,7 +14,7 @@
                                 <div class="form-header-group  header-large">
                                     <div class="header-text httac htvam">
                                         <h1 id="header_25" class="form-header" data-component="header">
-                                            <div class="editor-container editorHasText"">
+                                            <div class="editor-container editorHasText" ">
                                                 <div class="inlineEditor text-center" placeholder="Type a header" data-gramm="false" style="padding: 20px; text-align: center; justify-content: center;">
                                                     @Html.DisplayFor(model => model.Name)
                                                 </div>
@@ -44,12 +44,11 @@
                 </ul>
                 <ul data-box="questions-box" class="col-md-8 align-items-center py-3" style="margin: 0 auto"></ul>
             </div>
+            <div class="form-group col-md-6 py-3">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary ms-3" })
+            </div>
         </div>
     </div>
-</div>
-
-<div class="form-group col-md-6">
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary ms-3" })
 </div>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

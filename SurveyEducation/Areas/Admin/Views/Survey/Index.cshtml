@@ -38,43 +38,43 @@
     </div>
     <div class="card-body">
         <table class="table ms-1">
-            <tr>
-                <th>
+            <div class="row border-bottom">
+                <div class="col-md-3">
                     Name
-                </th>
+                </div>
                 @*<th>
                         CreatedBy
                     </th>*@
-                <th>
+                <div class="col-md-6">
                     Description
-                </th>
+                </div>
                 @*<th>
                         Tag
                     </th>*@
-                <th></th>
-            </tr>
+                <div class="col-md-3"></div>
+            </div>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
+                <div class="row border-bottom">
+                    <div class="col-md-3">
                         @Html.DisplayFor(modelItem => item.Name)
-                    </td>
+                    </div>
                     @*<td>
                             @Html.DisplayFor(modelItem => item.CreatedBy)
                         </td>*@
-                    <td>
+                    <div class="col-md-6">
                         @Html.DisplayFor(modelItem => item.Description)
-                    </td>
+                    </div>
                     @* <td>
                             @Html.DisplayFor(modelItem => item.Tag)
                         </td>*@
-                    <td class="d-flex justify-content-end">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new {@class = "btn btn-warning m-1" })
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success m-1" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger m-1" })
-                    </td>
-                </tr>
+                    <div class="d-flex justify-content-end col-md-3">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning m-1", @style = "height:39px" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success m-1", @style = "height:39px" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger m-1", @style = "height:39px" })
+                    </div>
+                </div>
             }
 
         </table>

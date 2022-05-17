@@ -168,8 +168,11 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Survey.cs" />
+    <Compile Include="Models\SurveyDTO.cs" />
     <Compile Include="Models\SurveyHistory.cs" />
+    <Compile Include="Models\SurveyResult.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
@@ -724,6 +727,11 @@
     <Content Include="Public\scss\_mixins.scss" />
     <Content Include="Public\scss\_typography.scss" />
     <Content Include="Public\scss\_variables.scss" />
+    <Content Include="Areas\Admin\Views\Accounts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -760,7 +768,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Accounts\" />
     <Folder Include="Areas\Admin\Views\Default\" />
     <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Data\" />
